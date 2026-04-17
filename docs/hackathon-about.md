@@ -55,6 +55,23 @@ Every token transfer passes through the ERC-3643 compliance module - it checks t
 
 Full transparency - AI-generated compliance reports per token, investor registry with claim status, complete transfer audit trail, PDF export. All on-chain data independently verifiable through DOScan explorer.
 
+**Digital asset payments (the other half of SS6):**
+
+Track SS6 explicitly covers both *"digital asset payments"* and *"tokenized securities"*. Tokenization without a payment rail is incomplete - issuers need to distribute coupon payments, settle secondary trades, and enable cross-border flow. DOS Chain ships both halves in one stack:
+
+| Payment Capability | Implementation on DOS Chain |
+|-------------------|-----------------------------|
+| **Gasless transactions** | Whitelisted investors pay zero gas for KYC onboarding, token transfers, compliance-verified flows |
+| **Account abstraction (ERC-4337)** | Rundler bundler running on DOS Chain (bundler.doschain.com) - smart contract wallets with social recovery, session keys, batch calls |
+| **Automated coupon distribution** | ERC-3643 `forcedTransfer` + scheduled contracts distribute bond yields to token holders on schedule, no manual reconciliation |
+| **Cross-border settlement** | ICTT bridge: near-instant settlement DOS Chain ↔ Avalanche C-Chain ↔ Ethereum. Compliance state preserved on transfer (ONCHAINID claims verified on destination chain) |
+| **Stablecoin-ready** | Ready to integrate won-pegged stablecoin (8 Korean banks incl. Shinhan consortium) and VND-pegged alternatives for settlement in local currency |
+| **x402 micropayments** | HTTP-native payment facilitator deployed (`services/x402-facilitator`) - pay-per-API-call, machine-to-machine commerce |
+| **Batch operations** | Multicall3 deployed for portfolio-level read/write (e.g., claim coupons from 50 bonds in one transaction) |
+| **1-second finality** | Payments settle in 1 second - faster than traditional T+2 securities settlement by ~172,800x |
+
+The result: a single chain handles both *tokenizing* a Shinhan corporate bond **and** *paying out* its semi-annual coupons in stablecoin, automatically, gaslessly, with instant finality - covering both halves of the SS6 mandate with one integrated infrastructure.
+
 ## How we built it
 
 | Layer | Technology |
@@ -160,6 +177,7 @@ We didn't invent anything new. Every technical choice we made is already proven 
 - **Zero-friction UX** - DOS.Me SSO login (no MetaMask), gasless for whitelisted users (ONCHAINID deployment costs the investor $0 vs $50-100 on Ethereum).
 - **On-premise ready** - every component self-hostable on bank hardware. Required by Vietnamese banking regulations.
 - **Built on live infrastructure** - EAS, DOScan, ICTT, DOS Names, Faucet - all in production. We integrated, didn't reinvent.
+- **Integrated digital asset payments** - gasless transactions, ERC-4337 account abstraction (Rundler live on DOS Chain), x402 facilitator, Multicall3 batching, 1-second finality. Covers both halves of track SS6 on one chain.
 
 ## What we learned
 

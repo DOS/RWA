@@ -226,6 +226,51 @@
 <p>Mọi chuyển token đều đi qua compliance module của ERC-3643 - kiểm tra claim ONCHAINID của NĐT (KYC hợp lệ? AML sạch? Quốc gia được phép? Qua thời gian khóa? Đủ số NĐT tối đa?) <strong>trước khi chuyển thực hiện</strong>. Chuyển không hợp lệ tự động bị chặn ở cấp smart contract. Không cần enforce off-chain.</p>
 <p><strong>Dành cho Cơ Quan Quản Lý (Compliance Dashboard + DOScan):</strong></p>
 <p>Minh bạch hoàn toàn - báo cáo tuân thủ AI tạo cho từng token, registry NĐT với trạng thái claim, audit trail giao dịch đầy đủ, export PDF. Mọi dữ liệu on-chain đều verify độc lập được qua DOScan.</p>
+<p><strong>Thanh toán tài sản số (nửa còn lại của track SS6):</strong></p>
+<p>Track SS6 bao gồm cả <em>"digital asset payments"</em> lẫn <em>"tokenized securities"</em>. Token hóa mà không có rail thanh toán là không đầy đủ - nhà phát hành cần phân phối coupon, settle giao dịch thứ cấp, và thanh toán xuyên biên giới. DOS Chain gói cả 2 nửa trong 1 stack:</p>
+<table>
+<thead>
+<tr>
+<th>Năng lực thanh toán</th>
+<th>Hiện thực trên DOS Chain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Giao dịch gasless</strong></td>
+<td>NĐT được whitelist trả 0 đồng gas cho KYC, chuyển token, flow tuân thủ</td>
+</tr>
+<tr>
+<td><strong>Account abstraction (ERC-4337)</strong></td>
+<td>Rundler bundler chạy trên DOS Chain (bundler.doschain.com) - smart contract wallet có social recovery, session key, batch call</td>
+</tr>
+<tr>
+<td><strong>Phân phối coupon tự động</strong></td>
+<td>ERC-3643 <code>forcedTransfer</code> + contract lịch biểu phân phối lợi suất tự động cho token holder, không cần đối soát thủ công</td>
+</tr>
+<tr>
+<td><strong>Settlement xuyên biên giới</strong></td>
+<td>Cầu ICTT: settlement gần như tức thời DOS Chain ↔ Avalanche C-Chain ↔ Ethereum. Giữ nguyên trạng thái tuân thủ (claim ONCHAINID verify trên chain đích)</td>
+</tr>
+<tr>
+<td><strong>Sẵn sàng stablecoin</strong></td>
+<td>Sẵn sàng tích hợp stablecoin won (consortium 8 ngân hàng Hàn Quốc gồm Shinhan) và stablecoin VND cho thanh toán nội tệ</td>
+</tr>
+<tr>
+<td><strong>x402 micropayments</strong></td>
+<td>Payment facilitator HTTP-native đã deploy (<code>services/x402-facilitator</code>) - pay-per-API-call, thương mại máy-với-máy</td>
+</tr>
+<tr>
+<td><strong>Batch operations</strong></td>
+<td>Multicall3 đã deploy cho read/write portfolio (VD: claim coupon từ 50 trái phiếu trong 1 giao dịch)</td>
+</tr>
+<tr>
+<td><strong>Finality 1 giây</strong></td>
+<td>Thanh toán settle trong 1 giây - nhanh hơn settlement T+2 chứng khoán truyền thống ~172.800 lần</td>
+</tr>
+</tbody>
+</table>
+<p>Kết quả: 1 chain vừa <em>token hóa</em> trái phiếu DN Shinhan, vừa <em>thanh toán</em> coupon bán niên bằng stablecoin, tự động, gasless, finality tức thời - phủ cả 2 nửa đề bài SS6 trên 1 hạ tầng tích hợp.</p>
 <h2 id="cach-xay-dung-how-we-built-it">Cách Xây Dựng (How we built it)</h2>
 <table>
 <thead>
@@ -487,6 +532,7 @@
 <li><strong>UX không ma sát</strong> - DOS.Me SSO login (không cần MetaMask), gasless cho user whitelist (deploy ONCHAINID tốn NĐT 0 USD thay vì 50-100 USD trên Ethereum).</li>
 <li><strong>Sẵn sàng on-premise</strong> - mọi component self-host được trên phần cứng ngân hàng. Yêu cầu của quy định ngân hàng VN.</li>
 <li><strong>Build trên hạ tầng live</strong> - EAS, DOScan, ICTT, DOS Names, Faucet - đều đã production. Chúng tôi tích hợp, không reinvent.</li>
+<li><strong>Tích hợp thanh toán tài sản số</strong> - giao dịch gasless, ERC-4337 account abstraction (Rundler chạy trên DOS Chain), x402 facilitator, Multicall3 batching, finality 1 giây. Phủ cả 2 nửa đề bài track SS6 trên 1 chain.</li>
 </ul>
 <h2 id="bai-hoc-what-we-learned">Bài Học (What we learned)</h2>
 <ol>

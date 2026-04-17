@@ -55,6 +55,23 @@ Mọi chuyển token đều đi qua compliance module của ERC-3643 - kiểm tr
 
 Minh bạch hoàn toàn - báo cáo tuân thủ AI tạo cho từng token, registry NĐT với trạng thái claim, audit trail giao dịch đầy đủ, export PDF. Mọi dữ liệu on-chain đều verify độc lập được qua DOScan.
 
+**Thanh toán tài sản số (nửa còn lại của track SS6):**
+
+Track SS6 bao gồm cả *"digital asset payments"* lẫn *"tokenized securities"*. Token hóa mà không có rail thanh toán là không đầy đủ - nhà phát hành cần phân phối coupon, settle giao dịch thứ cấp, và thanh toán xuyên biên giới. DOS Chain gói cả 2 nửa trong 1 stack:
+
+| Năng lực thanh toán | Hiện thực trên DOS Chain |
+|---------------------|--------------------------|
+| **Giao dịch gasless** | NĐT được whitelist trả 0 đồng gas cho KYC, chuyển token, flow tuân thủ |
+| **Account abstraction (ERC-4337)** | Rundler bundler chạy trên DOS Chain (bundler.doschain.com) - smart contract wallet có social recovery, session key, batch call |
+| **Phân phối coupon tự động** | ERC-3643 `forcedTransfer` + contract lịch biểu phân phối lợi suất tự động cho token holder, không cần đối soát thủ công |
+| **Settlement xuyên biên giới** | Cầu ICTT: settlement gần như tức thời DOS Chain ↔ Avalanche C-Chain ↔ Ethereum. Giữ nguyên trạng thái tuân thủ (claim ONCHAINID verify trên chain đích) |
+| **Sẵn sàng stablecoin** | Sẵn sàng tích hợp stablecoin won (consortium 8 ngân hàng Hàn Quốc gồm Shinhan) và stablecoin VND cho thanh toán nội tệ |
+| **x402 micropayments** | Payment facilitator HTTP-native đã deploy (`services/x402-facilitator`) - pay-per-API-call, thương mại máy-với-máy |
+| **Batch operations** | Multicall3 đã deploy cho read/write portfolio (VD: claim coupon từ 50 trái phiếu trong 1 giao dịch) |
+| **Finality 1 giây** | Thanh toán settle trong 1 giây - nhanh hơn settlement T+2 chứng khoán truyền thống ~172.800 lần |
+
+Kết quả: 1 chain vừa *token hóa* trái phiếu DN Shinhan, vừa *thanh toán* coupon bán niên bằng stablecoin, tự động, gasless, finality tức thời - phủ cả 2 nửa đề bài SS6 trên 1 hạ tầng tích hợp.
+
 ## Cách Xây Dựng (How we built it)
 
 | Tầng | Công nghệ |
@@ -160,6 +177,7 @@ Chúng tôi không phát minh gì mới. Mọi lựa chọn công nghệ đều 
 - **UX không ma sát** - DOS.Me SSO login (không cần MetaMask), gasless cho user whitelist (deploy ONCHAINID tốn NĐT 0 USD thay vì 50-100 USD trên Ethereum).
 - **Sẵn sàng on-premise** - mọi component self-host được trên phần cứng ngân hàng. Yêu cầu của quy định ngân hàng VN.
 - **Build trên hạ tầng live** - EAS, DOScan, ICTT, DOS Names, Faucet - đều đã production. Chúng tôi tích hợp, không reinvent.
+- **Tích hợp thanh toán tài sản số** - giao dịch gasless, ERC-4337 account abstraction (Rundler chạy trên DOS Chain), x402 facilitator, Multicall3 batching, finality 1 giây. Phủ cả 2 nửa đề bài track SS6 trên 1 chain.
 
 ## Bài Học (What we learned)
 
