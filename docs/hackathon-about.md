@@ -91,6 +91,46 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 
 **Dedicated permissioned L1 option.** If required, we can deploy a completely separate permissioned Avalanche L1 exclusively for Shinhan - running entirely on Shinhan's servers with Shinhan-controlled validators. Same ERC-3643 contracts, same AI agents, same DApp - but on a private chain where Shinhan controls 100% of the infrastructure. This chain can still bridge to the public DOS Chain or Avalanche C-Chain via ICTT when cross-chain settlement is needed, or operate fully isolated if regulation demands it. Spinning up a new Avalanche L1 takes hours, not months - the tooling and deployment scripts are already built.
 
+## Institutional Validation - We Use What the Giants Use
+
+We didn't invent anything new. Every technical choice we made is already proven at institutional scale by major banks and asset managers. When Shinhan Vietnam adopts DOS Chain, they're adopting the same standards as JPMorgan, BlackRock, DTCC, and their own Korea parent company.
+
+**ERC-3643 (T-REX) - the token standard we use:**
+
+| Institution | What they tokenized on ERC-3643 | Scale |
+|-------------|--------------------------------|-------|
+| **DTCC** | Joined the ERC-3643 Association (03/2025) as founding member | World's largest securities settlement system - $2.5 quadrillion/year |
+| **US SEC** | Publicly recognized ERC-3643 as compliant for tokenized securities (07/2025) | Regulatory validation |
+| **Tokeny** | Platform powering banks, asset managers, exchanges | $32B+ in securities issued via T-REX |
+| **Archax** | FCA-regulated digital asset exchange | First UK-regulated STO platform on T-REX |
+| **K3 Capital** | Tokenized pre-IPO equity | Backed by major institutional investors |
+| **CMTA** (Swiss bankers) | Adopted T-REX for Swiss digital securities | Swiss regulatory framework |
+
+**Sovereign/dedicated L1 blockchain - our architectural choice:**
+
+| Institution | Their sovereign chain | Why they did it |
+|-------------|----------------------|-----------------|
+| **JPMorgan** | Kinexys (Quorum → Canton) | $2B/day in tokenized transactions, $1.5T+ processed |
+| **Goldman Sachs** | GS DAP (Canton/Daml) | Tokenized bonds, MMFs, spinning out as platform in 2026 |
+| **HSBC** | Orion (private DLT) | $3.5B+ digital native bonds, UK sovereign bond pilot |
+| **Citi** | Citi Token Services (permissioned) | Cross-border 24/7 settlement across US/UK/SG/HK/IE |
+| **Shinhan (Korea)** | Lambda256/Luniverse + KDAC | Same playbook we're replicating for Vietnam |
+
+**Tokenized assets on public-adjacent chains (our interop story):**
+
+| Asset | Platform | Chain(s) | Scale |
+|-------|----------|---------|-------|
+| **BlackRock BUIDL** | Securitize | 9 chains incl. Avalanche | **$2.5B+ AUM, 40% of tokenized treasury market** |
+| **Franklin Templeton BENJI** | Proprietary + Stellar | 8 chains incl. Avalanche | $732M AUM |
+| **Ondo Finance OUSG** | Ondo | Ethereum + Sui + Solana | $650M+ TVL in tokenized treasuries |
+| **Hamilton Lane SCOPE** | Securitize | Polygon + Avalanche | Tokenized private equity fund |
+| **Apollo Global ACRED** | Securitize | Ethereum + Solana | Tokenized credit fund |
+| **WisdomTree Prime** | Proprietary + Stellar | Multi-chain | Tokenized MMF, gold, etc. |
+
+**The pattern is unmistakable:** every major institutional tokenization initiative uses (a) dedicated/permissioned chains with sovereign validator control, (b) on-chain identity + compliance at the smart contract level, and (c) interoperability bridges to public chains. DOS Chain + ERC-3643 + ONCHAINID + ICTT gives Shinhan Vietnam exactly this architecture, in production, today.
+
+**Why this matters for Shinhan:** the market research is done. The standards are set. The regulatory precedents exist. Shinhan doesn't need to pioneer a new approach - they need to execute on the proven one, first in Vietnam. That's a 6-month project, not a 3-year one.
+
 ## Challenges we ran into
 
 **ERC-3643 on a fresh chain.** The T-REX reference implementation assumes Ethereum mainnet tooling. Deploying the full 6-contract system (Token, Identity Registry, ONCHAINID, Compliance Module, Claim Verifier, Trusted Issuers Registry) plus the Token Factory on DOS Chain required adapting deployment scripts and verifying contract interactions work correctly with Avalanche L1's consensus model.
@@ -143,11 +183,25 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 
 ## What's next for DOS Chain Digital Assets & Tokenized Securities
 
-**Immediate (PoC with Shinhan via InnoBoost):**
+**Known gaps in the hackathon build (documented honesty):**
+
+These are built into the demo as wireframes/placeholders but not fully wired to the blockchain yet. Production work:
+- **Investor KYC onboarding UI** - currently investors log in via DOS.Me SSO, but the full KYC → ONCHAINID deployment → claim signing flow is demoed in the issuer path only (issuer's own ONCHAINID). Investor-side KYC wizard + ONCHAINID creation per investor is the next piece.
+- **Buy/sell marketplace UX** - marketplace lists deployed tokens live from on-chain events, but the "Buy N units" button is not yet wired. Needs: token allowance flow, gasless meta-transaction via ERC-4337 paymaster, settlement against issuer balance.
+- **Compliance Dashboard data** - currently shows hardcoded demo rows. Needs: query all deployed tokens + aggregate holder/country/audit metadata from Identity Registry events.
+- **AI Investment Advisor on-chain data integration** - Qwen chat works but currently answers from its training + hardcoded context. Should read live token metadata, holder distribution, transfer volume from DOS Chain.
+- **Coupon payment distribution** - smart contract support exists (ERC-3643 has `forcedTransfer`) but no scheduled distribution UI yet.
+- **Multi-investor test** - demo is single-wallet (deployer/issuer mints to themselves). Need: register a second investor wallet, add KYC claim, demonstrate compliant transfer.
+- **Token metadata on DOScan** - face value, coupon rate, maturity date are in the prospectus but not stored on-chain yet. Need either a MetadataRegistry contract or off-chain JSON pinned to IPFS.
+- **Safe multisig for institutional custody** - currently backend wallet signs deployments; production would route through a Shinhan-controlled Gnosis Safe on DOS Chain for multi-signature approval.
+- **Token factory verification on DOScan** - TREXFactory deployed but not Etherscan-verified on DOScan yet (source code verification).
+
+**Immediate next steps (PoC with Shinhan via InnoBoost):**
 - Pilot tokenized corporate bond issuance with Shinhan Securities Vietnam
 - On-premise deployment of full stack in Shinhan's data center (blockchain nodes, DOScan, AI, DApp)
 - Integrate with Shinhan's existing KYC/AML systems for ONCHAINID claim issuance
 - Connect to Shinhan's SOL app for investor access
+- Close the gaps above (investor KYC, buy/sell, coupon distribution, multisig custody)
 
 **Short-term (6 months):**
 - Multi-asset support: corporate bonds → government bonds → fund certificates → structured notes
