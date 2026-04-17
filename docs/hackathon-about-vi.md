@@ -1,9 +1,21 @@
 # DOS Chain - Tài Sản Số & Chứng Khoán Token Hóa
 
-> Hackathon: **Qwen AI Build Day** | Track: **[SS6] Digital Assets & Tokenized Securities** (Shinhan Future's Lab)
-> Deadline: 17/04/2026 | Sự kiện: 21/04/2026 @ Riverside Palace, TP.HCM | Showcase cuối: 22/04/2026 @ Alibaba Cloud SME AI Growth Day VN
+**Submit cho:** Qwen AI Build Day x Shinhan Future's Lab - Track **SS6: Digital Assets & Tokenized Securities**
 
-**Elevator Pitch**: Hạ tầng chứng khoán token hóa đầu tiên tại Việt Nam - phát hành ERC-3643, KYC/AML on-chain, AI kiểm tra tuân thủ & tư vấn đầu tư, chạy trên Avalanche L1 chủ quyền.
+| Mục | Chi tiết |
+|-----|----------|
+| **Hackathon** | Qwen AI Build Day (Alibaba Cloud) |
+| **Partner / Challenger** | Shinhan Future's Lab Việt Nam |
+| **Track** | **SS6 - Digital Assets & Tokenized Securities** |
+| **Use Case** | Nền tảng STO full-stack cho Shinhan Securities Việt Nam: token hóa trái phiếu doanh nghiệp theo chuẩn ERC-3643 với AI kiểm tra tuân thủ, chạy trên DOS Chain (Avalanche L1) |
+| **Deadline submit** | 17/04/2026 |
+| **Sự kiện live** | 21/04/2026 @ Riverside Palace, TP.HCM |
+| **Showcase cuối** | 22/04/2026 @ Alibaba Cloud SME AI Growth Day VN |
+| **Devpost** | [devpost.com/software/dos-n05ucd](https://devpost.com/software/dos-n05ucd) |
+| **Demo Live** | [rwa.doschain.com](https://rwa.doschain.com) |
+| **Source Code** | [github.com/DOS/RWA](https://github.com/DOS/RWA) |
+
+**Elevator Pitch:** Hạ tầng chứng khoán token hóa đầu tiên tại Việt Nam - phát hành ERC-3643, KYC/AML on-chain, AI kiểm tra tuân thủ & tư vấn đầu tư, chạy trên Avalanche L1 chủ quyền. Thiết kế riêng cho Shinhan Securities Việt Nam để trở thành first-mover thị trường STO Việt Nam theo Luật Công nghệ Số 2025 và Nghị quyết 05/2025.
 
 ---
 
