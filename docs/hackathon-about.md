@@ -28,7 +28,6 @@ DOS Chain Digital Assets & Tokenized Securities is a **full-stack STO platform**
 | **Issue tokenized securities** | Upload bond prospectus → Qwen AI extracts all parameters (face value, coupon, maturity, restrictions) → review → one-click deploy ERC-3643 compliant token |
 | **Automated compliance** | Qwen AI checks issuance against VN Digital Asset Law, KR STO regulations, generates compliance reports for regulators |
 | **Lifecycle management** | Pause/unpause tokens, freeze investor accounts (regulatory order), force transfers, distribute coupon payments |
-| **Institutional custody** | Safe multisig for all admin operations - no single-key risk |
 
 **For Investors (Investor Portal):**
 
@@ -62,7 +61,6 @@ Full transparency - AI-generated compliance reports per token, investor registry
 | Identity | **ONCHAINID** (ERC-3643 standard) - 1 identity contract per investor, claims signed by Shinhan as Trusted Issuer |
 | Attestations | **EAS** (Ethereum Attestation Service) - existing deployment on DOS Chain, feeds trust scores and broader identity data |
 | Cross-chain | **ICTT bridge** - DOS Chain ↔ Avalanche C-Chain settlement |
-| Custody | **Safe on DOS** - multisig for institutional token admin |
 
 **Qwen AI is core to the solution - not bolted on:**
 
@@ -87,7 +85,6 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 | **Qwen AI** (3 agents) | Yes | Self-hosted via vLLM on bank's GPU servers, no cloud dependency |
 | **DApp** (web portals) | Yes | Next.js, deploy on any Node.js server or Docker |
 | **DOS.Me ID** (auth) | Yes | Supabase self-hosted (already running on our own infrastructure) |
-| **Safe** (custody) | Yes | Safe infrastructure, fully self-hostable |
 | **EAS** (attestations) | Yes | Smart contracts on DOS Chain - no external dependency |
 
 **Zero cloud dependency.** The entire stack - blockchain nodes, explorer, AI inference, web app, authentication, custody - can run inside Shinhan's data center on Shinhan's hardware. No data leaves the bank's network. This is not a theoretical capability - DOS Chain already runs on self-managed VMs, DOScan runs self-hosted Docker, Qwen runs on self-hosted GPU, and Supabase runs self-hosted.
@@ -106,7 +103,7 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 
 ## Accomplishments that we're proud of
 
-- **Full ERC-3643 deployment on an Avalanche L1** - the industry standard for tokenized securities, running on production infrastructure with live validators, explorer, bridge, and multisig custody. Not a testnet demo.
+- **Full ERC-3643 deployment on an Avalanche L1** - the industry standard for tokenized securities, running on production infrastructure with live validators, explorer, and bridge. Not a testnet demo.
 
 - **AI-to-contract pipeline** - upload a PDF prospectus, Qwen extracts all parameters, compliance engine validates against VN/KR regulations, one click triggers 4 transactions (deploy + register + unpause + mint) that spin up a fully compliant ERC-3643 token with real supply on-chain. End-to-end in under 10 seconds.
 
@@ -124,7 +121,7 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 
 - **Three-language AI advisor** - Vietnamese, English, Korean. Reads on-chain data in real time. Answers "should I buy this bond?" with actual analysis, not generic disclaimers.
 
-- **Existing infrastructure leverage** - EAS (attestations), DOScan (explorer), ICTT (bridge), Safe (multisig), DOS Names (human-readable identities), Faucet (onboarding) - all production-ready, all integrated. We didn't build from scratch; we built on top of a live ecosystem.
+- **Existing infrastructure leverage** - EAS (attestations), DOScan (explorer), ICTT (bridge), DOS Names (human-readable identities), Faucet (onboarding) - all production-ready, all integrated. We didn't build from scratch; we built on top of a live ecosystem.
 
 - **Regulatory alignment** - designed specifically for VN Digital Technology Industry Law 2025 and Resolution 05/2025. Not a generic platform hoping to pass compliance later.
 
@@ -245,9 +242,9 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 ├─────────────────────────────────────────────────────────────────┤
 │                    INFRASTRUCTURE LAYER                          │
 │                                                                 │
-│  DOS Chain Mainnet    DOScan Explorer   ICM Relayer   Safe       │
-│  4 validators         Full indexing     Cross-chain   Multisig   │
-│  1s blocks            Regulator view    settlement    custody    │
+│  DOS Chain Mainnet    DOScan Explorer   ICM Relayer              │
+│  4 validators         Full indexing     Cross-chain settlement   │
+│  1s blocks            Regulator view                             │
 │  100M gas limit                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -374,7 +371,7 @@ Investor onboard
 ### Presentation Layer - 3 DApps
 
 #### 1. Issuer Portal (Shinhan internal)
-- Upload prospectus → Qwen extracts params → review → deploy token via Safe multisig
+- Upload prospectus → Qwen extracts params → review & edit → backend wallet deploys ERC-3643 token (4 transactions: deploy + register + unpause + mint)
 - Token management: pause/unpause, freeze investor, force transfer (regulatory order), update compliance rules, distribute coupon payments
 - Compliance dashboard: AI reports per token, investor registry, transfer audit log, PDF export
 
@@ -403,7 +400,7 @@ Investor onboard
 | **Data privacy** | Configurable - encrypt sensitive data | Fully public | Fully public | Full privacy |
 | **Explorer** | DOScan (dedicated, full indexing) | Snowtrace (shared) | Etherscan (shared) | No public explorer |
 | **On-premise** | **Full self-hosted** - all components | Cannot | Cannot | Yes but isolated |
-| **Existing infra** | EAS, Names, Safe, Bridge, Faucet - ALL LIVE | Deploy from scratch | Deploy from scratch | Build from scratch |
+| **Existing infra** | EAS, Names, Bridge, Faucet - ALL LIVE | Deploy from scratch | Deploy from scratch | Build from scratch |
 
 **Key argument**: DOS Chain gives Shinhan the **best of both worlds** - sovereign control like a private chain (run validators, custom gas economics, dedicated throughput) but interoperable like a public chain (Avalanche ecosystem, ICTT bridge to Ethereum). Like JPMorgan building Kinexys as a sovereign platform but bridging to Canton Network - we already have that architecture live.
 
