@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>DOS Chain RWA - 4-Min Pitch</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    font-family: -apple-system, "Segoe UI", "Noto Sans", sans-serif;
+    background: #0f172a;
+    color: #f1f5f9;
+    overflow: hidden;
+  }
+  .deck { position: relative; height: 100vh; width: 100vw; }
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  h1 {
+    font-size: 72px;
+    color: #DC2626;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 52px;
+    color: #f1f5f9;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 36px;
+    color: #fbbf24;
+    margin-bottom: 24px;
+  }
+  p { font-size: 26px; line-height: 1.5; margin-bottom: 16px; }
+  ul { font-size: 26px; line-height: 1.6; list-style: none; }
+  ul li { margin-bottom: 14px; padding-left: 32px; position: relative; }
+  ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #DC2626;
+    font-weight: bold;
+  }
+  strong { color: #fbbf24; font-weight: 700; }
+  .subtitle { font-size: 32px; color: #94a3b8; margin-top: 12px; font-style: italic; }
+  .meta {
+    font-size: 20px;
+    color: #64748b;
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid #1e293b;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 24px 0;
+  }
+  .stat-grid > div {
+    background: #1e293b;
+    border: 1px solid #334155;
+    padding: 20px 28px;
+    border-radius: 8px;
+  }
+  .stat-grid > div .big {
+    font-size: 44px;
+    color: #fbbf24;
+    font-weight: 700;
+    display: block;
+  }
+  .stat-grid > div .lbl { font-size: 20px; color: #94a3b8; }
+  .flow {
+    font-family: "SF Mono", Consolas, monospace;
+    background: #1e293b;
+    padding: 20px 28px;
+    border-radius: 8px;
+    border-left: 4px solid #DC2626;
+    font-size: 24px;
+    margin: 20px 0;
+  }
+  .highlight {
+    background: linear-gradient(135deg, #DC2626, #b91c1c);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+  }
+  .col-title {
+    font-size: 24px;
+    color: #fbbf24;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    margin: 4px 4px 4px 0;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    font-size: 20px;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1e293b;
+    color: #f1f5f9;
+    border: 1px solid #334155;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .nav button:hover { background: #334155; }
+  .counter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: #64748b;
+    font-size: 14px;
+  }
+  .timer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 32px;
+    color: #DC2626;
+    font-weight: 700;
+    font-family: "SF Mono", monospace;
+  }
+  .green { color: #22c55e; }
+  .red { color: #DC2626; }
+  pre {
+    background: #0a0e1a;
+    border: 1px solid #1e293b;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 22px;
+    color: #e2e8f0;
+  }
+</style>
+</head>
+<body>
+<div class="timer" id="timer">0:00</div>
+<div class="counter" id="counter">1 / 6</div>
+
+<div class="deck">
+
+<!-- SLIDE 1: HOOK -->
+<section class="slide active">
+  <h1>DOS Chain RWA</h1>
+  <p class="subtitle">Vietnam's first tokenized securities infrastructure</p>
+  <div style="margin-top: 40px;">
+    <span class="tag">ERC-3643</span>
+    <span class="tag">Qwen AI</span>
+    <span class="tag">Avalanche L1</span>
+    <span class="tag">AI Compliance</span>
+    <span class="tag">On-Premise Ready</span>
+  </div>
+  <div class="meta">
+    Qwen AI Build Day x Shinhan Future's Lab | Track SS6 | DOS Labs | rwa.doschain.com
+  </div>
+</section>
+
+<!-- SLIDE 2: PROBLEM / OPPORTUNITY -->
+<section class="slide">
+  <h2>The <span class="highlight">$26.4B</span> opportunity</h2>
+  <div class="stat-grid">
+    <div><span class="big">$26.4B</span><span class="lbl">Global RWA on-chain (+300%/year)</span></div>
+    <div><span class="big">$2.5B</span><span class="lbl">BlackRock BUIDL on Avalanche + 8 chains</span></div>
+    <div><span class="big">$2B/day</span><span class="lbl">JPMorgan Kinexys tokenized transactions</span></div>
+    <div><span class="big">$250B</span><span class="lbl">Korea STO market forecast by 2030</span></div>
+  </div>
+  <div class="two-col" style="margin-top: 32px;">
+    <div>
+      <div class="col-title">Shinhan Korea</div>
+      <ul>
+        <li>STO Alliance (2023)</li>
+        <li>Lambda256 / Luniverse</li>
+        <li>KDAC custodian</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-title red">Shinhan Vietnam</div>
+      <ul>
+        <li>5 subsidiaries, 51 branches, since 1993</li>
+        <li><strong>ZERO blockchain infrastructure</strong></li>
+        <li>Law 2025 + Resolution 05/2025 = open door</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: SOLUTION -->
+<section class="slide">
+  <h2>Full-stack STO + Payments</h2>
+  <div class="flow">
+    Upload PDF → <strong>AI extracts</strong> → <strong>AI compliance</strong> → Deploy → Mint → Trade
+  </div>
+  <div class="two-col" style="margin-top: 20px;">
+    <div>
+      <div class="col-title">Stack</div>
+      <ul>
+        <li><strong>ERC-3643</strong> - DTCC & SEC endorsed</li>
+        <li><strong>ONCHAINID</strong> - on-chain KYC per investor</li>
+        <li><strong>Qwen 3.5-35B</strong> - 3 AI agents</li>
+        <li><strong>DOS Chain</strong> - Avalanche L1, 1s blocks</li>
+        <li><strong>DOS.Me ID</strong> - SSO, no wallet needed</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-title">Covers both halves of SS6</div>
+      <ul>
+        <li class="green">✓ Tokenized Securities (STO)</li>
+        <li class="green">✓ Digital Asset Payments</li>
+        <li>Gasless for whitelisted users</li>
+        <li>ERC-4337 account abstraction</li>
+        <li>ICTT cross-chain settlement</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: LIVE DEMO -->
+<section class="slide">
+  <h2>LIVE on mainnet, not testnet</h2>
+  <p style="margin-bottom: 24px;"><strong>TREXFactory:</strong> <code style="color: #fbbf24;">0x7979...3643</code> (vanity mined in 108s, 49M hash/s Rust miner)</p>
+  <div class="col-title">4 sample prospectuses - AI classifies correctly:</div>
+  <ul style="margin-bottom: 24px;">
+    <li class="green">Corporate Bond (Shinhan SHVN26A) - <strong>compliant</strong></li>
+    <li class="green">Government Bond (Kho Bạc VNGB26) - <strong>compliant</strong></li>
+    <li class="green">REIT Fund (Shinhan SHREIT26) - <strong>compliant</strong></li>
+    <li class="red">Cayman crypto fund (GCYF26, 24% yield, no KYC) - <strong>BLOCKED</strong></li>
+  </ul>
+  <div class="col-title">Deploy flow = 4 on-chain transactions in &lt;10s:</div>
+  <pre>1. deployTREXSuite()  → Token + IR + Compliance + Registries
+2. registerIdentity() → Deployer with VN country code
+3. unpause()           → Enable transfers
+4. mint(totalSupply)   → Real supply from prospectus</pre>
+  <div class="meta">Investor Portal auto-populates from TREXSuiteDeployed events - no database, blockchain is source of truth</div>
+</section>
+
+<!-- SLIDE 5: VALIDATION -->
+<section class="slide">
+  <h2>We don't pioneer. <span class="highlight">We execute.</span></h2>
+  <div class="two-col" style="margin-top: 16px;">
+    <div>
+      <div class="col-title">ERC-3643 (our standard)</div>
+      <ul>
+        <li><strong>DTCC</strong> joined 03/2025 ($2.5Q/year)</li>
+        <li><strong>US SEC</strong> endorsed 07/2025</li>
+        <li><strong>Tokeny</strong> - $32B+ issued</li>
+        <li>Archax, CMTA, K3 Capital</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-title">Sovereign L1 (our architecture)</div>
+      <ul>
+        <li><strong>JPMorgan Kinexys</strong> - $2B/day</li>
+        <li><strong>Goldman</strong> GS DAP, <strong>HSBC</strong> Orion</li>
+        <li><strong>Citi</strong> Token Services</li>
+        <li><strong>Shinhan Korea</strong> - Lambda256</li>
+      </ul>
+    </div>
+  </div>
+  <div class="stat-grid" style="margin-top: 20px; grid-template-columns: repeat(3, 1fr);">
+    <div><span class="big">$2.5B</span><span class="lbl">BlackRock BUIDL on Avalanche</span></div>
+    <div><span class="big">$732M</span><span class="lbl">Franklin BENJI on Avalanche</span></div>
+    <div><span class="big">$650M</span><span class="lbl">Ondo OUSG multi-chain</span></div>
+  </div>
+  <p style="text-align: center; margin-top: 24px; font-size: 28px;">
+    <strong>Shinhan Vietnam needs to execute, not pioneer.</strong>
+  </p>
+</section>
+
+<!-- SLIDE 6: CTA -->
+<section class="slide">
+  <h2>Ready today. Pilot <span class="highlight">Q2 2026</span>.</h2>
+  <div class="col-title">6-week PoC via Shinhan InnoBoost</div>
+  <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr); margin: 24px 0;">
+    <div>
+      <span class="big" style="font-size: 32px;">Week 1-2</span>
+      <span class="lbl">Setup</span>
+      <p style="font-size: 18px; margin-top: 8px;">On-premise deploy in Shinhan data center. Integrate KYC/AML.</p>
+    </div>
+    <div>
+      <span class="big" style="font-size: 32px;">Week 3-4</span>
+      <span class="lbl">Run</span>
+      <p style="font-size: 18px; margin-top: 8px;">Pilot SHVN26A - 500 bonds, 50B VND, 20 investors.</p>
+    </div>
+    <div>
+      <span class="big" style="font-size: 32px;">Week 5-6</span>
+      <span class="lbl">Evaluate</span>
+      <p style="font-size: 18px; margin-top: 8px;">Measure KPIs, regulator report, rollout decision.</p>
+    </div>
+  </div>
+  <div class="two-col">
+    <div>
+      <div class="col-title">Meets all InnoBoost criteria</div>
+      <ul>
+        <li class="green">MVP+ maturity - live on mainnet</li>
+        <li class="green">POC in 3-6 months ✓</li>
+        <li class="green">API-based integration</li>
+        <li class="green">AI/ML: 3 Qwen agents</li>
+        <li class="green">References: stack live</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-title">Get in touch</div>
+      <p><strong>Demo:</strong> rwa.doschain.com</p>
+      <p><strong>Source:</strong> github.com/DOS/RWA</p>
+      <p><strong>Email:</strong> joy@dos.ai</p>
+      <p style="margin-top: 20px; font-size: 20px; color: #94a3b8;"><strong>Budget:</strong> $30-60K pilot. Full on-premise supported.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="nav">
+  <button onclick="resetTimer()">⏱ Reset timer</button>
+  <button onclick="toggleTimer()" id="timerBtn">▶ Start</button>
+  <button onclick="prev()">← Prev</button>
+  <button onclick="next()">Next →</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function show(i) {
+  slides.forEach(s => s.classList.remove('active'));
+  slides[i].classList.add('active');
+  document.getElementById('counter').textContent = `${i+1} / ${slides.length}`;
+}
+
+function next() { if (current < slides.length - 1) { current++; show(current); } }
+function prev() { if (current > 0) { current--; show(current); } }
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+  else if (e.key === 'ArrowLeft') prev();
+  else if (e.key === 'f') document.documentElement.requestFullscreen();
+  else if (e.key === 't') toggleTimer();
+  else if (e.key === 'r') resetTimer();
+});
+
+// Timer
+let seconds = 0;
+let timerInterval = null;
+function updateTimer() {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  const el = document.getElementById('timer');
+  el.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+  if (seconds >= 240) el.style.color = '#DC2626'; // red past 4min
+  else if (seconds >= 210) el.style.color = '#fbbf24'; // yellow 3:30+
+  else el.style.color = '#22c55e'; // green
+}
+function toggleTimer() {
+  const btn = document.getElementById('timerBtn');
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    btn.textContent = '▶ Resume';
+  } else {
+    timerInterval = setInterval(() => { seconds++; updateTimer(); }, 1000);
+    btn.textContent = '⏸ Pause';
+  }
+}
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  seconds = 0;
+  updateTimer();
+  document.getElementById('timerBtn').textContent = '▶ Start';
+  document.getElementById('timer').style.color = '#22c55e';
+}
+updateTimer();
+</script>
+</body>
+</html>
