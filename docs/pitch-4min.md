@@ -2,229 +2,229 @@
 
 **Hackathon:** Qwen AI Build Day x Shinhan Future's Lab
 **Track:** SS6 - Digital Assets & Tokenized Securities
-**Format:** 4 minutes, 6 slides, no Q&A time budgeted
-**Target WPM:** 150-160 (natural pace, enough for clarity + buffer)
-**Total words:** ~600
+**Format:** 4 phút, 6 slide, viết cho cả giám khảo kỹ thuật và không kỹ thuật
 
 ---
 
-## Slide 1 - Title / Hook (20s, ~50 words)
+## Slide 1 - Mở đầu (20s)
 
-### Slide content
+### Nội dung slide
 
 > **DOS Chain RWA**
-> *Vietnam's first tokenized securities infrastructure*
+> *Nền tảng phát hành chứng khoán số đầu tiên tại Việt Nam*
 >
-> ERC-3643 + Qwen AI + Avalanche L1
->
-> Team: DOS Labs
-> Demo: rwa.doschain.com
-
-### Script (say this)
-
-"Xin chào ban giám khảo. Tôi là [tên], đại diện DOS Labs.
-
-Trong 4 phút tới, tôi sẽ cho các anh chị thấy nền tảng chứng khoán token hóa đầu tiên tại Việt Nam - đã chạy live trên mainnet hôm nay - và tại sao Shinhan Securities Vietnam nên là người đầu tiên dùng nó."
-
----
-
-## Slide 2 - Problem / Opportunity (40s, ~100 words)
-
-### Slide content
-
-> **The $26.4B opportunity**
->
-> - Global RWA on-chain: **$26.4B** (+300% YoY)
-> - BlackRock BUIDL: **$2.5B** on Avalanche + 8 other chains
-> - JPMorgan Kinexys: **$2B/day** in tokenized transactions
-> - Korea STO market by 2030: **$250B**
->
-> **Shinhan's paradox:**
-> - Korea: STO Alliance, Lambda256, KDAC
-> - **Vietnam: Zero blockchain infrastructure**
->
-> Vietnam just opened up:
-> - Digital Technology Law 2025 (01/01/2026)
-> - Resolution 05/2025 - 5-year tokenization pilot
+> Team: DOS Labs | Demo: rwa.doschain.com
 
 ### Script
 
-"Thị trường RWA toàn cầu đã vượt 26 tỷ đô, tăng 300% mỗi năm. BlackRock nắm 2,5 tỷ trong quỹ token hóa. JPMorgan xử lý 2 tỷ đô mỗi ngày qua Kinexys.
+"Xin chào các anh chị giám khảo.
 
-Shinhan có nghịch lý thú vị: ở Hàn Quốc, các anh đã có STO Alliance, Lambda256, KDAC - playbook hoàn chỉnh. Nhưng ở Việt Nam - 5 công ty con, 51 chi nhánh, có mặt từ 1993 - hoàn toàn không có hạ tầng blockchain nào.
-
-Việt Nam vừa mở cửa: Luật Công nghệ Số 2025 công nhận tài sản số, Nghị quyết 05/2025 thí điểm 5 năm cho tokenization. Cửa sổ cơ hội đang mở. Câu hỏi không phải 'có nên làm không' mà là 'ai sẽ đi trước'."
+Trong 4 phút tới, tôi sẽ cho các anh chị thấy một nền tảng cho phép Shinhan Việt Nam **phát hành chứng khoán dưới dạng số** - tương tự như trái phiếu giấy truyền thống, nhưng nhanh hơn, rẻ hơn, minh bạch hơn - và nó đang chạy thật hôm nay."
 
 ---
 
-## Slide 3 - Solution (40s, ~100 words)
+## Slide 2 - Cơ hội thị trường (40s)
 
-### Slide content
+### Nội dung slide
 
-> **Full-stack STO + Payments platform**
+> **Thị trường chứng khoán số đang bùng nổ**
+>
+> - Toàn cầu: **$26 tỷ** (tăng 300%/năm)
+> - BlackRock: **$2,5 tỷ** trong quỹ số trên nền tảng tương tự
+> - JPMorgan: **$2 tỷ/ngày** giao dịch số
+> - Hàn Quốc 2030: **$250 tỷ**
+>
+> **Nghịch lý Shinhan:**
+> - Hàn Quốc: đã có đầy đủ hạ tầng số
+> - **Việt Nam: chưa có gì**
+>
+> Việt Nam vừa mở cửa: Luật Công nghệ Số 2025, Nghị quyết 05/2025
+
+### Script
+
+"Thị trường chứng khoán số toàn cầu đã đạt 26 tỷ đô, tăng 300% mỗi năm. BlackRock đã có quỹ trái phiếu số 2,5 tỷ đô. JPMorgan xử lý 2 tỷ đô mỗi ngày.
+
+Shinhan có nghịch lý thú vị: ở Hàn Quốc, các anh đã đi đầu - đã có liên minh STO, đã có nền tảng công nghệ, đã có đơn vị lưu ký số. Nhưng ở Việt Nam - 5 công ty con, 51 chi nhánh, hoạt động từ 1993 - **chưa có bất kỳ sáng kiến số nào**.
+
+Việt Nam vừa mở cửa. Luật Công nghệ Số 2025 công nhận tài sản số. Nghị quyết 05/2025 thí điểm 5 năm cho chứng khoán số. Câu hỏi không còn là 'có nên làm không' - mà là 'ai sẽ đi trước'."
+
+---
+
+## Slide 3 - Giải pháp (40s)
+
+### Nội dung slide
+
+> **Quy trình đơn giản: 4 bước**
 >
 > ```
-> Upload PDF → AI extracts → Compliance check → Deploy → Mint
+> Upload PDF → AI đọc → AI kiểm tra tuân thủ → Phát hành
 > ```
 >
-> **Stack:**
-> - **ERC-3643 (T-REX)** - DTCC & SEC endorsed standard
-> - **ONCHAINID** - on-chain KYC per investor
-> - **Qwen 3.5-35B** - 3 AI agents (docs, compliance, advisor)
-> - **DOS Chain** - sovereign Avalanche L1, 1s blocks
-> - **DOS.Me ID** - SSO login, no wallet needed
-> - **ICTT bridge** - cross-chain settlement
+> **Nhà phát hành:** upload bản cáo bạch, AI tự đọc, tự kiểm tra luật
+> **Nhà đầu tư:** đăng nhập bằng email, không cần ví crypto, phí giao dịch = 0
+> **Cơ quan quản lý:** mọi giao dịch minh bạch, có audit trail đầy đủ
 >
-> **Covers both halves of SS6:**
-> - Tokenized Securities ✓
-> - Digital Asset Payments ✓ (gasless, ERC-4337, x402)
+> **Phủ cả 2 nửa đề bài SS6:**
+> - ✓ Phát hành chứng khoán số
+> - ✓ Thanh toán & giao dịch số
 
 ### Script
 
-"Giải pháp: nền tảng full-stack vừa token hóa chứng khoán, vừa xử lý thanh toán - đúng 2 nửa đề bài SS6.
+"Giải pháp rất đơn giản, 4 bước.
 
-Nhà phát hành upload bản cáo bạch PDF. Qwen AI trích xuất thông số trong vài giây. AI kiểm tra tuân thủ theo luật Việt Nam. Một click, backend wallet deploy token ERC-3643 với compliance tự động trên DOS Chain. Mọi chuyển khoản đều được kiểm tra KYC on-chain trước khi thực hiện.
+Nhà phát hành chứng khoán - ví dụ Shinhan Securities - upload bản cáo bạch PDF. **AI Qwen tự đọc PDF**, trích xuất tất cả thông số trong vài giây. **AI tự kiểm tra tuân thủ** theo luật Việt Nam - nếu vi phạm, tự động chặn. Một click, chứng khoán số được phát hành.
 
-Không cần MetaMask - nhà đầu tư login bằng email qua DOS.Me. Không cần gas - whitelist user trả 0 đồng. Settlement 1 giây - nhanh hơn T+2 truyền thống 172 nghìn lần."
+Nhà đầu tư thì sao? Họ đăng nhập bằng email Google, như các app bình thường - **không cần MetaMask, không cần hiểu blockchain**. Và họ không phải trả phí giao dịch, khác với Ethereum nơi mỗi giao dịch tốn 50-100 đô.
+
+Giải pháp phủ đúng **cả 2 nửa** đề bài SS6: vừa phát hành chứng khoán số, vừa có hệ thống thanh toán số."
 
 ---
 
-## Slide 4 - Live Demo (60s, ~150 words)
+## Slide 4 - Demo thực tế (60s)
 
-### Slide content
+### Nội dung slide
 
-> **LIVE on DOS Chain mainnet**
+> **Đang chạy thật tại rwa.doschain.com**
 >
-> **TREXFactory:** `0x7979...3643` (vanity - mined in 108s)
+> **4 bản cáo bạch mẫu để các anh chị thử:**
+> - ✓ Trái phiếu doanh nghiệp Shinhan (SHVN26A)
+> - ✓ Trái phiếu Kho Bạc Nhà Nước (VNGB26)
+> - ✓ Quỹ đầu tư bất động sản Shinhan (SHREIT26)
+> - ✗ Quỹ crypto Cayman (lãi suất 24%, không KYC) → **AI chặn**
 >
-> **4 sample prospectuses:**
-> - ✓ Corporate Bond (Shinhan SHVN26A)
-> - ✓ Government Bond (Kho Bạc VNGB26)
-> - ✓ REIT Fund (Shinhan SHREIT26)
-> - ✗ Non-compliant Cayman fund - **AI blocks it**
+> **Từ PDF đến chứng khoán số: dưới 10 giây**
 >
-> **Flow: PDF → token in <10 seconds**
-> 1. `deployTREXSuite` - creates 6 contracts
-> 2. `registerIdentity` - deployer with VN country
-> 3. `unpause` - enable transfers
-> 4. `mint(totalSupply)` - real supply on-chain
->
-> rwa.doschain.com
+> **AI tự động:**
+> - Trích xuất thông số từ PDF
+> - Kiểm tra luật Việt Nam (đơn vị phát hành, tài sản đảm bảo, KYC...)
+> - Chặn phát hành nếu không hợp lệ
+> - Phát hành lên blockchain nếu hợp lệ
 
 ### Script
 
-"Đây không phải testnet demo - mọi thứ live trên mainnet hôm nay.
+"Đây là phần tôi thích nhất - các anh chị có thể tự kiểm chứng. Mọi thứ đang chạy thật tại **rwa.doschain.com**.
 
-TREXFactory ở địa chỉ vanity `0x7979...3643`. Mình viết Rust miner tự tìm, 49 triệu hash mỗi giây, mất 108 giây tìm ra.
+Tôi chuẩn bị sẵn **4 bản cáo bạch mẫu**: trái phiếu doanh nghiệp Shinhan, trái phiếu Kho Bạc Nhà Nước, quỹ bất động sản Shinhan, và một **quỹ crypto Cayman lãi suất 24% không có KYC** - để test xem AI có phát hiện sai phạm không.
 
-Tôi chuẩn bị sẵn 4 mẫu cáo bạch để các anh chị thử: trái phiếu doanh nghiệp Shinhan, trái phiếu Kho Bạc Nhà Nước, quỹ BĐS Shinhan REIT, và một quỹ crypto Cayman không hợp lệ để test AI compliance.
+Tôi click vào quỹ Cayman. AI đọc xong trong 10 giây, phát hiện 3 vi phạm: **đơn vị phát hành không đăng ký tại Việt Nam, không có yêu cầu xác minh danh tính, lãi suất 24% cao bất thường** - dấu hiệu lừa đảo. Nút 'Phát hành' bị vô hiệu hóa. **AI chặn được đúng cái sai.**
 
-Click vào quỹ Cayman - AI đọc xong trong 10 giây, phát hiện: tổ chức phát hành không đăng ký tại Việt Nam, không có KYC, lãi suất 24% bất thường. Nút deploy bị vô hiệu hóa. AI chặn được đúng cái sai.
-
-Click vào trái phiếu Shinhan - AI pass, backend bắn 4 giao dịch: deploy, register, unpause, mint. Token xuất hiện ngay trên sàn Investor Portal. Nhà đầu tư có thể xem trên DOScan."
+Tôi click vào trái phiếu Shinhan. AI pass, chứng khoán được phát hành lên blockchain trong 10 giây, xuất hiện ngay trên sàn cho nhà đầu tư mua. Tất cả giao dịch có thể xem trên DOScan - giống như Etherscan cho DOS Chain."
 
 ---
 
-## Slide 5 - Why This Works (Institutional Validation) (45s, ~110 words)
+## Slide 5 - Tại sao đáng tin (45s)
 
-### Slide content
+### Nội dung slide
 
-> **We didn't invent anything. We execute what giants proved.**
+> **Không phát minh mới - chúng tôi dùng cái mà các ngân hàng lớn nhất đã chứng minh**
 >
-> **ERC-3643 (our standard):**
-> - DTCC joined (03/2025) - $2.5 quadrillion/year
-> - US SEC endorsed (07/2025)
-> - Tokeny: $32B+ issued
+> **Chuẩn chứng khoán số quốc tế ERC-3643:**
+> - DTCC (hệ thống thanh toán chứng khoán lớn nhất thế giới) tham gia 03/2025
+> - Ủy ban Chứng khoán Mỹ công nhận 07/2025
 >
-> **Sovereign L1 architecture (our chain):**
-> - JPMorgan Kinexys: $2B/day
-> - Goldman GS DAP, HSBC Orion, Citi Token Services
-> - Shinhan Korea: Lambda256 + KDAC
+> **Mô hình blockchain chủ quyền (ngân hàng tự chạy):**
+> - JPMorgan Kinexys: **$2 tỷ/ngày**
+> - Goldman Sachs, HSBC, Citi đều đang dùng
+> - **Shinhan Hàn Quốc** đã dùng mô hình này
 >
-> **Tokenized assets on same chains:**
-> - BlackRock BUIDL: **$2.5B** on Avalanche
-> - Franklin BENJI: **$732M** on Avalanche
->
-> → Shinhan Vietnam just needs to **execute**, not pioneer.
+> **Chứng khoán số quy mô lớn:**
+> - BlackRock: **$2,5 tỷ** (cùng hệ sinh thái Avalanche với chúng tôi)
+> - Franklin Templeton: **$732 triệu** (cũng trên Avalanche)
 
 ### Script
 
-"Một lưu ý quan trọng: chúng tôi không phát minh gì mới.
+"Một điểm quan trọng: **chúng tôi không phát minh gì mới**. Chúng tôi dùng đúng cái mà các tổ chức tài chính lớn nhất thế giới đã chứng minh là đúng.
 
-Chuẩn ERC-3643 đã được DTCC - hệ thống thanh toán chứng khoán lớn nhất thế giới - tham gia tháng 3/2025. SEC Mỹ công nhận tháng 7/2025. Tokeny đã phát hành 32 tỷ đô chứng khoán qua chuẩn này.
+Chuẩn chứng khoán số chúng tôi dùng đã được **DTCC** - hệ thống thanh toán chứng khoán lớn nhất thế giới, xử lý 2,5 triệu tỷ đô mỗi năm - tham gia chính thức vào tháng 3/2025. **Ủy ban Chứng khoán Mỹ** công nhận tháng 7/2025.
 
-Kiến trúc L1 chủ quyền - đúng mô hình Kinexys của JPMorgan, Orion của HSBC, và chính Lambda256 mà Shinhan đã dùng tại Hàn Quốc.
+Kiến trúc blockchain của chúng tôi giống đúng cái JPMorgan đã xây cho Kinexys, Goldman Sachs, HSBC, Citi đang dùng. Và chính **Shinhan Hàn Quốc** đã dùng mô hình tương tự qua Lambda256 và KDAC.
 
-BlackRock BUIDL 2,5 tỷ đô và Franklin BENJI 732 triệu đô đều đã chạy trên Avalanche - cùng hệ sinh thái với DOS Chain.
+BlackRock có quỹ số 2,5 tỷ đô, Franklin Templeton có quỹ 732 triệu đô - cả hai đều trên **Avalanche**, cùng hệ sinh thái với DOS Chain của chúng tôi.
 
-Điểm mấu chốt: Shinhan Vietnam không cần làm pioneer. Chỉ cần execute cái đã được chứng minh - đi đầu tại Việt Nam."
+**Shinhan Việt Nam không cần pioneer. Chỉ cần đi đầu tại Việt Nam - cái đã được chứng minh ở các thị trường khác.**"
 
 ---
 
-## Slide 6 - Ask / CTA (30s, ~75 words)
+## Slide 6 - Đề xuất (30s)
 
-### Slide content
+### Nội dung slide
 
-> **Ready today. Pilot in Q2 2026.**
+> **Sẵn sàng pilot Q2 2026**
 >
-> **PoC via Shinhan InnoBoost (6 weeks):**
-> - Week 1-2: On-premise deploy in Shinhan data center
-> - Week 3-4: Pilot SHVN26A - 500 bonds, 50B VND, 10-20 investors
-> - Week 5-6: Evaluate + decide production rollout
+> **Kế hoạch 6 tuần:**
+> - Tuần 1-2: Triển khai trong data center Shinhan
+> - Tuần 3-4: Pilot 1 trái phiếu (500 đơn vị, 50 tỷ VND, 20 nhà đầu tư)
+> - Tuần 5-6: Đánh giá kết quả, quyết định rollout
 >
-> **Budget:** $30-60K pilot
+> **Ngân sách:** $30-60K cho pilot
 >
-> **Full on-premise capable** (VN banking requirement ✓)
+> **Hỗ trợ on-premise 100%** (đáp ứng quy định ngân hàng Việt Nam)
 >
 > ---
 >
-> **Demo:** rwa.doschain.com
-> **Source:** github.com/DOS/RWA
-> **Contact:** joy@dos.ai
+> Demo: **rwa.doschain.com**
+> Liên hệ: **joy@dos.ai**
 
 ### Script
 
-"Đề xuất cụ thể: pilot 6 tuần qua chương trình Shinhan InnoBoost 2026. Tuần 1-2 deploy on-premise trong data center Shinhan. Tuần 3-4 pilot trái phiếu SHVN26A - 500 đơn vị, 50 tỷ đồng, 20 nhà đầu tư chuyên nghiệp. Tuần 5-6 đánh giá và quyết định rollout.
+"Đề xuất cụ thể: pilot 6 tuần qua chương trình **Shinhan InnoBoost 2026**.
 
-Ngân sách 30 đến 60 ngàn đô.
+Tuần 1-2: triển khai hạ tầng trong data center Shinhan - **100% on-premise**, dữ liệu không ra khỏi mạng ngân hàng, đáp ứng quy định bảo mật dữ liệu của Ngân hàng Nhà nước.
 
-Nền tảng hỗ trợ on-premise 100% - đáp ứng quy định ngân hàng Việt Nam.
+Tuần 3-4: pilot phát hành 1 trái phiếu, 500 đơn vị, 50 tỷ đồng, với khoảng 20 nhà đầu tư chuyên nghiệp. Tuần 5-6: đánh giá và quyết định.
 
-Demo ngay tại rwa.doschain.com. Cảm ơn các anh chị. Tôi sẵn sàng trả lời câu hỏi."
+Ngân sách 30-60 ngàn đô cho pilot.
+
+Cảm ơn các anh chị. Các anh chị có thể trải nghiệm ngay tại **rwa.doschain.com**. Tôi sẵn sàng trả lời câu hỏi."
 
 ---
 
-## Delivery Tips
+## Ghi chú trình bày
 
-**Timing budget (total 4:00):**
-- Slide 1: 0:00 - 0:20
-- Slide 2: 0:20 - 1:00
-- Slide 3: 1:00 - 1:40
-- Slide 4: 1:40 - 2:40 *(longest - live demo narration)*
-- Slide 5: 2:40 - 3:25
-- Slide 6: 3:25 - 4:00
+**Phân bổ thời gian (total 4:00):**
+- Slide 1: 0:00 - 0:20 (mở đầu)
+- Slide 2: 0:20 - 1:00 (cơ hội)
+- Slide 3: 1:00 - 1:40 (giải pháp)
+- Slide 4: 1:40 - 2:40 (demo - dài nhất)
+- Slide 5: 2:40 - 3:25 (độ tin cậy)
+- Slide 6: 3:25 - 4:00 (đề xuất)
 
-**Pacing:**
-- Hit 0:20 when Slide 2 appears
-- Hit 2:40 when Slide 5 appears (biggest checkpoint)
-- If running over, cut Slide 5 validation numbers first
+**Mốc kiểm tra thời gian:**
+- 0:20 xong mở đầu
+- 2:40 xong demo (quan trọng nhất)
+- 4:00 nói xong "cảm ơn"
 
-**If demo won't load live:**
-- Fall back to screenshots in slides
-- Say: "Xin lỗi kết nối mạng, nhưng toàn bộ đang chạy tại rwa.doschain.com, ban giám khảo có thể verify trên DOScan với địa chỉ `0x7979...3643`"
+**3 con số phải thuộc:**
+- **26 tỷ USD** - thị trường RWA
+- **2,5 tỷ USD** - BlackRock trên Avalanche
+- **2 tỷ USD/ngày** - JPMorgan Kinexys
 
-**Memorize these 3 numbers:**
-- $26.4B RWA market, +300% YoY
-- $2.5B BlackRock BUIDL on Avalanche
-- $2B/day JPMorgan Kinexys
+**3 câu đinh phải nhấn:**
+- "Đang chạy thật hôm nay"
+- "AI chặn được đúng cái sai"
+- "Shinhan không cần pioneer, chỉ cần đi đầu tại Việt Nam"
 
-**3 phrases to nail:**
-- "Đã live trên mainnet hôm nay - không phải testnet demo"
-- "Phủ cả 2 nửa đề bài SS6 - STO và Digital Asset Payments"
-- "Shinhan Vietnam không cần pioneer, chỉ cần execute"
+**Nếu demo không load được (plan B):**
+> "Xin lỗi kết nối mạng không ổn định. Toàn bộ hệ thống vẫn đang chạy tại rwa.doschain.com, các anh chị có thể truy cập sau. Tôi sẽ tiếp tục với ảnh chụp màn hình."
 
-**Q&A prep (after 4 min, if asked):**
-- "On-premise deploy mất bao lâu?" → "Vài giờ. Chúng tôi đã có bộ script tự động."
-- "Tại sao không dùng Ethereum?" → "Shinhan không thể chạy validator trên Ethereum. DOS Chain cho Shinhan sovereign control như JPMorgan trên Kinexys."
-- "Chi phí gas thực tế?" → "Khoảng 0,001 VND/giao dịch. Có gasless cho user whitelist - nhà đầu tư trả 0 đồng."
-- "AI có hallucinate không?" → "Có khả năng. Flow của mình có bước 'Review & Edit' cho issuer sửa trước khi deploy - AI là first pass, không phải final."
+---
+
+## Q&A Prep (nếu có thời gian)
+
+**Q: Triển khai on-premise mất bao lâu?**
+A: Vài giờ. Chúng tôi đã có bộ script tự động hoá toàn bộ.
+
+**Q: Tại sao không dùng Ethereum như BlackRock?**
+A: Shinhan không thể chạy server validator trên Ethereum - đó là mạng công cộng. DOS Chain cho phép Shinhan chạy node riêng, kiểm soát hoàn toàn, giống như JPMorgan với Kinexys. Đồng thời vẫn kết nối được với Ethereum khi cần qua cầu cross-chain.
+
+**Q: Phí giao dịch thực tế là bao nhiêu?**
+A: Khoảng 0,001 VND mỗi giao dịch - gần như miễn phí. Với nhà đầu tư được whitelist thì hoàn toàn miễn phí, Shinhan trả thay.
+
+**Q: AI có thể đọc sai bản cáo bạch không?**
+A: Có khả năng. Chính vì vậy quy trình của chúng tôi có bước **'Xem lại và sửa'** cho nhà phát hành kiểm tra lại trước khi phát hành. AI là first pass để tiết kiệm thời gian, không phải quyết định cuối cùng.
+
+**Q: Đã có ngân hàng Việt Nam nào dùng chưa?**
+A: Chưa - đây là cơ hội first-mover cho Shinhan. Luật vừa có hiệu lực từ đầu năm 2026, Bộ Tài chính mới bắt đầu nhận hồ sơ. Chúng tôi muốn Shinhan là người đi đầu.
+
+**Q: Nếu chính phủ đổi luật thì sao?**
+A: Thiết kế của chúng tôi modular - có thể thay đổi quy tắc tuân thủ mà không cần redeploy. Khi luật đổi, chỉ cần update phần Compliance Module.
