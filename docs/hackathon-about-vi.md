@@ -4,13 +4,15 @@
 
 | Mục | Chi tiết |
 |-----|----------|
-| **Partner / Challenger** | Shinhan Future's Lab Việt Nam |
+| **Partner / Challenger** | Shinhan Future's Lab Việt Nam (được Strategy Division Shinhan Securities VN hậu thuẫn) |
 | **Track** | **SS6 - Digital Assets & Tokenized Securities** |
 | **Đề bài của Track** | *"Next-generation financial infrastructure - Digital asset payments, tokenized securities (STO)"* |
-| **Giải pháp của mình** | Nền tảng STO full-stack cho Shinhan Securities Việt Nam: token hóa trái phiếu doanh nghiệp theo chuẩn ERC-3643 với AI kiểm tra tuân thủ, chạy trên DOS Chain (Avalanche L1) |
+| **Giải pháp của mình** | Nền tảng STO + thanh toán tài sản số full-stack trên DOS Chain (Avalanche L1): AI token hóa trái phiếu DN theo ERC-3643, tuân thủ on-chain, rail thanh toán tích hợp (gasless, ERC-4337, x402, ICTT bridge), settle trong 1 giây |
 | **Devpost** | [devpost.com/software/dos-n05ucd](https://devpost.com/software/dos-n05ucd) |
 | **Demo Live** | [rwa.doschain.com](https://rwa.doschain.com) |
 | **Source Code** | [github.com/DOS/RWA](https://github.com/DOS/RWA) |
+
+> **Cơ hội tiếp theo:** Cùng chủ đề này cũng là đề của **Shinhan InnoBoost 2026** (deadline ~đầu tháng 5/2026), với scope lớn hơn (MVP+, POC 3-6 tháng, tích hợp API, yêu cầu AI/ML, reference deployments). Bản submit hackathon này là demo scope-down của cùng tầm nhìn. Chúng tôi sẽ submit phiên bản đầy đủ cho InnoBoost riêng - nền tảng đã đáp ứng mọi tiêu chí InnoBoost (xem mục *What's next*).
 
 **Elevator Pitch:** Hạ tầng chứng khoán token hóa đầu tiên tại Việt Nam - phát hành ERC-3643, KYC/AML on-chain, AI kiểm tra tuân thủ & tư vấn đầu tư, chạy trên Avalanche L1 chủ quyền. Thiết kế riêng cho Shinhan Securities Việt Nam để trở thành first-mover thị trường STO Việt Nam theo Luật Công nghệ Số 2025 và Nghị quyết 05/2025.
 
@@ -203,12 +205,27 @@ Những chức năng dưới đây có trong demo dưới dạng wireframe/place
 - **Safe multisig cho custody tổ chức** - hiện backend wallet ký deploy; production sẽ route qua Gnosis Safe do Shinhan kiểm soát để multi-sig.
 - **Verify TREXFactory trên DOScan** - đã deploy nhưng chưa verify source code.
 
-**Ngay lập tức (PoC với Shinhan qua InnoBoost):**
-- Pilot phát hành trái phiếu DN token hóa với Shinhan Securities Việt Nam
-- Triển khai on-premise toàn bộ stack trong data center Shinhan (blockchain, DOScan, AI, DApp)
-- Tích hợp với hệ thống KYC/AML hiện có của Shinhan để issue claim ONCHAINID
-- Kết nối với app SOL của Shinhan cho NĐT truy cập
-- Đóng các khoảng trống trên (KYC NĐT, buy/sell, phân phối coupon, multisig custody)
+**Submit Shinhan InnoBoost 2026 (track kế tiếp, deadline ~đầu tháng 5/2026):**
+
+Bản platform đầy đủ (không phải demo scope-down của hackathon) nhắm vào đề *"Digital Assets & Tokenized Securities"* của Shinhan InnoBoost 2026. Đề do Strategy Division Shinhan Securities VN sở hữu, nhắm đến Retail & Institutional business department. Đề xuất PoC (pilot 6 tuần trong window 3-6 tháng của InnoBoost):
+
+- **Setup (2 tuần):** Triển khai on-premise toàn bộ stack trong data center Shinhan (blockchain, DOScan, Qwen AI qua vLLM, DApp). Tích hợp hệ thống KYC/AML của Shinhan qua webhook ký claim ONCHAINID.
+- **Run (2 tuần):** Pilot token hóa 1 trái phiếu DN (VD: SHVN26A - 500 đơn vị, 50 tỷ VND). Onboard 10-20 NĐT chuyên nghiệp với deploy ONCHAINID gasless. Flow end-to-end: AI trích xuất → compliance check → deploy ERC-3643 → mint → NĐT mua → phân phối coupon.
+- **Evaluate (2 tuần):** Đo time-to-issuance, độ chính xác compliance, ma sát UX. Tạo báo cáo cho cơ quan quản lý. Quyết định chung về rollout production.
+
+**Đáp ứng từng tiêu chí InnoBoost:**
+
+| Yêu cầu InnoBoost | Trạng thái của mình |
+|-------------------|---------------------|
+| Độ trưởng thành: MVP+ | Live trên DOS Chain mainnet, full ERC-3643 + stack thanh toán |
+| POC sẵn sàng: 3-6 tháng | Pilot 6 tuần sẵn sàng Q2/2026 |
+| Tích hợp: API-based | REST + JSON-RPC cho mọi thao tác, DOS.Me SSO, webhook KYC integration |
+| AI/ML | Qwen 3.5-35B - 3 agent production (xử lý tài liệu, compliance, advisor) |
+| Tài liệu tham khảo | Stack production của team (DOS Chain mainnet, DOScan, EAS, ICTT) + cùng kiến trúc BlackRock BUIDL (2,5 tỷ USD), JPMorgan Kinexys (2 tỷ USD/ngày), Tokeny (32+ tỷ USD) |
+
+**Deliverables thêm sau hackathon:**
+- Kết nối với app SOL của Shinhan cho NĐT
+- Đóng khoảng trống (UI KYC NĐT, wire buy/sell, UI phân phối coupon, demo multi-investor, verify contract DOScan)
 
 **Ngắn hạn (6 tháng):**
 - Đa tài sản: trái phiếu DN → trái phiếu CP → chứng chỉ quỹ → structured notes

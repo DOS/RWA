@@ -4,13 +4,15 @@
 
 | Item | Detail |
 |------|--------|
-| **Partner / Challenger** | Shinhan Future's Lab Vietnam |
+| **Partner / Challenger** | Shinhan Future's Lab Vietnam (backed by Shinhan Securities VN Strategy Division) |
 | **Track** | **SS6 - Digital Assets & Tokenized Securities** |
 | **Track Challenge** | *"Next-generation financial infrastructure - Digital asset payments, tokenized securities (STO)"* |
-| **Our Solution** | Full-stack Security Token Offering (STO) platform for Shinhan Securities Vietnam: tokenize corporate bonds on ERC-3643 with AI-powered compliance on DOS Chain (Avalanche L1) |
+| **Our Solution** | Full-stack STO + digital asset payments platform on DOS Chain (Avalanche L1): AI-powered tokenization of corporate bonds via ERC-3643, on-chain compliance, integrated payment rail (gasless, ERC-4337, x402, ICTT bridge), settlement in 1 second |
 | **Devpost** | [devpost.com/software/dos-n05ucd](https://devpost.com/software/dos-n05ucd) |
 | **Live Demo** | [rwa.doschain.com](https://rwa.doschain.com) |
 | **Source Code** | [github.com/DOS/RWA](https://github.com/DOS/RWA) |
+
+> **Follow-up opportunity:** The same theme is also the subject of **Shinhan InnoBoost 2026** (deadline ~early May 2026), with a larger scope (MVP+ maturity, 3-6 month POC, API integration, AI/ML requirement, reference deployments). This hackathon submission is a focused scoped-down demo of the same vision. We intend to submit the full platform for InnoBoost separately - our solution already meets every InnoBoost criterion (see *What's next* section).
 
 **Elevator Pitch:** Vietnam's first tokenized securities infrastructure - ERC-3643 issuance, on-chain KYC/AML, AI-powered compliance & investment advisory, running on a sovereign Avalanche L1. Purpose-built for Shinhan Securities Vietnam to become the first-mover in Vietnam's STO market under the new Digital Technology Industry Law (2025) and Resolution 05/2025.
 
@@ -203,12 +205,27 @@ These are built into the demo as wireframes/placeholders but not fully wired to 
 - **Safe multisig for institutional custody** - currently backend wallet signs deployments; production would route through a Shinhan-controlled Gnosis Safe on DOS Chain for multi-signature approval.
 - **Token factory verification on DOScan** - TREXFactory deployed but not Etherscan-verified on DOScan yet (source code verification).
 
-**Immediate next steps (PoC with Shinhan via InnoBoost):**
-- Pilot tokenized corporate bond issuance with Shinhan Securities Vietnam
-- On-premise deployment of full stack in Shinhan's data center (blockchain nodes, DOScan, AI, DApp)
-- Integrate with Shinhan's existing KYC/AML systems for ONCHAINID claim issuance
+**Shinhan InnoBoost 2026 submission (follow-up track, deadline ~early May 2026):**
+
+The full platform (not the scope-down hackathon demo) is targeted at Shinhan's InnoBoost 2026 call for *"Digital Assets & Tokenized Securities"*. The use case is owned by Shinhan Securities VN Strategy Division, aimed at Retail & Institutional business departments. Our proposed PoC (6-week pilot within InnoBoost's 3-6 month window):
+
+- **Setup (2 weeks):** On-premise deployment of full stack in Shinhan data center (blockchain nodes, DOScan, Qwen AI via vLLM, DApp). Integrate with Shinhan's existing KYC/AML system via webhook-triggered ONCHAINID claim signing.
+- **Run (2 weeks):** Pilot tokenize 1 corporate bond (e.g., SHVN26A - 500 units, 50B VND). Onboard 10-20 qualified investors with gasless ONCHAINID deployment. End-to-end flow: AI extract → compliance check → deploy ERC-3643 → mint → investor purchase → coupon distribution.
+- **Evaluate (2 weeks):** Measure time-to-issuance, compliance accuracy, UX friction. Generate regulator-ready report. Joint decision on production rollout.
+
+**Explicit match against InnoBoost criteria:**
+
+| InnoBoost Requirement | Our Status |
+|----------------------|------------|
+| Solution maturity: MVP+ | Live on DOS Chain mainnet, full ERC-3643 + payments stack |
+| POC readiness: 3-6 months | 6-week pilot ready to start Q2 2026 |
+| Integration: API-based | REST + JSON-RPC for all operations, DOS.Me SSO, webhook KYC integration |
+| AI/ML capability | Qwen 3.5-35B - 3 production agents (doc processing, compliance, advisory) |
+| References | Team's own production stack (DOS Chain mainnet, DOScan, EAS, ICTT) + same architecture as BlackRock BUIDL ($2.5B), JPMorgan Kinexys ($2B/day), Tokeny ($32B+) |
+
+**Additional deliverables post-hackathon:**
 - Connect to Shinhan's SOL app for investor access
-- Close the gaps above (investor KYC, buy/sell, coupon distribution, multisig custody)
+- Close the gaps above (investor KYC UI, buy/sell wiring, coupon distribution UI, multi-investor demo, DOScan contract verification)
 
 **Short-term (6 months):**
 - Multi-asset support: corporate bonds → government bonds → fund certificates → structured notes
