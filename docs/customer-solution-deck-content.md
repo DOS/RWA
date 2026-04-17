@@ -123,7 +123,7 @@ ISSUANCE                          INVESTMENT                      COMPLIANCE
 |--------------------|-----------------------------|
 | STO Alliance (industry standards) | ERC-3643 - global industry standard |
 | Lambda256/Luniverse (blockchain infra) | DOS Chain - Avalanche L1, production-ready |
-| KDAC (digital asset custody) | Safe on DOS - multisig institutional custody |
+| KDAC (digital asset custody) | DOS Chain validator-level custody + ONCHAINID identity infrastructure |
 | KB-NH-Shinhan consortium (shared ledger) | Sovereign L1 - Shinhan can run validator node |
 | Won-pegged stablecoin (8 banks) | ICTT bridge - cross-chain settlement ready |
 
@@ -185,9 +185,9 @@ DOS Chain makes that concrete.
 └────────────────────────────┬────────────────────────────┘
                              │
 ┌─ Infrastructure Layer ─────▼────────────────────────────┐
-│  4 Validators │ DOScan Explorer │ ICTT Bridge │ Safe    │
-│  1s blocks    │ Full indexing   │ Cross-chain │ Multisig│
-│  100M gas     │ doscan.io       │ settlement  │ custody │
+│  4 Validators │ DOScan Explorer │ ICTT Bridge           │
+│  1s blocks    │ Full indexing   │ Cross-chain settlement│
+│  100M gas     │ doscan.io       │                       │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -222,7 +222,6 @@ DOS Chain makes that concrete.
 | **EAS (Attestation Service)** | DEPLOYED - 5 schemas | KYC/AML attestation infrastructure |
 | **ICTT Bridge** | LIVE - DOS Chain ↔ C-Chain | Cross-chain settlement capability |
 | **DOS Names** | LIVE - .dos domain service | Human-readable identities (shinhan.dos) |
-| **Safe Multisig** | LIVE - safe.doschain.com | Institutional custody for token admin |
 | **Multicall3** | DEPLOYED | Batch read operations for portfolio queries |
 | **Faucet** | LIVE - faucet.doschain.com | Zero-friction onboarding for demo |
 
@@ -252,7 +251,6 @@ DOS Chain makes that concrete.
 | **Qwen AI** (3 agents) | Yes | vLLM on bank's GPU servers |
 | **DApp** (web portals) | Yes | Next.js on any Node.js server |
 | **DOS.Me ID** (auth) | Yes | Supabase self-hosted |
-| **Safe** (custody) | Yes | Safe infrastructure |
 | **EAS** (attestations) | Yes | Smart contracts on-chain |
 
 **Zero cloud dependency. No data leaves the bank's network.**
@@ -282,16 +280,16 @@ DOS Chain makes that concrete.
 
 **Demo scenario: Shinhan issues a tokenized corporate bond**
 
-1. **Upload** - Shinhan uploads bond prospectus PDF to Issuer Portal
-2. **AI Extract** - Qwen-VL reads document, extracts all parameters, shows structured preview
-3. **Compliance** - Qwen checks VN/KR regulations, generates compliance report
-4. **Deploy** - One-click deploys ERC-3643 token on DOS Chain (via Safe multisig)
-5. **Verify** - Token visible on DOScan with full metadata
-6. **Login** - Investor logs in via DOS.Me ID (email/passkey - no wallet needed)
-7. **Onboard** - KYC → ONCHAINID deployed with signed claims
-8. **Invest** - Investor asks Qwen "which bond suits me?", buys 10 units
-8. **Compliance** - Transfer auto-checked: KYC ✓, Country ✓, Lock-up ✓, Limit ✓
-9. **Transparency** - Everything visible on DOScan, exportable for regulators
+1. **Upload** - Shinhan uploads bond prospectus PDF (or picks from 4 built-in samples: Corporate Bond, Government Bond, REIT Fund, Non-compliant Cayman fund)
+2. **AI Extract** - Qwen reads document, extracts 15+ parameters, shows structured preview (all fields editable inline)
+3. **Compliance** - Qwen checks VN regulations (Digital Technology Law 2025, Resolution 05/2025, Decree 153/2020), generates compliance report. Non-compliant issuances auto-blocked.
+4. **Deploy** - One click triggers 4 transactions from backend wallet: `deployTREXSuite` → `registerIdentity` → `unpause` → `mint(totalSupply)`. Real supply on-chain in under 10 seconds.
+5. **Verify** - Token immediately visible on DOScan with full metadata and real supply
+6. **Login** - Investor logs in via DOS.Me ID (email/Google SSO - no wallet needed)
+7. **Marketplace** - Investor Portal auto-populates by querying `TREXSuiteDeployed` events from factory - every deployed token appears live with name, symbol, supply
+8. **Advisor** - Investor asks Qwen "which bond suits me?" in Vietnamese - AI responds with analysis based on on-chain data
+9. **Compliance** - Every transfer enforced at smart contract level: unregistered wallet = transfer reverts automatically
+10. **Transparency** - Everything visible on DOScan, compliance dashboard shows token status + transfer audit
 
 **Live at:** rwa.doschain.com
 
