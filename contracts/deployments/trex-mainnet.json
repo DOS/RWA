@@ -1,0 +1,34 @@
+{
+  "network": "DOS Chain Mainnet",
+  "chainId": 7979,
+  "rpc": "https://main.doschain.com",
+  "deployer": "0x99999e454138f6be73E2bE82c890bc5765749999",
+  "deployedAt": "2026-04-13",
+  "trexVersion": "4.0.0",
+  "onchainid": {
+    "identityImplementation": "0x9D289e60B0EEb037Eb8fdFee335Bf0b4C7A1Ce85",
+    "implementationAuthority": "0x349444D7e4261cDBbb8f69a8c2047DFe5137c769",
+    "idFactory": "0xcCA7dA18982a8d3941c95E91449122C85B04F4C0"
+  },
+  "trexImplementations": {
+    "token": "0x6233276430d0607a4a4A16D74bA3DeE415CB037D",
+    "claimTopicsRegistry": "0x9617055D704074BbbA2cd4b29Cdf8a6dA0ccD0a1",
+    "trustedIssuersRegistry": "0xfA85b3C384F3cE149cCefaD6e7c2e8b740175862",
+    "identityRegistryStorage": "0x4Da108b991Eb6282B7f8281478D31404A0E927D0",
+    "identityRegistry": "0x8a59C023cE011ea102DAE48DC30f712F8d970A39",
+    "modularCompliance": "0x9BCD85733b1372A13D6f3A2dE83c13eA1E59234c"
+  },
+  "trexInfrastructure": {
+    "trexImplementationAuthority": "0xeB898726dD4aa5750056B4aCe32668C85a9bf3a8",
+    "iaFactory": "0xEf739759A738BD025403F8fa96113e6e09C1d0D0",
+    "trexFactory": null
+  },
+  "postDeploySteps": {
+    "description": "After vanity TREXFactory deployment via CREATE2, run these calls in order:",
+    "steps": [
+      "trexIA.setTREXFactory(trexFactoryAddress)  -- 0xeB898726dD4aa5750056B4aCe32668C85a9bf3a8",
+      "trexIA.setIAFactory(0xEf739759A738BD025403F8fa96113e6e09C1d0D0)  -- requires TREXFactory set first",
+      "idFactory.addTokenFactory(trexFactoryAddress)  -- 0xcCA7dA18982a8d3941c95E91449122C85B04F4C0"
+    ]
+  }
+}

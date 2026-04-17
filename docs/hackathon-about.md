@@ -1,0 +1,532 @@
+# DOS Chain - Digital Assets & Tokenized Securities
+
+> Hackathon: **Qwen AI Build Day** | Track: **[SS6] Digital Assets & Tokenized Securities** (Shinhan Future's Lab)
+> Deadline: 17 Apr 2026 | Live Event: 21 Apr 2026 @ Riverside Palace, HCM | Final Showcase: 22 Apr 2026 @ Alibaba Cloud SME AI Growth Day VN
+
+**Elevator Pitch**: Vietnam's first tokenized securities infrastructure - ERC-3643 issuance, on-chain KYC/AML, AI-powered compliance & investment advisory, running on a sovereign Avalanche L1
+
+---
+
+## Inspiration
+
+In January 2026, South Korea's parliament passed amendments to the Capital Markets Act and Electronic Securities Act - creating the first legal framework for tokenized securities on distributed ledgers. The global RWA (Real World Asset) market has crossed **$26.4 billion**, growing 300% year-over-year. BlackRock's tokenized Treasury fund BUIDL holds **$2.5 billion** across 9 chains including Avalanche. JPMorgan's Kinexys processes **$2 billion daily** in tokenized transactions. DBS launched tokenized structured notes on Ethereum. The institutional migration to on-chain securities is no longer a question of "if" - it's "how fast."
+
+Shinhan Financial Group has been preparing: the **STO Alliance** (2023) set industry standards, the **KB-NH-Shinhan consortium** built shared distributed ledger infrastructure, and Shinhan-backed **KDAC** became Korea's first institutional digital asset custodian. Korea's STO market alone is projected to reach **367 trillion won (~$250B) by 2030**.
+
+But Shinhan's Vietnam subsidiary - 5 companies, 51 branches, present since 1993 - has **zero blockchain or tokenization infrastructure**. Meanwhile, Vietnam just unlocked the opportunity: the **Digital Technology Industry Law** (effective 01/01/2026) recognizes digital assets as property, and **Resolution 05/2025** launched a 5-year nationwide pilot for tokenized assets, with the Ministry of Finance accepting license applications since January 2026.
+
+Shinhan VN CEO Lee Sun-hoon called Vietnam *"a strategic starting point for global digital innovation."* We built the infrastructure to make that happen.
+
+## What it does
+
+DOS Chain Digital Assets & Tokenized Securities is a **full-stack STO platform** that enables Shinhan Securities Vietnam to issue, manage, and trade tokenized securities on a sovereign Avalanche L1 blockchain, with AI-powered compliance and investment advisory.
+
+**For Shinhan (Issuer Portal):**
+
+| Capability | How |
+|-----------|-----|
+| **Issue tokenized securities** | Upload bond prospectus → Qwen AI extracts all parameters (face value, coupon, maturity, restrictions) → review → one-click deploy ERC-3643 compliant token |
+| **Automated compliance** | Qwen AI checks issuance against VN Digital Asset Law, KR STO regulations, generates compliance reports for regulators |
+| **Lifecycle management** | Pause/unpause tokens, freeze investor accounts (regulatory order), force transfers, distribute coupon payments |
+| **Institutional custody** | Safe multisig for all admin operations - no single-key risk |
+
+**For Investors (Investor Portal):**
+
+| Capability | How |
+|-----------|-----|
+| **KYC onboarding** | Upload ID → ONCHAINID identity contract deployed with signed claims (KYC, AML, country, accredited status) |
+| **Browse & invest** | Marketplace of tokenized securities - filter by type, yield, maturity, risk rating |
+| **AI investment advisor** | Chat with Qwen AI: "explain this bond," "compare SCB26A vs SCB26B," "recommend bonds for conservative profile" - in Vietnamese, English, or Korean |
+| **Portfolio management** | Holdings, P&L tracking, coupon payment history, transfer records |
+
+**On-chain compliance (automatic, every transaction):**
+
+Every token transfer passes through the ERC-3643 compliance module - it checks the investor's ONCHAINID claims (KYC verified? AML cleared? Country allowed? Lock-up period passed? Investor limit reached?) **before the transfer executes**. Non-compliant transfers are automatically blocked at the smart contract level. No off-chain enforcement needed.
+
+**For Regulators (Compliance Dashboard + DOScan):**
+
+Full transparency - AI-generated compliance reports per token, investor registry with claim status, complete transfer audit trail, PDF export. All on-chain data independently verifiable through DOScan explorer.
+
+## How we built it
+
+| Layer | Technology |
+|-------|-----------|
+| Blockchain | **DOS Chain** - Avalanche L1, Chain ID 7979, 4 validators, 1s blocks, 100M gas limit |
+| Smart contracts | **ERC-3643 (T-REX)** - Token, Identity Registry, ONCHAINID, Compliance Module, Claim Verifier, Trusted Issuers Registry, Token Factory. Foundry, Solidity 0.8.17 (T-REX) + ^0.8.28 (DOS contracts) |
+| AI inference | **Qwen3.5** via Alibaba Cloud Model Studio - 3 agents: Doc Processor (Qwen-VL), Compliance Engine (RAG), Investment Advisor |
+| User auth | **DOS.Me ID** - login via id.dos.me (Supabase Auth), no wallet required for end users |
+| Issuer Portal | Next.js 16 + wagmi + viem, connected to Safe multisig |
+| Investor Portal | Next.js 16 + DOS.Me login, embedded Qwen AI chat widget |
+| Localization | Vietnamese (default) + English, switchable |
+| Explorer | **DOScan** - enhanced token pages with securities metadata |
+| Identity | **ONCHAINID** (ERC-3643 standard) - 1 identity contract per investor, claims signed by Shinhan as Trusted Issuer |
+| Attestations | **EAS** (Ethereum Attestation Service) - existing deployment on DOS Chain, feeds trust scores and broader identity data |
+| Cross-chain | **ICTT bridge** - DOS Chain ↔ Avalanche C-Chain settlement |
+| Custody | **Safe on DOS** - multisig for institutional token admin |
+
+**Qwen AI is core to the solution - not bolted on:**
+
+1. **Document Processor** - Qwen-VL reads prospectus PDFs and extracts structured data (security name, face value, coupon rate, maturity, restrictions). This directly populates the TokenFactory deployment parameters. Without AI, an issuer would manually fill 15+ fields per security.
+
+2. **Compliance Engine** - RAG over Vietnamese and Korean regulatory documents. Checks every issuance against Digital Technology Industry Law 2025, Resolution 05/2025, and Korean Capital Markets Act. Generates compliance reports that a regulator can actually read.
+
+3. **Investment Advisor** - Reads on-chain data (token metadata, holder distribution, transfer volume) + investor's portfolio, provides natural language investment guidance in Vietnamese/English/Korean.
+
+**Why Avalanche L1 (DOS Chain) instead of C-Chain or Ethereum?**
+
+Shinhan can **run its own validator node** on DOS Chain - impossible on C-Chain or Ethereum. This gives the same sovereign control as JPMorgan's Kinexys or a private Hyperledger, but with full Avalanche ecosystem interoperability (ICTT bridge to C-Chain, same ecosystem as BlackRock BUIDL). Dedicated throughput, sub-cent transaction costs, and a regulatory narrative that works: "Shinhan validates transactions on a dedicated chain" beats "we deployed a contract alongside meme coins."
+
+**Full on-premise / self-hosted capability - a banking requirement in Vietnam:**
+
+Vietnamese banking regulations require that financial infrastructure can be deployed entirely on-premise within the bank's own data center. Every component in our stack supports this:
+
+| Component | Self-hosted? | How |
+|-----------|-------------|-----|
+| **DOS Chain** (blockchain) | Yes | AvalancheGo binary, run validators on bank's own servers |
+| **DOScan** (explorer) | Yes | Docker containers (backend + frontend + PostgreSQL) |
+| **Qwen AI** (3 agents) | Yes | Self-hosted via vLLM on bank's GPU servers, no cloud dependency |
+| **DApp** (web portals) | Yes | Next.js, deploy on any Node.js server or Docker |
+| **DOS.Me ID** (auth) | Yes | Supabase self-hosted (already running on our own infrastructure) |
+| **Safe** (custody) | Yes | Safe infrastructure, fully self-hostable |
+| **EAS** (attestations) | Yes | Smart contracts on DOS Chain - no external dependency |
+
+**Zero cloud dependency.** The entire stack - blockchain nodes, explorer, AI inference, web app, authentication, custody - can run inside Shinhan's data center on Shinhan's hardware. No data leaves the bank's network. This is not a theoretical capability - DOS Chain already runs on self-managed VMs, DOScan runs self-hosted Docker, Qwen runs on self-hosted GPU, and Supabase runs self-hosted.
+
+**Dedicated permissioned L1 option.** If required, we can deploy a completely separate permissioned Avalanche L1 exclusively for Shinhan - running entirely on Shinhan's servers with Shinhan-controlled validators. Same ERC-3643 contracts, same AI agents, same DApp - but on a private chain where Shinhan controls 100% of the infrastructure. This chain can still bridge to the public DOS Chain or Avalanche C-Chain via ICTT when cross-chain settlement is needed, or operate fully isolated if regulation demands it. Spinning up a new Avalanche L1 takes hours, not months - the tooling and deployment scripts are already built.
+
+## Challenges we ran into
+
+**ERC-3643 on a fresh chain.** The T-REX reference implementation assumes Ethereum mainnet tooling. Deploying the full 6-contract system (Token, Identity Registry, ONCHAINID, Compliance Module, Claim Verifier, Trusted Issuers Registry) plus the Token Factory on DOS Chain required adapting deployment scripts and verifying contract interactions work correctly with Avalanche L1's consensus model.
+
+**Compliance is not a checkbox.** Building the RAG pipeline for the Compliance Engine meant sourcing, parsing, and chunking Vietnamese legal documents (Digital Technology Industry Law - 80+ articles) and Korean STO legislation. Legal text is dense, cross-referencing, and full of exceptions. Getting Qwen to produce accurate compliance assessments - not hallucinated ones - required careful prompt engineering and structured output validation.
+
+**Gasless onboarding for investors.** Deploying a full ONCHAINID identity contract per investor costs $50-100 on Ethereum. On DOS Chain, the cost is fractions of a cent - and we can go further: DOS Chain supports **gasless transactions for whitelisted contracts and users**, meaning investors pay zero gas for KYC onboarding and identity deployment. This turns a challenge on other chains into a competitive advantage.
+
+**Bridging securities across chains.** Tokenized securities aren't like fungible tokens - a cross-chain transfer must preserve compliance state. The investor on the destination chain must also have valid ONCHAINID claims. We designed the ICTT bridge integration to enforce this, but it added complexity to what's normally a simple bridge call.
+
+## Accomplishments that we're proud of
+
+- **Full ERC-3643 deployment on an Avalanche L1** - the industry standard for tokenized securities, running on production infrastructure with live validators, explorer, bridge, and multisig custody. Not a testnet demo.
+
+- **AI-to-contract pipeline** - upload a PDF prospectus, Qwen extracts all parameters, compliance engine validates against VN/KR regulations, one click deploys a fully compliant ERC-3643 token. End-to-end in minutes, not weeks.
+
+- **On-chain compliance that actually works** - every transfer checked against ONCHAINID claims at the smart contract level. Non-compliant transfers blocked automatically. No off-chain enforcement, no trust assumptions.
+
+- **Gasless investor onboarding** - DOS Chain supports whitelisted gasless transactions. ONCHAINID deployment and KYC verification cost the investor literally zero. On Ethereum, the same operation costs $50-100 per investor.
+
+- **DOS.Me ID login** - investors sign in with email/passkey via DOS.Me, no MetaMask or wallet knowledge needed. Banking-grade UX for institutional users.
+
+- **Vanity contract addresses** - TREXFactory deployed at `0x7979...3643` using CreateX CREATE2 with custom Rust vanity miner (49M hashes/sec, found in 108s). Memorable addresses for institutional trust.
+
+- **Three-language AI advisor** - Vietnamese, English, Korean. Reads on-chain data in real time. Answers "should I buy this bond?" with actual analysis, not generic disclaimers.
+
+- **Existing infrastructure leverage** - EAS (attestations), DOScan (explorer), ICTT (bridge), Safe (multisig), DOS Names (human-readable identities), Faucet (onboarding) - all production-ready, all integrated. We didn't build from scratch; we built on top of a live ecosystem.
+
+- **Regulatory alignment** - designed specifically for VN Digital Technology Industry Law 2025 and Resolution 05/2025. Not a generic platform hoping to pass compliance later.
+
+- **Full on-premise capability** - every component (blockchain, explorer, AI, DApp, auth, custody) can be self-hosted inside the bank's data center. Zero cloud dependency. Required by Vietnamese banking regulations.
+
+## What we learned
+
+1. **Standards matter more than innovation in regulated finance.** We initially considered building a custom identity layer using EAS attestations directly - simpler, fewer contracts. But for a banking audience, using the exact standard the industry has converged on (ERC-3643 + ONCHAINID, endorsed by DTCC and SEC) is worth the extra complexity. Innovation in DeFi means breaking new ground; innovation in securities means building on trusted foundations.
+
+2. **Avalanche L1 is the sweet spot for institutional blockchain.** Not private enough to be isolated (Hyperledger), not public enough to lose control (Ethereum mainnet). Sovereign validators + ecosystem interoperability + near-zero costs. This is the architecture JPMorgan built Kinexys toward - we had it from day one.
+
+3. **AI compliance is a force multiplier.** Manually checking a token issuance against Vietnamese and Korean regulations takes a legal team days. Qwen with RAG over regulatory documents does it in seconds. Not replacing lawyers - giving them a first pass that catches 90% of issues before human review.
+
+4. **Vietnam is ready.** The regulatory framework exists. The Ministry of Finance is accepting applications. The 5-year pilot program is live. What's missing is not permission - it's infrastructure. That's what we built.
+
+5. **On-premise is non-negotiable for Vietnamese banks.** Shinhan's webinar (15 Apr 2026) confirmed: Vietnamese banking regulations require full on-premise deployment capability. No cloud-only solution will pass compliance review. Our stack was already designed for this - every component runs self-hosted. This is a major differentiator vs SaaS-only platforms like Securitize or Tokeny that require cloud infrastructure.
+
+6. **Shinhan's Korea STO playbook maps directly to Vietnam.** STO Alliance standards, Lambda256/Luniverse architecture patterns, KDAC custody model - all of it translates. The gap was a Vietnam-ready chain with compliance tooling. DOS Chain fills that gap.
+
+## What's next for DOS Chain Digital Assets & Tokenized Securities
+
+**Immediate (PoC with Shinhan via InnoBoost):**
+- Pilot tokenized corporate bond issuance with Shinhan Securities Vietnam
+- On-premise deployment of full stack in Shinhan's data center (blockchain nodes, DOScan, AI, DApp)
+- Integrate with Shinhan's existing KYC/AML systems for ONCHAINID claim issuance
+- Connect to Shinhan's SOL app for investor access
+
+**Short-term (6 months):**
+- Multi-asset support: corporate bonds → government bonds → fund certificates → structured notes
+- Secondary market trading with on-chain order book or AMM designed for securities
+- Coupon payment automation - smart contract distributes yield to token holders on schedule
+- Shinhan runs validator node on DOS Chain - full sovereign participation
+
+**Medium-term (12 months):**
+- Cross-border STO: leverage ICTT bridge for DOS Chain ↔ C-Chain ↔ Ethereum settlement
+- Integration with Shinhan's Korean STO infrastructure (Lambda256/Luniverse) via bridge
+- Won-pegged stablecoin settlement (8 Korean banks consortium)
+- Expand to other Shinhan subsidiaries: Shinhan Bank VN (tokenized deposits), Shinhan Finance (tokenized lending)
+
+**Long-term:**
+- Full RWA platform: real estate, commodities, private credit tokenization
+- Regulatory sandbox participation under VN Resolution 05/2025
+- Connect to Chainlink DTA for Swift messaging integration (following UBS model)
+- Open the Token Factory to other Vietnamese securities firms - DOS Chain becomes the national STO infrastructure
+
+---
+
+## Live Links
+
+| Resource | URL |
+|----------|-----|
+| **DApp** | [rwa.doschain.com](https://rwa.doschain.com) |
+| **Explorer** | [doscan.io](https://doscan.io) |
+| **Token SCB26A** | [doscan.io/token/0x2720...](https://doscan.io/token/0x27202027046E614E159329d9cdf8c35a197CC7b5) |
+| **TREXFactory** | [doscan.io/address/0x7979...3643](https://doscan.io/address/0x7979539fb9eb7f1c92221f278a92812967303643) |
+| **DOS.Me Login** | [id.dos.me](https://id.dos.me) |
+| **GitHub** | [github.com/DOS/DOS-Chain](https://github.com/DOS/DOS-Chain) |
+
+---
+
+## Design Spec
+
+### Overview
+
+**DOS Securities** is a full-stack Security Token Offering (STO) platform on DOS Chain (Avalanche L1) combining ERC-3643 compliant tokenization with Qwen AI for compliance automation, document processing, and investment advisory - enabling Shinhan Securities Vietnam to become the first mover in tokenized securities in Vietnam.
+
+**Pitch**: Shinhan has an STO roadmap in Korea (STO Alliance, Lambda256, KDAC) but **zero blockchain/tokenization initiative in Vietnam**. Vietnam just opened up - Digital Technology Industry Law (01/2026) + Resolution 05/2025 (5-year pilot for tokenized assets). The global RWA market is $26.4B growing 300% YoY. DOS Securities gives Shinhan VN the tools to issue, manage, and trade tokenized securities on a sovereign Avalanche L1 chain with AI-powered compliance.
+
+### Architecture - 4 Layers
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      PRESENTATION LAYER                         │
+│                                                                 │
+│  Issuer Portal        Investor Portal      Compliance Dashboard │
+│  (Shinhan internal)   (Public)             (Regulator view)     │
+│  - Upload prospectus  - KYC onboarding     - AI compliance      │
+│  - Deploy tokens      - Browse securities    reports per token  │
+│  - Manage lifecycle   - Buy/sell tokens    - Investor registry  │
+│  - Distribute coupons - Qwen AI advisor    - Transfer audit log │
+│                         chat widget        - PDF export         │
+├─────────────────────────────────────────────────────────────────┤
+│                        QWEN AI LAYER                            │
+│                                                                 │
+│  Qwen AI Gateway (Alibaba Cloud Model Studio)                   │
+│                                                                 │
+│  Agent 1: Doc Processor     Agent 2: Compliance    Agent 3:     │
+│  - PDF prospectus/term      Engine                 Investment   │
+│    sheet → structured       - RAG over VN/KR       Advisor      │
+│    JSON → contract params     regulatory docs      - Risk       │
+│  - Qwen-VL for document    - Check issuance         analysis   │
+│    understanding              compliance           - Portfolio  │
+│                             - Transfer eligibility   recommend  │
+│                             - AML screening        - NL Q&A     │
+│                             - Generate reports     - VI/EN/KR   │
+├─────────────────────────────────────────────────────────────────┤
+│                    SMART CONTRACT LAYER                          │
+│                     (DOS Chain 7979)                             │
+│                                                                 │
+│  ERC-3643 T-REX System (industry standard):                     │
+│  ┌──────────┐ ┌────────────────┐ ┌───────────────────────┐      │
+│  │ Token    │ │ Identity       │ │ Compliance Module     │      │
+│  │ (T-REX)  │ │ Registry       │ │ - CountryRestrict     │      │
+│  │ ERC-20 + │ │ wallet →       │ │ - InvestorLimit       │      │
+│  │ transfer │ │ ONCHAINID      │ │ - LockUpPeriod        │      │
+│  │ hooks    │ │                │ │ - MinDenomination     │      │
+│  └──────────┘ └────────────────┘ └───────────────────────┘      │
+│  ┌──────────┐ ┌────────────────┐ ┌───────────────────────┐      │
+│  │ Claim    │ │ Token Factory  │ │ Trusted Issuers       │      │
+│  │ Verifier │ │ deploy new     │ │ Registry              │      │
+│  │ (KYC/AML │ │ securities     │ │ Shinhan = trusted     │      │
+│  │ claims)  │ │                │ │ issuer                │      │
+│  └──────────┘ └────────────────┘ └───────────────────────┘      │
+│                                                                 │
+│  Existing DOS Chain infrastructure:                              │
+│  EAS (attestations) | ICTT Bridge | Multicall3 | DOS Names      │
+├─────────────────────────────────────────────────────────────────┤
+│                    INFRASTRUCTURE LAYER                          │
+│                                                                 │
+│  DOS Chain Mainnet    DOScan Explorer   ICM Relayer   Safe       │
+│  4 validators         Full indexing     Cross-chain   Multisig   │
+│  1s blocks            Regulator view    settlement    custody    │
+│  100M gas limit                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Identity Architecture
+
+**ONCHAINID** (ERC-3643 standard) is the identity layer for securities compliance.
+**EAS** (existing on DOS Chain) provides broader attestation data (trust scores, reputation).
+
+```
+Investor onboard
+       │
+       ▼
+  Shinhan KYC process
+  (Qwen AI assists with document verification)
+       │
+       ▼
+  ONCHAINID deployed (1 contract per investor)
+  Claims added (signed by Shinhan as Trusted Issuer):
+    - Topic 1: KYC verified ✓
+    - Topic 2: AML cleared ✓
+    - Topic 3: Accredited investor ✓
+    - Topic 4: Country = VN ✓
+       │
+       ▼
+  Identity Registry links wallet → ONCHAINID
+       │
+       ▼
+  ERC-3643 Compliance Module
+  reads ONCHAINID claims before every transfer
+       │
+  Meanwhile, EAS attestations (existing):
+    - Trust scores → feed Qwen AI risk analysis
+    - Social/blockchain identity → DOS.Me ecosystem
+    - Broader data layer, not required for transfer compliance
+```
+
+**Why ONCHAINID (not custom)**: ERC-3643 + ONCHAINID is the industry standard - DTCC joined (03/2025), SEC recognized (07/2025). For a banking hackathon, using the exact standard the industry has converged on is the strongest narrative.
+
+### Smart Contracts - ERC-3643 T-REX Components
+
+#### 1. Token (T-REX)
+- ERC-20 compatible with transfer hooks
+- `canTransfer()` checks compliance before EVERY transfer
+- `decimals: 0` for whole-unit securities (bonds)
+- Metadata: face value, coupon rate, maturity date, ISIN
+
+#### 2. Identity Registry
+- Maps investor wallet address → ONCHAINID contract
+- Only registered investors can hold tokens
+- Shinhan = registry agent (add/remove investors)
+
+#### 3. ONCHAINID (per investor)
+- Holds signed claims from Trusted Issuers
+- Claims: KYC level, AML status, accredited status, country, expiry
+- Self-sovereign: investor owns their identity contract
+
+#### 4. Compliance Module
+- Pluggable rules engine, checked on every transfer:
+  - `CountryRestrict` - only VN, KR residents
+  - `InvestorLimit` - max 200 holders per token
+  - `LockUpPeriod` - e.g., 6 months post-issuance
+  - `MinDenomination` - e.g., 1M VND minimum
+- Modular: Shinhan can add/remove rules per security
+
+#### 5. Claim Verifier (ClaimTopicsRegistry)
+- Defines required claim topics per token
+- e.g., "This bond requires KYC (topic 1) + AML (topic 2) + Accredited (topic 3)"
+
+#### 6. Trusted Issuers Registry
+- Who can sign claims: Shinhan Securities VN, Shinhan Bank VN
+- Future: third-party KYC providers can be added
+
+#### 7. Token Factory
+- One-click deploy new tokenized security:
+  ```
+  deploySecurityToken(
+    name: "Shinhan Corp Bond 2026-A",
+    symbol: "SCB26A",
+    complianceModules: [country, lockup, investorLimit],
+    claimTopics: [KYC, AML, ACCREDITED],
+    trustedIssuers: [shinhan.dos],
+    initialSupply: 10000,
+    metadata: {
+      faceValue: "1000000",    // 1M VND per unit
+      couponRate: "850",       // 8.50% in basis points
+      maturityDate: 1798761600,
+      issuer: "Shinhan Securities Vietnam"
+    }
+  )
+  ```
+
+### Qwen AI Layer - 3 Agents
+
+#### Agent 1: Document Processor
+- **Input**: PDF/image of prospectus, term sheet
+- **Process**: Qwen-VL (vision) reads document → extracts structured fields
+- **Output**: JSON ready for TokenFactory deployment
+- **Fields extracted**: security name, type, ISIN, face value, currency, coupon rate, payment frequency, maturity date, min denomination, investor restrictions, issuer info
+
+#### Agent 2: Compliance Engine
+- **Knowledge base (RAG)**:
+  - VN Digital Technology Industry Law 2025
+  - VN Resolution 05/2025 (tokenized asset pilot)
+  - KR Capital Markets Act (STO amendments)
+  - KR Electronic Securities Act
+  - Shinhan internal compliance guidelines
+- **Functions**:
+  - `checkIssuanceCompliance(tokenParams)` → compliant/issues/report
+  - `checkTransferEligibility(from, to, amount)` → eligible/reason
+  - `generateComplianceReport(tokenAddress)` → PDF for regulators
+  - `screenAML(investorAddress)` → clean/riskScore
+
+#### Agent 3: Investment Advisor
+- **Context**: all tokenized securities on DOS Chain, on-chain data, investor portfolio, market data
+- **Capabilities**:
+  - "Explain this bond in simple terms"
+  - "Compare SCB26A vs SCB26B"
+  - "What's my portfolio risk?"
+  - "Recommend bonds for conservative investor"
+- **Languages**: Vietnamese + English + Korean
+- **Interface**: Chat widget in Investor Portal
+
+### Presentation Layer - 3 DApps
+
+#### 1. Issuer Portal (Shinhan internal)
+- Upload prospectus → Qwen extracts params → review → deploy token via Safe multisig
+- Token management: pause/unpause, freeze investor, force transfer (regulatory order), update compliance rules, distribute coupon payments
+- Compliance dashboard: AI reports per token, investor registry, transfer audit log, PDF export
+
+#### 2. Investor Portal (Public)
+- KYC onboarding: upload ID → Qwen verify → ONCHAINID created with claims
+- Marketplace: browse tokenized securities, filter by type/yield/maturity/risk
+- Portfolio: holdings, P&L, coupon payments, transfer history
+- Qwen AI chat widget for investment advice
+
+#### 3. DOScan Integration (Enhanced)
+- Token pages show metadata: face value, coupon, maturity, compliance status
+- Investor registry visible (addresses + claim status)
+- Transfer events with compliance check results
+
+### Why DOS Chain (Avalanche L1) vs Alternatives
+
+| Criteria | DOS Chain (Avalanche L1) | Avalanche C-Chain | Ethereum L1 | Permissioned (Quorum/Canton) |
+|----------|---|---|---|---|
+| **Who uses similar** | - | BlackRock BUIDL ($500M) | BlackRock BUIDL ($2B), DBS, UBS | JPMorgan Kinexys, Citi, Goldman |
+| **Throughput** | **Dedicated** - 100M gas, 1s blocks | Shared with all dApps | Shared, congestion | Dedicated but isolated |
+| **Cost** | ~0.001 VND/tx | ~$0.01-0.10/tx | $5-50/tx | Free (high infra cost) |
+| **Permissioning** | **Flexible** - PoA validators (Shinhan can run node) | Permissionless only | Permissionless only | Fully permissioned |
+| **Compliance** | ERC-3643 + ONCHAINID + EAS | ERC-3643 | ERC-3643 | Custom, non-standard |
+| **Interop** | ICTT bridge → C-Chain → Ethereum | Native Avalanche | Bridges (risk) | Isolated silo |
+| **Validator control** | **Shinhan can run validator** (like KDAC on Polymesh) | Cannot | Cannot | Must host everything |
+| **Data privacy** | Configurable - encrypt sensitive data | Fully public | Fully public | Full privacy |
+| **Explorer** | DOScan (dedicated, full indexing) | Snowtrace (shared) | Etherscan (shared) | No public explorer |
+| **On-premise** | **Full self-hosted** - all components | Cannot | Cannot | Yes but isolated |
+| **Existing infra** | EAS, Names, Safe, Bridge, Faucet - ALL LIVE | Deploy from scratch | Deploy from scratch | Build from scratch |
+
+**Key argument**: DOS Chain gives Shinhan the **best of both worlds** - sovereign control like a private chain (run validators, custom gas economics, dedicated throughput) but interoperable like a public chain (Avalanche ecosystem, ICTT bridge to Ethereum). Like JPMorgan building Kinexys as a sovereign platform but bridging to Canton Network - we already have that architecture live.
+
+**Regulatory narrative**: "Shinhan runs validator on dedicated chain" >> "deployed contract on public chain alongside meme coins" when talking to regulators.
+
+### Deployed Contracts (DOS Chain Mainnet - Chain ID 7979)
+
+| Contract | Address | Note |
+|----------|---------|------|
+| **TREXFactory** | `0x7979539fb9eb7f1c92221f278a92812967303643` | Vanity `7979...3643`, CreateX CREATE2 |
+| TREXImplementationAuthority | `0xeB898726dD4aa5750056B4aCe32668C85a9bf3a8` | Manages all T-REX implementations |
+| IdFactory | `0xcCA7dA18982a8d3941c95E91449122C85B04F4C0` | ONCHAINID identity factory |
+| IAFactory | `0xEf739759A738BD025403F8fa96113e6e09C1d0D0` | Implementation Authority factory |
+| **Token (SCB26A)** | `0x27202027046E614E159329d9cdf8c35a197CC7b5` | Shinhan Corp Bond 2026-A |
+| IdentityRegistry | `0xA02d42F345B4a96a756292b1b8818137898A90c1` | Wallet → ONCHAINID mapping |
+| ModularCompliance | `0xd0CCa4Ec671b5c08f211c94FCF39007114DCbb1e` | Transfer rules engine |
+| TrustedIssuersRegistry | `0x91117325e1DbcB79F1A507F744571EC14fcF1500` | Shinhan = trusted KYC issuer |
+| ClaimTopicsRegistry | `0x5D156DfFae379eD3dD283d948fD3CEb5997a2593` | KYC claim topic required |
+| ClaimIssuer (Shinhan) | `0x726B089560bd88059c804c3F0895A6023CDE3C73` | Signs KYC claims |
+| Deployer ONCHAINID | `0x3a55529D46EF3C82D48A3D4f6685892662B2AD10` | Identity for deployer wallet |
+| Investor ONCHAINID | `0xB02aA81454b79893FFA311272EC88D4e8b0e82A2` | Identity for test investor |
+
+**On-chain verification:** Deployer balance = 90 SCB26A, Investor balance = 10 SCB26A. Transfer to unregistered address reverts with "Transfer not possible" - compliance enforced at smart contract level.
+
+### Demo Flow for Judges
+
+**Scene 1: Issuance** (Issuer Portal)
+1. Shinhan uploads bond prospectus PDF
+2. Qwen AI extracts all parameters, shows structured preview
+3. Compliance Engine checks VN/KR regulations, generates report
+4. Shinhan approves → TokenFactory deploys ERC-3643 token on DOS Chain
+5. Token visible on DOScan with full metadata
+
+**Scene 2: Investor Onboarding** (Investor Portal)
+1. Investor connects wallet, starts KYC
+2. Qwen AI assists with document verification
+3. ONCHAINID deployed, claims added (KYC/AML/Country)
+4. Investor registered in Identity Registry
+
+**Scene 3: Investment** (Investor Portal)
+1. Investor browses marketplace, asks Qwen "which bond suits me?"
+2. Qwen recommends based on risk profile and on-chain data
+3. Investor buys 10 units of SCB26A
+4. ERC-3643 compliance module checks all claims → transfer approved
+5. Tokens in wallet, visible on DOScan
+
+**Scene 4: Compliance** (Compliance Dashboard)
+1. Regulator views all tokenized securities on DOS Chain
+2. AI-generated compliance report per token
+3. Full transfer audit trail with compliance check results
+4. Export PDF report
+
+---
+
+## Research & Key Insights
+
+### Market Landscape (03/2026)
+
+| Metric | Value |
+|--------|-------|
+| Total RWA on-chain (ex stablecoins) | $26.4B |
+| Tokenized Treasuries | $7B+ |
+| Tokenized Equities | $963M (2,878% YoY growth) |
+| Avalanche RWA TVL | $1.33B (949% YoY growth) |
+| Forecast 2028 (Standard Chartered) | $2 trillion |
+| Korea STO market forecast 2030 (BCG) | 367T won (~$250B) |
+
+### Major Banks Already Doing This
+
+| Bank | Platform | Chain | Product | Scale |
+|------|----------|-------|---------|-------|
+| JPMorgan | Kinexys | Quorum → Canton | Tokenized deposits, Intraday Repo | $1.5T+ processed, ~$2B/day |
+| BlackRock | BUIDL (Securitize) | 9 chains incl. Avalanche | Tokenized US Treasury fund | $2.5B+ AUM, 40% market share |
+| Goldman Sachs | GS DAP | Canton/Daml | Tokenized bonds, MMF | Spinning out as platform 2026 |
+| HSBC | Orion | DLT | Digital native bonds | $3.5B+ bonds, UK DIGIT sovereign bond pilot |
+| DBS | DDEx | Ethereum public | Tokenized structured notes | $1B+ H1/2025 |
+| UBS | UBS Tokenize | Ethereum | MMF token, fixed rate notes | First end-to-end Chainlink DTA |
+| Franklin Templeton | BENJI | 8 chains incl. Avalanche | Tokenized US Gov Money Fund | $732M AUM |
+| Citi | Citi Token Services | Permissioned | Tokenized deposits, cross-border 24/7 | US, UK, SG, HK, IE |
+| Standard Chartered | - | - | Tokenized deposits (SGD/USD/HKD/CNH) | - |
+
+### Shinhan Specific
+
+- **STO Alliance** (02/2023) - consultative body for tokenized securities ecosystem
+- **Lambda256/Luniverse** - PoC STO platform (blockchain infra, wallet, token issuance)
+- **KDAC** (Shinhan invested) - first institutional digital asset custodian in Korea, Polymesh node operator
+- **Consortium KB + NH + Shinhan** - shared distributed ledger for STO
+- **8 Korean banks** (incl. Shinhan) developing **won-pegged stablecoin**
+- **Vietnam**: 5 subsidiaries, present since 1993, CEO says "Vietnam is strategic starting point for global digital innovation" - **NO blockchain/tokenization initiative in VN yet** = greenfield opportunity
+- **InnoBoost**: winner gets priority for up to **VND 200M PoC funding**
+
+### Token Standard: ERC-3643 (T-REX)
+
+**Why ERC-3643 over alternatives:**
+
+| Feature | ERC-3643 | ERC-1400 | ERC-20 |
+|---------|----------|----------|--------|
+| Status | Official ERC, DTCC joined (03/2025), SEC recognized (07/2025) | Draft, never finalized | Standard |
+| On-chain identity | ONCHAINID built-in | None | None |
+| Compliance | Modular compliance module, automatic transfer restrictions | Partition-based | None (off-chain only) |
+| KYC/AML | Identity Registry + Claim Verifier | Manual | Manual |
+| Best for | Regulated securities (our use case) | US equity/bonds | Simple tokens |
+| Used by | Tokeny, Avalanche RWA, SkyBridge, DTCC | Polymath | BUIDL/BENJI (with wrapper) |
+
+ERC-3643 is the winning standard for tokenized securities - on-chain compliance, identity registry, transfer restrictions built-in. Perfect fit for VN regulation requiring KYC/AML.
+
+### Vietnam Regulatory (Favorable Timing)
+
+- **Digital Technology Industry Law 2025**: effective 01/01/2026 - recognizes digital assets as property
+- **Resolution 05/2025**: 5-year pilot program for tokenized assets nationwide
+- Requirements: only crypto assets **backed by tangible assets**, only VN companies can issue
+- Tax: 0.1% per transaction (from 2026)
+- Ministry of Finance accepting license applications since 20/01/2026
+
+### Korea STO Regulatory
+
+- **01/2026**: Parliament passed amendments to Capital Markets Act + Electronic Securities Act
+- **02/2027**: Takes effect - legal framework for issuing tokenized securities on DLT
+- Allows tokenization of: real estate, music copyrights, art, livestock
+- "Qualified issuers" can directly issue and manage tokenized securities on blockchain
+
+### Key Platforms/Protocols
+
+| Platform | Role | Scale |
+|----------|------|-------|
+| Securitize | Tokenization-as-a-service | $4.6B+ AUM, 20% RWA market |
+| Ondo Finance | Tokenized treasuries + equities | $650M+ TVL |
+| Tokeny | ERC-3643 compliance platform | Creator of T-REX standard |
+| Centrifuge | Private credit tokenization | Pioneer |
+| Polymath/Polymesh | Security token infrastructure | ERC-1400 creator |
+| Chainlink | Oracle + DTA standard | Swift integration, UBS/JPM partner |

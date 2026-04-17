@@ -1,0 +1,61 @@
+{
+  "network": "DOS Chain Testnet",
+  "chainId": 3939,
+  "rpc": "https://test.doschain.com",
+  "deployer": "0x99999e454138f6be73E2bE82c890bc5765749999",
+  "deployedAt": "2026-04-13",
+  "trexVersion": "4.0.0",
+  "onchainid": {
+    "identityImplementation": "0x6FE14EB06AeB3608a500D6556555ecF62bD78704",
+    "implementationAuthority": "0xa42053ccD75bBb4aC4D8Ae3a96A049176516d95a",
+    "idFactory": "0x4f91ccB4C00D48af10CAA2afd45C2e7C4Db411D6"
+  },
+  "trexImplementations": {
+    "token": "0x3E19Ca2E19F0f4cB2cD80Cb89aA8C0312d3eb8a0",
+    "claimTopicsRegistry": "0x4b8F645fBa70C5b09A9BAC14763e306C973fE0E9",
+    "trustedIssuersRegistry": "0xd032233E262966E0e5213E4cb032586aFe6fa585",
+    "identityRegistryStorage": "0x68637c25eD188f8a4D001A6421994607CF343E8c",
+    "identityRegistry": "0xA992D4Fd46519812F2a84C2e392bFe18aa6b3b25",
+    "modularCompliance": "0x757b166FeA295ebD9F18b5207E26Ae9265d32DAf"
+  },
+  "trexInfrastructure": {
+    "trexImplementationAuthority": "0x0a4CA899789A8FA3857c57d8c9526995A2D73031",
+    "trexFactory": "0xee868094Db045e390c623B3051de33466F068231",
+    "iaFactory": "0xf1d38fb7cf9d6a31AeD3B74Fe758E385e2bb047E"
+  },
+  "tokens": {
+    "shinhan-bond-2026a": {
+      "name": "Shinhan Corp Bond 2026-A",
+      "symbol": "SCB26A",
+      "decimals": 0,
+      "salt": "shinhan-bond-2026a",
+      "token": "0x2E7ff68Cf205A3508B3130ED4efE84FF085336BC",
+      "identityRegistry": "0xfB71749892D432987F00a6Ad4162C2f0d9a03D8E",
+      "identityRegistryStorage": "0xB6e5CdC80AFe24721a121Be6Aa4D3B6660b0b9D5",
+      "trustedIssuersRegistry": "0xe6E577624f0dF0D47FDC67C88656625B9eA6C64f",
+      "claimTopicsRegistry": "0xB519146316C4C1CfF99d7588BaA5E2F37E43b7Ba",
+      "modularCompliance": "0x811142b28E54939533081eA6C6f1AABf59F1C786",
+      "tokenIdentity": "0xEFc27ea923AFb27e4FC82520a15B8f68E79729CE"
+    }
+  },
+  "claimIssuers": {
+    "shinhan-kyc": {
+      "description": "Shinhan KYC Provider (test)",
+      "address": "0xf89A35F6e102f3727E3DdBF39642cAE3A26166e5",
+      "managementKey": "0x99999e454138f6be73E2bE82c890bc5765749999",
+      "claimTopics": [1]
+    }
+  },
+  "identities": {
+    "deployer": {
+      "wallet": "0x99999e454138f6be73E2bE82c890bc5765749999",
+      "onchainId": "0x96ba29b817debb8e30b2d4dc43c00343c975272d",
+      "country": 704
+    },
+    "investor-test-001": {
+      "wallet": "0x1234567890AbcdEF1234567890aBcdef12345678",
+      "onchainId": "0x83E236E6c625e9b98C24668D6eBEC5c6964b3b80",
+      "country": 410
+    }
+  }
+}
