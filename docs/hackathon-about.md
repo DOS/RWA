@@ -6,7 +6,8 @@
 |------|--------|
 | **Partner / Challenger** | Shinhan Future's Lab Vietnam |
 | **Track** | **SS6 - Digital Assets & Tokenized Securities** |
-| **Use Case** | Full-stack Security Token Offering (STO) platform for Shinhan Securities Vietnam: tokenize corporate bonds on ERC-3643 with AI-powered compliance on DOS Chain (Avalanche L1) |
+| **Track Challenge** | *"Next-generation financial infrastructure - Digital asset payments, tokenized securities (STO)"* |
+| **Our Solution** | Full-stack Security Token Offering (STO) platform for Shinhan Securities Vietnam: tokenize corporate bonds on ERC-3643 with AI-powered compliance on DOS Chain (Avalanche L1) |
 | **Devpost** | [devpost.com/software/dos-n05ucd](https://devpost.com/software/dos-n05ucd) |
 | **Live Demo** | [rwa.doschain.com](https://rwa.doschain.com) |
 | **Source Code** | [github.com/DOS/RWA](https://github.com/DOS/RWA) |

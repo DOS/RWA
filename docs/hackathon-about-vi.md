@@ -6,7 +6,8 @@
 |-----|----------|
 | **Partner / Challenger** | Shinhan Future's Lab Việt Nam |
 | **Track** | **SS6 - Digital Assets & Tokenized Securities** |
-| **Use Case** | Nền tảng STO full-stack cho Shinhan Securities Việt Nam: token hóa trái phiếu doanh nghiệp theo chuẩn ERC-3643 với AI kiểm tra tuân thủ, chạy trên DOS Chain (Avalanche L1) |
+| **Đề bài của Track** | *"Next-generation financial infrastructure - Digital asset payments, tokenized securities (STO)"* |
+| **Giải pháp của mình** | Nền tảng STO full-stack cho Shinhan Securities Việt Nam: token hóa trái phiếu doanh nghiệp theo chuẩn ERC-3643 với AI kiểm tra tuân thủ, chạy trên DOS Chain (Avalanche L1) |
 | **Devpost** | [devpost.com/software/dos-n05ucd](https://devpost.com/software/dos-n05ucd) |
 | **Demo Live** | [rwa.doschain.com](https://rwa.doschain.com) |
 | **Source Code** | [github.com/DOS/RWA](https://github.com/DOS/RWA) |
