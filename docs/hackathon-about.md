@@ -143,43 +143,23 @@ We didn't invent anything new. Every technical choice we made is already proven 
 
 ## Accomplishments that we're proud of
 
-- **Full ERC-3643 deployment on an Avalanche L1** - the industry standard for tokenized securities, running on production infrastructure with live validators, explorer, and bridge. Not a testnet demo.
-
-- **AI-to-contract pipeline** - upload a PDF prospectus, Qwen extracts all parameters, compliance engine validates against VN/KR regulations, one click triggers 4 transactions (deploy + register + unpause + mint) that spin up a fully compliant ERC-3643 token with real supply on-chain. End-to-end in under 10 seconds.
-
-- **Live marketplace from on-chain state** - Investor Portal queries `TREXSuiteDeployed` events from the factory, automatically listing every token ever deployed with real name, symbol, total supply - no database, no caching layer, pure blockchain as source of truth.
-
-- **4 sample prospectuses** to demonstrate AI robustness - Corporate Bond (Shinhan SHVN26A), Government Bond (Kho Bạc VNGB26), REIT Fund (Shinhan Real Estate SHREIT26), and a non-compliant Cayman Islands crypto fund (GCYF26). AI correctly classifies each and blocks deployment of the non-compliant one.
-
-- **On-chain compliance that actually works** - every transfer checked against ONCHAINID claims at the smart contract level. Non-compliant transfers blocked automatically. No off-chain enforcement, no trust assumptions.
-
-- **Gasless investor onboarding** - DOS Chain supports whitelisted gasless transactions. ONCHAINID deployment and KYC verification cost the investor literally zero. On Ethereum, the same operation costs $50-100 per investor.
-
-- **DOS.Me ID login** - investors sign in with email/passkey via DOS.Me, no MetaMask or wallet knowledge needed. Banking-grade UX for institutional users.
-
-- **Vanity contract addresses** - TREXFactory deployed at `0x7979...3643` using CreateX CREATE2 with custom Rust vanity miner (49M hashes/sec, found in 108s). Memorable addresses for institutional trust.
-
-- **Three-language AI advisor** - Vietnamese, English, Korean. Reads on-chain data in real time. Answers "should I buy this bond?" with actual analysis, not generic disclaimers.
-
-- **Existing infrastructure leverage** - EAS (attestations), DOScan (explorer), ICTT (bridge), DOS Names (human-readable identities), Faucet (onboarding) - all production-ready, all integrated. We didn't build from scratch; we built on top of a live ecosystem.
-
-- **Regulatory alignment** - designed specifically for VN Digital Technology Industry Law 2025 and Resolution 05/2025. Not a generic platform hoping to pass compliance later.
-
-- **Full on-premise capability** - every component (blockchain, explorer, AI, DApp, auth, custody) can be self-hosted inside the bank's data center. Zero cloud dependency. Required by Vietnamese banking regulations.
+- **Full ERC-3643 live on mainnet** - not a testnet demo. 6-contract T-REX system + TREXFactory at vanity `0x7979...3643` (Rust miner, 49M hashes/sec, 108s).
+- **PDF → token in <10 seconds** - Qwen extracts params, AI validates compliance, backend wallet fires 4 transactions (deploy + register + unpause + mint). Real supply on-chain.
+- **Live marketplace from on-chain events** - Investor Portal queries `TREXSuiteDeployed` from the factory. No database, blockchain is the source of truth.
+- **4 sample prospectuses** - Corporate Bond, Government Bond, REIT Fund, and a non-compliant Cayman crypto fund. AI correctly blocks the bad one.
+- **Compliance enforced at contract level** - every transfer checked against ONCHAINID claims. Non-compliant = reverts. No off-chain trust.
+- **Zero-friction UX** - DOS.Me SSO login (no MetaMask), gasless for whitelisted users (ONCHAINID deployment costs the investor $0 vs $50-100 on Ethereum).
+- **On-premise ready** - every component self-hostable on bank hardware. Required by Vietnamese banking regulations.
+- **Built on live infrastructure** - EAS, DOScan, ICTT, DOS Names, Faucet - all in production. We integrated, didn't reinvent.
 
 ## What we learned
 
-1. **Standards matter more than innovation in regulated finance.** We initially considered building a custom identity layer using EAS attestations directly - simpler, fewer contracts. But for a banking audience, using the exact standard the industry has converged on (ERC-3643 + ONCHAINID, endorsed by DTCC and SEC) is worth the extra complexity. Innovation in DeFi means breaking new ground; innovation in securities means building on trusted foundations.
-
-2. **Avalanche L1 is the sweet spot for institutional blockchain.** Not private enough to be isolated (Hyperledger), not public enough to lose control (Ethereum mainnet). Sovereign validators + ecosystem interoperability + near-zero costs. This is the architecture JPMorgan built Kinexys toward - we had it from day one.
-
-3. **AI compliance is a force multiplier.** Manually checking a token issuance against Vietnamese and Korean regulations takes a legal team days. Qwen with RAG over regulatory documents does it in seconds. Not replacing lawyers - giving them a first pass that catches 90% of issues before human review.
-
-4. **Vietnam is ready.** The regulatory framework exists. The Ministry of Finance is accepting applications. The 5-year pilot program is live. What's missing is not permission - it's infrastructure. That's what we built.
-
-5. **On-premise is non-negotiable for Vietnamese banks.** Shinhan's webinar (15 Apr 2026) confirmed: Vietnamese banking regulations require full on-premise deployment capability. No cloud-only solution will pass compliance review. Our stack was already designed for this - every component runs self-hosted. This is a major differentiator vs SaaS-only platforms like Securitize or Tokeny that require cloud infrastructure.
-
-6. **Shinhan's Korea STO playbook maps directly to Vietnam.** STO Alliance standards, Lambda256/Luniverse architecture patterns, KDAC custody model - all of it translates. The gap was a Vietnam-ready chain with compliance tooling. DOS Chain fills that gap.
+1. **Standards > innovation in regulated finance.** Banks want ERC-3643 + ONCHAINID (DTCC & SEC endorsed), not custom cleverness.
+2. **Avalanche L1 is the institutional sweet spot.** Sovereign validators + interop + near-zero cost. What JPMorgan built Kinexys toward, we had on day one.
+3. **AI compliance is a force multiplier.** Manual VN/KR regulatory review takes a legal team days. Qwen does the first 90% in seconds - lawyers review the rest.
+4. **Vietnam is ready.** Law 2025, Resolution 05/2025, MoF license applications open. The missing piece is infrastructure, not permission.
+5. **On-premise is non-negotiable.** Shinhan's webinar (15/04/2026) confirmed VN banks need full on-premise. This eliminates SaaS-only competitors (Securitize, Tokeny).
+6. **Korea playbook maps to VN.** Shinhan's STO Alliance + Lambda256 + KDAC model all translate - DOS Chain is the Vietnam-ready equivalent.
 
 ## What's next for DOS Chain Digital Assets & Tokenized Securities
 
