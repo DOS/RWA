@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>DOS Chain RWA - Hackathon Submission</title>
+<style>
+  :root {
+    --red: #DC2626;
+    --red-light: #FEE2E2;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-500: #6B7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Roboto, sans-serif;
+    line-height: 1.65;
+    color: var(--gray-900);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 32px;
+    background: white;
+    font-size: 15px;
+  }
+  h1 {
+    color: var(--red);
+    border-bottom: 3px solid var(--red);
+    padding-bottom: 12px;
+    font-size: 2.2em;
+    margin-top: 0;
+  }
+  h2 {
+    color: var(--gray-900);
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 8px;
+    margin-top: 48px;
+    font-size: 1.6em;
+  }
+  h3 {
+    color: var(--gray-700);
+    margin-top: 28px;
+    font-size: 1.2em;
+  }
+  h4 { color: var(--gray-700); font-size: 1.05em; }
+  p { margin: 12px 0; }
+  blockquote {
+    border-left: 4px solid var(--red);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: var(--red-light);
+    color: var(--gray-700);
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p:first-child { margin-top: 0; }
+  blockquote p:last-child { margin-bottom: 0; }
+  code {
+    background: var(--gray-100);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    font-size: 0.9em;
+    color: var(--red);
+  }
+  pre {
+    background: var(--gray-900);
+    color: #E5E7EB;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    font-size: 0.92em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th {
+    background: var(--gray-900);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--gray-50); }
+  strong { color: var(--gray-900); font-weight: 600; }
+  a { color: var(--red); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ul, ol { padding-left: 28px; }
+  li { margin: 6px 0; }
+  hr {
+    border: none;
+    border-top: 2px solid var(--gray-200);
+    margin: 40px 0;
+  }
+  em { color: var(--gray-700); }
+  @media print {
+    body { max-width: none; padding: 20px; font-size: 11pt; }
+    h1 { font-size: 20pt; }
+    h2 { font-size: 16pt; page-break-before: auto; page-break-after: avoid; }
+    h3 { font-size: 13pt; page-break-after: avoid; }
+    table, pre, blockquote { page-break-inside: avoid; }
+    a { color: var(--gray-900); }
+    a::after { content: " (" attr(href) ")"; font-size: 0.8em; color: var(--gray-500); }
+  }
+</style>
+</head>
+<body>
+<h1 id="dos-chain-tai-san-so-chung-khoan-token-hoa">DOS Chain - Tài Sản Số &amp; Chứng Khoán Token Hóa</h1>
+<blockquote>
+<p>Hackathon: <strong>Qwen AI Build Day</strong> | Track: <strong>[SS6] Digital Assets &amp; Tokenized Securities</strong> (Shinhan Future's Lab)
+Deadline: 17/04/2026 | Sự kiện: 21/04/2026 @ Riverside Palace, TP.HCM | Showcase cuối: 22/04/2026 @ Alibaba Cloud SME AI Growth Day VN</p>
+</blockquote>
+<p><strong>Elevator Pitch</strong>: Hạ tầng chứng khoán token hóa đầu tiên tại Việt Nam - phát hành ERC-3643, KYC/AML on-chain, AI kiểm tra tuân thủ &amp; tư vấn đầu tư, chạy trên Avalanche L1 chủ quyền.</p>
+<hr />
+<h2 id="cam-hung-inspiration">Cảm Hứng (Inspiration)</h2>
+<p>Tháng 01/2026, Quốc hội Hàn Quốc thông qua sửa đổi Luật Thị trường Vốn và Luật Chứng khoán Điện tử - tạo khung pháp lý đầu tiên cho chứng khoán token hóa trên blockchain. Thị trường RWA (Real World Asset) toàn cầu đã vượt <strong>26,4 tỷ USD</strong>, tăng 300% mỗi năm. Quỹ trái phiếu token hóa <strong>BUIDL của BlackRock</strong> nắm <strong>2,5 tỷ USD</strong> trên 9 blockchain bao gồm Avalanche. <strong>Kinexys của JPMorgan</strong> xử lý <strong>2 tỷ USD mỗi ngày</strong> giao dịch token hóa. DBS đã ra mắt structured notes token hóa trên Ethereum. Dòng chảy tổ chức sang chứng khoán on-chain không còn là "nếu" - mà là "nhanh đến mức nào."</p>
+<p>Tập đoàn Shinhan đã chuẩn bị từ lâu: <strong>STO Alliance</strong> (2023) đặt chuẩn ngành, <strong>consortium KB-NH-Shinhan</strong> xây hạ tầng sổ cái phân tán chung, và <strong>KDAC</strong> (Shinhan đầu tư) trở thành custodian tài sản số cấp tổ chức đầu tiên tại Hàn Quốc. Riêng thị trường STO Hàn Quốc dự kiến đạt <strong>367 nghìn tỷ won (~250 tỷ USD) vào năm 2030</strong>.</p>
+<p>Nhưng Shinhan Việt Nam - 5 công ty con, 51 chi nhánh, có mặt từ 1993 - <strong>không có bất kỳ hạ tầng blockchain/token hóa nào</strong>. Trong khi đó, Việt Nam vừa mở cửa cơ hội: <strong>Luật Công nghệ Số</strong> (hiệu lực 01/01/2026) công nhận tài sản số là tài sản, và <strong>Nghị quyết 05/2025</strong> triển khai chương trình thí điểm token hóa tài sản toàn quốc 5 năm, Bộ Tài chính nhận hồ sơ cấp phép từ 01/2026.</p>
+<p>CEO Shinhan VN Lee Sun-hoon gọi Việt Nam là <em>"điểm khởi đầu chiến lược cho đổi mới số toàn cầu."</em> Chúng tôi xây hạ tầng để biến điều đó thành hiện thực.</p>
+<h2 id="san-pham-lam-gi-what-it-does">Sản Phẩm Làm Gì (What it does)</h2>
+<p>DOS Chain Digital Assets &amp; Tokenized Securities là <strong>nền tảng STO full-stack</strong> giúp Shinhan Securities Việt Nam phát hành, quản lý và giao dịch chứng khoán token hóa trên blockchain Avalanche L1 chủ quyền, với AI kiểm tra tuân thủ và tư vấn đầu tư.</p>
+<p><strong>Dành cho Shinhan (Cổng Phát Hành):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Năng lực</th>
+<th>Cách hoạt động</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phát hành chứng khoán token hóa</strong></td>
+<td>Upload bản cáo bạch → Qwen AI trích xuất thông số (mệnh giá, coupon, đáo hạn, hạn chế) → duyệt → 1 click triển khai token ERC-3643</td>
+</tr>
+<tr>
+<td><strong>Tuân thủ tự động</strong></td>
+<td>Qwen AI kiểm tra phát hành theo Luật Tài sản Số VN, quy định STO Hàn Quốc, tạo báo cáo tuân thủ cho cơ quan quản lý</td>
+</tr>
+<tr>
+<td><strong>Quản lý vòng đời</strong></td>
+<td>Pause/unpause token, đóng băng tài khoản NĐT (theo lệnh cơ quan quản lý), buộc chuyển, phân phối coupon</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dành cho Nhà Đầu Tư (Cổng Nhà Đầu Tư):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Năng lực</th>
+<th>Cách hoạt động</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Xác minh danh tính (KYC)</strong></td>
+<td>Upload CMND → Triển khai smart contract ONCHAINID với claim đã ký (KYC, AML, quốc tịch, trạng thái NĐT chuyên nghiệp)</td>
+</tr>
+<tr>
+<td><strong>Duyệt &amp; đầu tư</strong></td>
+<td>Sàn chứng khoán token hóa - lọc theo loại, lợi suất, đáo hạn, mức rủi ro</td>
+</tr>
+<tr>
+<td><strong>Tư vấn đầu tư AI</strong></td>
+<td>Chat với Qwen AI: "giải thích trái phiếu này", "so sánh SCB26A vs SCB26B", "gợi ý trái phiếu cho NĐT bảo thủ" - tiếng Việt/Anh/Hàn</td>
+</tr>
+<tr>
+<td><strong>Quản lý danh mục</strong></td>
+<td>Tài sản nắm giữ, P&amp;L, lịch sử coupon, lịch sử giao dịch</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tuân thủ on-chain (tự động, mọi giao dịch):</strong></p>
+<p>Mọi chuyển token đều đi qua compliance module của ERC-3643 - kiểm tra claim ONCHAINID của NĐT (KYC hợp lệ? AML sạch? Quốc gia được phép? Qua thời gian khóa? Đủ số NĐT tối đa?) <strong>trước khi chuyển thực hiện</strong>. Chuyển không hợp lệ tự động bị chặn ở cấp smart contract. Không cần enforce off-chain.</p>
+<p><strong>Dành cho Cơ Quan Quản Lý (Compliance Dashboard + DOScan):</strong></p>
+<p>Minh bạch hoàn toàn - báo cáo tuân thủ AI tạo cho từng token, registry NĐT với trạng thái claim, audit trail giao dịch đầy đủ, export PDF. Mọi dữ liệu on-chain đều verify độc lập được qua DOScan.</p>
+<h2 id="cach-xay-dung-how-we-built-it">Cách Xây Dựng (How we built it)</h2>
+<table>
+<thead>
+<tr>
+<th>Tầng</th>
+<th>Công nghệ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blockchain</td>
+<td><strong>DOS Chain</strong> - Avalanche L1, Chain ID 7979, 4 validators, block 1 giây, gas limit 100M</td>
+</tr>
+<tr>
+<td>Smart contracts</td>
+<td><strong>ERC-3643 (T-REX)</strong> - Token, Identity Registry, ONCHAINID, Compliance Module, Claim Verifier, Trusted Issuers Registry, Token Factory. Foundry, Solidity 0.8.17 (T-REX) + ^0.8.28 (DOS)</td>
+</tr>
+<tr>
+<td>AI inference</td>
+<td><strong>Qwen3.5</strong> qua Alibaba Cloud Model Studio - 3 agent: Document Processor, Compliance Engine, Investment Advisor</td>
+</tr>
+<tr>
+<td>Xác thực user</td>
+<td><strong>DOS.Me ID</strong> - login qua id.dos.me (Supabase Auth), không cần ví crypto</td>
+</tr>
+<tr>
+<td>Issuer Portal</td>
+<td>Next.js 16 + viem, backend wallet ký deploy thay nhà phát hành (nhà phát hành không cần ví)</td>
+</tr>
+<tr>
+<td>Investor Portal</td>
+<td>Next.js 16 + DOS.Me SSO, sàn live tự động populate từ event TREXFactory on-chain, tích hợp widget Qwen AI</td>
+</tr>
+<tr>
+<td>Đa ngôn ngữ</td>
+<td>Tiếng Việt (mặc định) + English, đổi qua lại</td>
+</tr>
+<tr>
+<td>Explorer</td>
+<td><strong>DOScan</strong> - trang token nâng cao với metadata chứng khoán</td>
+</tr>
+<tr>
+<td>Định danh</td>
+<td><strong>ONCHAINID</strong> (chuẩn ERC-3643) - 1 smart contract identity mỗi NĐT, claim được Shinhan ký với vai trò Trusted Issuer</td>
+</tr>
+<tr>
+<td>Attestations</td>
+<td><strong>EAS</strong> (Ethereum Attestation Service) - đã deploy sẵn trên DOS Chain</td>
+</tr>
+<tr>
+<td>Cross-chain</td>
+<td><strong>Cầu ICTT</strong> - DOS Chain ↔ Avalanche C-Chain</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qwen AI là lõi của giải pháp - không phải bolt-on:</strong></p>
+<ol>
+<li>
+<p><strong>Document Processor</strong> - Qwen đọc file PDF cáo bạch và trích xuất dữ liệu có cấu trúc (tên chứng khoán, mệnh giá, coupon, đáo hạn, hạn chế). Dữ liệu này đẩy thẳng vào tham số TokenFactory. Không có AI, nhà phát hành phải điền tay 15+ trường mỗi chứng khoán.</p>
+</li>
+<li>
+<p><strong>Compliance Engine</strong> - AI kiểm tra theo tài liệu quy định Việt Nam/Hàn Quốc. Check từng phát hành theo Luật Công nghệ Số 2025, Nghị quyết 05/2025, Luật Thị trường Vốn Hàn Quốc. Tạo báo cáo tuân thủ mà cơ quan quản lý thực sự đọc được.</p>
+</li>
+<li>
+<p><strong>Investment Advisor</strong> - Đọc dữ liệu on-chain (metadata token, phân bố NĐT, khối lượng giao dịch) + danh mục NĐT, tư vấn ngôn ngữ tự nhiên bằng Việt/Anh/Hàn.</p>
+</li>
+</ol>
+<p><strong>Tại sao chọn Avalanche L1 (DOS Chain) thay vì C-Chain hay Ethereum?</strong></p>
+<p>Shinhan có thể <strong>chạy validator node riêng</strong> trên DOS Chain - điều không thể trên C-Chain hoặc Ethereum. Đây là kiểm soát chủ quyền tương đương Kinexys của JPMorgan hay Hyperledger private, nhưng vẫn interop với toàn hệ sinh thái Avalanche (cầu ICTT sang C-Chain, cùng hệ sinh thái với BlackRock BUIDL). Thông lượng riêng, phí giao dịch dưới cent, và narrative pháp lý hiệu quả: "Shinhan xác thực giao dịch trên chain chuyên dụng" thắng "chúng tôi deploy contract cạnh meme coin."</p>
+<p><strong>Khả năng on-premise đầy đủ - yêu cầu của ngân hàng Việt Nam:</strong></p>
+<p>Quy định ngân hàng Việt Nam yêu cầu hạ tầng tài chính phải triển khai được hoàn toàn trong data center của ngân hàng. Mọi component của stack đều hỗ trợ:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Self-hosted?</th>
+<th>Cách làm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DOS Chain</strong> (blockchain)</td>
+<td>Có</td>
+<td>Binary AvalancheGo, chạy validator trên server ngân hàng</td>
+</tr>
+<tr>
+<td><strong>DOScan</strong> (explorer)</td>
+<td>Có</td>
+<td>Docker containers (backend + frontend + PostgreSQL)</td>
+</tr>
+<tr>
+<td><strong>Qwen AI</strong> (3 agent)</td>
+<td>Có</td>
+<td>Self-host qua vLLM trên GPU server ngân hàng, không phụ thuộc cloud</td>
+</tr>
+<tr>
+<td><strong>DApp</strong> (web portal)</td>
+<td>Có</td>
+<td>Next.js, deploy trên Node.js server hoặc Docker</td>
+</tr>
+<tr>
+<td><strong>DOS.Me ID</strong> (auth)</td>
+<td>Có</td>
+<td>Supabase self-hosted</td>
+</tr>
+<tr>
+<td><strong>EAS</strong> (attestations)</td>
+<td>Có</td>
+<td>Smart contracts trên DOS Chain - không phụ thuộc bên ngoài</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Không phụ thuộc cloud.</strong> Toàn bộ stack - blockchain, explorer, AI inference, web app, xác thực - chạy được trong data center Shinhan trên phần cứng Shinhan. Dữ liệu không rời khỏi mạng ngân hàng. Đây không phải năng lực lý thuyết - DOS Chain đã chạy trên VM tự quản, DOScan chạy Docker self-hosted, Qwen chạy GPU self-hosted, Supabase chạy self-hosted.</p>
+<p><strong>Option L1 permissioned riêng.</strong> Nếu cần, chúng tôi có thể deploy Avalanche L1 permissioned hoàn toàn riêng cho Shinhan - 100% chạy trên server Shinhan với validator Shinhan kiểm soát. Cùng contract ERC-3643, cùng AI, cùng DApp - nhưng trên private chain. Chain này vẫn có thể bridge sang DOS Chain public hoặc Avalanche C-Chain qua ICTT khi cần, hoặc cô lập hoàn toàn nếu quy định yêu cầu. Spin up L1 mới chỉ mất vài giờ, không phải tháng.</p>
+<h2 id="xac-thuc-tu-to-chuc-lon-institutional-validation">Xác Thực Từ Tổ Chức Lớn (Institutional Validation)</h2>
+<p>Chúng tôi không phát minh gì mới. Mọi lựa chọn công nghệ đều đã được kiểm chứng ở quy mô tổ chức bởi các ngân hàng và quỹ lớn. Khi Shinhan Việt Nam dùng DOS Chain, họ đang dùng cùng chuẩn với JPMorgan, BlackRock, DTCC và công ty mẹ ở Hàn Quốc.</p>
+<p><strong>ERC-3643 (T-REX) - chuẩn token chúng tôi dùng:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tổ chức</th>
+<th>Dùng ERC-3643 cho gì</th>
+<th>Quy mô</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DTCC</strong></td>
+<td>Tham gia ERC-3643 Association (03/2025) với vai trò sáng lập</td>
+<td>Hệ thống thanh toán chứng khoán lớn nhất thế giới - 2,5 triệu tỷ USD/năm</td>
+</tr>
+<tr>
+<td><strong>SEC Mỹ</strong></td>
+<td>Công nhận ERC-3643 hợp lệ cho chứng khoán token hóa (07/2025)</td>
+<td>Chứng nhận pháp lý</td>
+</tr>
+<tr>
+<td><strong>Tokeny</strong></td>
+<td>Nền tảng cho ngân hàng, quỹ, sàn</td>
+<td>32+ tỷ USD chứng khoán phát hành qua T-REX</td>
+</tr>
+<tr>
+<td><strong>Archax</strong></td>
+<td>Sàn tài sản số được FCA cấp phép</td>
+<td>Nền tảng STO đầu tiên của UK dùng T-REX</td>
+</tr>
+<tr>
+<td><strong>K3 Capital</strong></td>
+<td>Token hóa cổ phần pre-IPO</td>
+<td>Các NĐT tổ chức lớn hậu thuẫn</td>
+</tr>
+<tr>
+<td><strong>CMTA</strong> (Hiệp hội ngân hàng Thụy Sĩ)</td>
+<td>Áp dụng T-REX cho chứng khoán số Thụy Sĩ</td>
+<td>Khung pháp lý Thụy Sĩ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Blockchain L1 chủ quyền/chuyên dụng - lựa chọn kiến trúc của chúng tôi:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tổ chức</th>
+<th>Chain chủ quyền</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JPMorgan</strong></td>
+<td>Kinexys (Quorum → Canton)</td>
+<td>2 tỷ USD/ngày giao dịch token hóa, tổng 1,5+ nghìn tỷ USD</td>
+</tr>
+<tr>
+<td><strong>Goldman Sachs</strong></td>
+<td>GS DAP (Canton/Daml)</td>
+<td>Trái phiếu, MMF token hóa, spin out thành platform 2026</td>
+</tr>
+<tr>
+<td><strong>HSBC</strong></td>
+<td>Orion (DLT private)</td>
+<td>3,5+ tỷ USD trái phiếu số, pilot trái phiếu chính phủ UK</td>
+</tr>
+<tr>
+<td><strong>Citi</strong></td>
+<td>Citi Token Services (permissioned)</td>
+<td>Thanh toán xuyên biên giới 24/7 tại US/UK/SG/HK/IE</td>
+</tr>
+<tr>
+<td><strong>Shinhan (Hàn Quốc)</strong></td>
+<td>Lambda256/Luniverse + KDAC</td>
+<td>Chính playbook chúng tôi đang replicate cho Việt Nam</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tài sản token hóa trên chain public-adjacent (câu chuyện interop):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tài sản</th>
+<th>Nền tảng</th>
+<th>Chain</th>
+<th>Quy mô</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BlackRock BUIDL</strong></td>
+<td>Securitize</td>
+<td>9 chain gồm Avalanche</td>
+<td><strong>2,5+ tỷ USD AUM, 40% thị phần trái phiếu token hóa</strong></td>
+</tr>
+<tr>
+<td><strong>Franklin Templeton BENJI</strong></td>
+<td>Proprietary + Stellar</td>
+<td>8 chain gồm Avalanche</td>
+<td>732 triệu USD AUM</td>
+</tr>
+<tr>
+<td><strong>Ondo Finance OUSG</strong></td>
+<td>Ondo</td>
+<td>Ethereum + Sui + Solana</td>
+<td>650+ triệu USD TVL trái phiếu token hóa</td>
+</tr>
+<tr>
+<td><strong>Hamilton Lane SCOPE</strong></td>
+<td>Securitize</td>
+<td>Polygon + Avalanche</td>
+<td>Quỹ private equity token hóa</td>
+</tr>
+<tr>
+<td><strong>Apollo Global ACRED</strong></td>
+<td>Securitize</td>
+<td>Ethereum + Solana</td>
+<td>Quỹ tín dụng token hóa</td>
+</tr>
+<tr>
+<td><strong>WisdomTree Prime</strong></td>
+<td>Proprietary + Stellar</td>
+<td>Multi-chain</td>
+<td>MMF, vàng token hóa</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pattern rất rõ ràng:</strong> mọi sáng kiến token hóa tổ chức lớn đều dùng (a) chain dedicated/permissioned với validator chủ quyền, (b) định danh + tuân thủ on-chain ở cấp smart contract, (c) cầu interop sang chain public. DOS Chain + ERC-3643 + ONCHAINID + ICTT cho Shinhan Việt Nam đúng kiến trúc này, đã production, ngay hôm nay.</p>
+<p><strong>Ý nghĩa với Shinhan:</strong> thị trường research xong rồi. Chuẩn đã set. Tiền lệ pháp lý đã có. Shinhan không cần pioneer cách tiếp cận mới - chỉ cần execute cái đã được chứng minh, đi đầu tại Việt Nam. Đó là dự án 6 tháng, không phải 3 năm.</p>
+<h2 id="thach-thuc-challenges">Thách Thức (Challenges)</h2>
+<p><strong>ERC-3643 trên chain mới.</strong> T-REX reference assume công cụ Ethereum mainnet. Deploy full 6-contract (Token, Identity Registry, ONCHAINID, Compliance Module, Claim Verifier, Trusted Issuers Registry) cộng Token Factory trên DOS Chain phải adapt script deploy và verify contract hoạt động đúng với consensus Avalanche L1.</p>
+<p><strong>Tuân thủ không phải checkbox.</strong> Build pipeline AI cho Compliance Engine nghĩa là phải source, parse và chunk tài liệu pháp lý VN (Luật Công nghệ Số - 80+ điều) và luật STO Hàn Quốc. Văn bản pháp lý đặc, cross-reference nhau, đầy ngoại lệ. Để Qwen produce được đánh giá tuân thủ chính xác - không hallucinate - phải prompt engineering kỹ và validate output có cấu trúc.</p>
+<p><strong>Onboarding gasless cho NĐT.</strong> Deploy full contract ONCHAINID mỗi NĐT tốn 50-100 USD trên Ethereum. Trên DOS Chain, chi phí tính bằng cent lẻ - và hơn thế: DOS Chain hỗ trợ <strong>gasless transaction cho contract và user whitelist</strong>, nghĩa là NĐT trả 0 đồng gas khi KYC và deploy identity. Biến thách thức ở chain khác thành lợi thế cạnh tranh.</p>
+<p><strong>Bridge chứng khoán xuyên chain.</strong> Chứng khoán token hóa không như token fungible - chuyển cross-chain phải giữ được trạng thái tuân thủ. NĐT ở chain đích cũng phải có claim ONCHAINID hợp lệ. Chúng tôi thiết kế tích hợp cầu ICTT để enforce, nhưng thêm độ phức tạp cho 1 bridge call thông thường.</p>
+<h2 id="thanh-tuu-tu-hao-accomplishments">Thành Tựu Tự Hào (Accomplishments)</h2>
+<ul>
+<li><strong>Full ERC-3643 live trên mainnet</strong> - không phải testnet demo. Hệ 6 contract T-REX + TREXFactory ở địa chỉ vanity <code>0x7979...3643</code> (Rust miner, 49M hash/giây, tìm trong 108s).</li>
+<li><strong>PDF → token dưới 10 giây</strong> - Qwen trích thông số, AI kiểm tra tuân thủ, backend wallet bắn 4 giao dịch (deploy + register + unpause + mint). Supply thật trên chain.</li>
+<li><strong>Sàn live từ event on-chain</strong> - Investor Portal query <code>TREXSuiteDeployed</code> từ factory. Không database, blockchain là nguồn thật duy nhất.</li>
+<li><strong>4 bản cáo bạch mẫu</strong> - Trái phiếu DN, Trái phiếu CP, Quỹ BĐS, và 1 quỹ crypto Cayman không hợp lệ. AI chặn đúng cái sai.</li>
+<li><strong>Tuân thủ enforce ở cấp contract</strong> - mọi chuyển đều check claim ONCHAINID. Không hợp lệ = revert. Không cần trust off-chain.</li>
+<li><strong>UX không ma sát</strong> - DOS.Me SSO login (không cần MetaMask), gasless cho user whitelist (deploy ONCHAINID tốn NĐT 0 USD thay vì 50-100 USD trên Ethereum).</li>
+<li><strong>Sẵn sàng on-premise</strong> - mọi component self-host được trên phần cứng ngân hàng. Yêu cầu của quy định ngân hàng VN.</li>
+<li><strong>Build trên hạ tầng live</strong> - EAS, DOScan, ICTT, DOS Names, Faucet - đều đã production. Chúng tôi tích hợp, không reinvent.</li>
+</ul>
+<h2 id="bai-hoc-what-we-learned">Bài Học (What we learned)</h2>
+<ol>
+<li><strong>Chuẩn &gt; đổi mới trong tài chính quy định.</strong> Ngân hàng muốn ERC-3643 + ONCHAINID (DTCC &amp; SEC công nhận), không phải trò clever tự chế.</li>
+<li><strong>Avalanche L1 là sweet spot cho blockchain tổ chức.</strong> Validator chủ quyền + interop + phí gần 0. JPMorgan xây Kinexys hướng đến cái này, mình có sẵn ngày đầu.</li>
+<li><strong>AI tuân thủ là force multiplier.</strong> Review quy định VN/KR thủ công mất cả đội pháp lý nhiều ngày. Qwen làm 90% đầu trong vài giây - luật sư review phần còn lại.</li>
+<li><strong>Việt Nam đã sẵn sàng.</strong> Luật 2025, Nghị quyết 05/2025, Bộ Tài chính nhận hồ sơ. Thiếu không phải permission mà là hạ tầng.</li>
+<li><strong>On-premise là bắt buộc.</strong> Webinar Shinhan (15/04/2026) khẳng định ngân hàng VN cần full on-premise. Loại bỏ đối thủ SaaS-only (Securitize, Tokeny).</li>
+<li><strong>Playbook Hàn Quốc map thẳng sang VN.</strong> STO Alliance + Lambda256 + KDAC đều translate được - DOS Chain là bản Việt Nam tương đương.</li>
+</ol>
+<h2 id="buoc-tiep-theo-whats-next">Bước Tiếp Theo (What's next)</h2>
+<p><strong>Các khoảng trống trong bản hackathon (thành thật):</strong></p>
+<p>Những chức năng dưới đây có trong demo dưới dạng wireframe/placeholder nhưng chưa wire đầy đủ vào blockchain. Phần production sẽ làm:
+- <strong>UI KYC cho nhà đầu tư</strong> - hiện NĐT login qua DOS.Me SSO, nhưng flow KYC → deploy ONCHAINID → ký claim mới chỉ demo ở phần issuer (ONCHAINID của deployer). Phần wizard KYC + tạo ONCHAINID cho từng NĐT là bước tiếp theo.
+- <strong>UX buy/sell trên marketplace</strong> - sàn list token live từ event on-chain, nhưng nút "Mua N đơn vị" chưa wire. Cần: flow allowance token, meta-transaction gasless qua ERC-4337 paymaster, settlement với balance issuer.
+- <strong>Dữ liệu Compliance Dashboard</strong> - hiện show hard-code. Cần query tất cả token đã deploy + aggregate metadata NĐT/quốc gia/audit từ event Identity Registry.
+- <strong>AI Investment Advisor tích hợp dữ liệu on-chain</strong> - Qwen chat chạy nhưng trả lời dựa trên training + context hard-code. Cần đọc metadata token live, phân bố NĐT, khối lượng giao dịch từ DOS Chain.
+- <strong>Phân phối coupon</strong> - smart contract hỗ trợ (ERC-3643 có <code>forcedTransfer</code>) nhưng chưa có UI schedule phân phối.
+- <strong>Test nhiều NĐT</strong> - demo mới single-wallet (deployer/issuer mint cho chính mình). Cần: register ví NĐT thứ 2, add KYC claim, demo chuyển hợp lệ.
+- <strong>Metadata token trên DOScan</strong> - mệnh giá, coupon, ngày đáo hạn có trong cáo bạch nhưng chưa lưu on-chain. Cần contract MetadataRegistry hoặc JSON off-chain pin lên IPFS.
+- <strong>Safe multisig cho custody tổ chức</strong> - hiện backend wallet ký deploy; production sẽ route qua Gnosis Safe do Shinhan kiểm soát để multi-sig.
+- <strong>Verify TREXFactory trên DOScan</strong> - đã deploy nhưng chưa verify source code.</p>
+<p><strong>Ngay lập tức (PoC với Shinhan qua InnoBoost):</strong>
+- Pilot phát hành trái phiếu DN token hóa với Shinhan Securities Việt Nam
+- Triển khai on-premise toàn bộ stack trong data center Shinhan (blockchain, DOScan, AI, DApp)
+- Tích hợp với hệ thống KYC/AML hiện có của Shinhan để issue claim ONCHAINID
+- Kết nối với app SOL của Shinhan cho NĐT truy cập
+- Đóng các khoảng trống trên (KYC NĐT, buy/sell, phân phối coupon, multisig custody)</p>
+<p><strong>Ngắn hạn (6 tháng):</strong>
+- Đa tài sản: trái phiếu DN → trái phiếu CP → chứng chỉ quỹ → structured notes
+- Thị trường thứ cấp với order book on-chain hoặc AMM thiết kế cho chứng khoán
+- Tự động phân phối coupon - smart contract phân phối lợi suất theo lịch
+- Shinhan chạy validator node trên DOS Chain - tham gia chủ quyền đầy đủ</p>
+<p><strong>Trung hạn (12 tháng):</strong>
+- STO xuyên biên giới: dùng cầu ICTT cho DOS Chain ↔ C-Chain ↔ Ethereum
+- Tích hợp với hạ tầng STO Hàn Quốc của Shinhan (Lambda256/Luniverse) qua bridge
+- Settlement bằng stablecoin won (consortium 8 ngân hàng Hàn Quốc)
+- Mở rộng sang Shinhan Bank VN (tiền gửi token hóa), Shinhan Finance (cho vay token hóa)</p>
+<p><strong>Dài hạn:</strong>
+- Nền tảng RWA đầy đủ: bất động sản, hàng hóa, tín dụng tư nhân token hóa
+- Tham gia regulatory sandbox theo Nghị quyết 05/2025
+- Kết nối Chainlink DTA để tích hợp Swift (theo mô hình UBS)
+- Mở Token Factory cho các công ty chứng khoán Việt Nam khác - DOS Chain thành hạ tầng STO quốc gia</p>
+<hr />
+<h2 id="link-demo-live">Link Demo Live</h2>
+<table>
+<thead>
+<tr>
+<th>Tài nguyên</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DApp</strong></td>
+<td><a href="https://rwa.doschain.com">rwa.doschain.com</a></td>
+</tr>
+<tr>
+<td><strong>Explorer</strong></td>
+<td><a href="https://doscan.io">doscan.io</a></td>
+</tr>
+<tr>
+<td><strong>Token SCB26A</strong></td>
+<td><a href="https://doscan.io/token/0x27202027046E614E159329d9cdf8c35a197CC7b5">doscan.io/token/0x2720...</a></td>
+</tr>
+<tr>
+<td><strong>TREXFactory</strong></td>
+<td><a href="https://doscan.io/address/0x7979539fb9eb7f1c92221f278a92812967303643">doscan.io/address/0x7979...3643</a></td>
+</tr>
+<tr>
+<td><strong>DOS.Me Login</strong></td>
+<td><a href="https://id.dos.me">id.dos.me</a></td>
+</tr>
+<tr>
+<td><strong>GitHub (submission)</strong></td>
+<td><a href="https://github.com/DOS/RWA">github.com/DOS/RWA</a></td>
+</tr>
+<tr>
+<td><strong>GitHub (monorepo)</strong></td>
+<td><a href="https://github.com/DOS/DOS-Chain">github.com/DOS/DOS-Chain</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cheat-sheet-so-lieu-can-nho">Cheat Sheet - Số Liệu Cần Nhớ</h2>
+<p><strong>Thị trường RWA toàn cầu (03/2026):</strong>
+- Tổng RWA on-chain: 26,4 tỷ USD (tăng 300%/năm)
+- Trái phiếu token hóa: 7+ tỷ USD
+- Cổ phiếu token hóa: 963 triệu USD (tăng 2.878%/năm)
+- Avalanche RWA TVL: 1,33 tỷ USD (tăng 949%/năm)
+- Dự báo 2028 (Standard Chartered): 2 nghìn tỷ USD
+- Dự báo STO Hàn Quốc 2030 (BCG): 367 nghìn tỷ won (~250 tỷ USD)</p>
+<p><strong>Top 3 ngân hàng lớn đã làm:</strong>
+- <strong>JPMorgan Kinexys</strong>: 1,5+ nghìn tỷ USD đã xử lý, ~2 tỷ USD/ngày
+- <strong>BlackRock BUIDL</strong>: 2,5+ tỷ USD AUM trên 9 chain gồm Avalanche
+- <strong>HSBC Orion</strong>: 3,5+ tỷ USD trái phiếu số, pilot trái phiếu chính phủ UK</p>
+<p><strong>Shinhan Hàn Quốc:</strong>
+- STO Alliance (02/2023) - cơ quan tư vấn STO
+- Lambda256/Luniverse - nền tảng PoC STO
+- KDAC - custodian tài sản số tổ chức đầu tiên Hàn Quốc (Shinhan đầu tư)
+- Consortium KB+NH+Shinhan - sổ cái phân tán chung
+- 8 ngân hàng Hàn Quốc - stablecoin won
+- <strong>Việt Nam: 5 công ty con, 51 chi nhánh, từ 1993, CHƯA CÓ blockchain = cơ hội first-mover</strong>
+- InnoBoost: winner nhận ưu tiên PoC funding tối đa 200 triệu VND</p>
+<p><strong>Quy định Việt Nam (thuận lợi):</strong>
+- Luật Công nghệ Số 2025: hiệu lực 01/01/2026 - công nhận tài sản số
+- Nghị quyết 05/2025: pilot 5 năm token hóa tài sản toàn quốc
+- Yêu cầu: chỉ crypto asset có tài sản đảm bảo, chỉ công ty VN phát hành
+- Thuế: 0,1% mỗi giao dịch (từ 2026)
+- Bộ Tài chính nhận hồ sơ cấp phép từ 20/01/2026</p>
+<p><strong>Quy định Hàn Quốc:</strong>
+- 01/2026: Quốc hội thông qua sửa đổi Luật Thị trường Vốn + Luật Chứng khoán Điện tử
+- 02/2027: Hiệu lực - khung pháp lý phát hành chứng khoán token hóa trên DLT
+- Cho phép token hóa: BĐS, bản quyền âm nhạc, nghệ thuật, chăn nuôi
+- "Qualified issuer" có thể phát hành trực tiếp trên blockchain</p>
+<p><strong>Tại sao ERC-3643 (T-REX):</strong>
+- Chuẩn chính thức (DTCC tham gia 03/2025, SEC công nhận 07/2025)
+- On-chain identity built-in (ONCHAINID)
+- Modular compliance - tự động restrict transfer
+- Khác ERC-1400 (dự thảo, chưa finalize) và ERC-20 (không compliance)</p>
+<p><strong>DOS Chain key info:</strong>
+- Chain ID: 7979 (mainnet), 3939 (testnet)
+- RPC: https://main.doschain.com
+- Block time: 1 giây
+- Gas limit: 100M
+- Phí: ~0,001 VND/tx
+- Gasless: user whitelist → 0 đồng
+- 4 validator
+- TREXFactory vanity: <code>0x7979539fb9eb7f1c92221f278a92812967303643</code></p>
+<p><strong>CEO Shinhan VN Lee Sun-hoon:</strong> <em>"Việt Nam là điểm khởi đầu chiến lược cho đổi mới số toàn cầu."</em></p>
+</body>
+</html>
