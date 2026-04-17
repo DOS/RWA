@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createWalletClient, createPublicClient, http, parseEventLogs, type Hex } from 'viem';
+import { createWalletClient, createPublicClient, http, parseEventLogs, parseAbi, type Hex } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 
 const DEPLOYER_PK = process.env.DEPLOYER_PRIVATE_KEY as Hex | undefined;
 const RPC_URL = 'https://main.doschain.com';
 const TREX_FACTORY = '0x7979539fb9eb7f1c92221f278a92812967303643' as const;
+const CLAIM_ISSUER = '0x726B089560bd88059c804c3F0895A6023CDE3C73' as const;
+const DEPLOYER_ONCHAINID = '0x3a55529D46EF3C82D48A3D4f6685892662B2AD10' as const;
+const VN_COUNTRY_CODE = 704;
 
 const dosChain = {
   id: 7979,
@@ -69,6 +72,16 @@ const trexFactoryAbi = [
   },
 ] as const;
 
+const irAbi = parseAbi([
+  'function registerIdentity(address _userAddress, address _identity, uint16 _country)',
+]);
+
+const tokenAbi = parseAbi([
+  'function unpause()',
+  'function mint(address _to, uint256 _amount)',
+  'function totalSupply() view returns (uint256)',
+]);
+
 const ZERO = '0x0000000000000000000000000000000000000000' as const;
 
 export async function POST(request: NextRequest) {
@@ -77,10 +90,12 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { name, symbol } = await request.json();
+    const { name, symbol, totalSupply } = await request.json();
     if (!name || !symbol) {
       return NextResponse.json({ error: 'Missing name or symbol' }, { status: 400 });
     }
+
+    const mintAmount = totalSupply ? BigInt(Number(totalSupply) || 0) : BigInt(0);
 
     // Unique salt from symbol + timestamp
     const salt = `${symbol.toLowerCase()}-${Date.now()}`;
@@ -98,7 +113,6 @@ export async function POST(request: NextRequest) {
       transport: http(RPC_URL),
     });
 
-    // Check if salt already used
     const existing = await publicClient.readContract({
       address: TREX_FACTORY,
       abi: trexFactoryAbi,
@@ -111,7 +125,8 @@ export async function POST(request: NextRequest) {
 
     const deployer = account.address;
 
-    const txHash = await walletClient.writeContract({
+    // --- Step 1: Deploy TREX suite ---
+    const deployTx = await walletClient.writeContract({
       address: TREX_FACTORY,
       abi: trexFactoryAbi,
       functionName: 'deployTREXSuite',
@@ -131,32 +146,70 @@ export async function POST(request: NextRequest) {
         },
         {
           claimTopics: [BigInt(1)], // KYC
-          issuers: [],
-          issuerClaims: [],
+          issuers: [CLAIM_ISSUER],
+          issuerClaims: [[BigInt(1)]],
         },
       ],
     });
 
-    const receipt = await publicClient.waitForTransactionReceipt({ hash: txHash });
+    const deployReceipt = await publicClient.waitForTransactionReceipt({ hash: deployTx });
 
-    // Parse TREXSuiteDeployed event
-    const logs = parseEventLogs({
+    const deployLogs = parseEventLogs({
       abi: trexFactoryAbi,
       eventName: 'TREXSuiteDeployed',
-      logs: receipt.logs,
+      logs: deployReceipt.logs,
     });
 
-    const event = logs[0]?.args;
+    const event = deployLogs[0]?.args;
+    const tokenAddr = event?._token;
+    const irAddr = event?._ir;
+
+    if (!tokenAddr || !irAddr) {
+      return NextResponse.json({ error: 'Deploy event not found' }, { status: 500 });
+    }
+
+    // --- Step 2: Register deployer in new IR ---
+    const registerTx = await walletClient.writeContract({
+      address: irAddr,
+      abi: irAbi,
+      functionName: 'registerIdentity',
+      args: [deployer, DEPLOYER_ONCHAINID, VN_COUNTRY_CODE],
+    });
+    await publicClient.waitForTransactionReceipt({ hash: registerTx });
+
+    // --- Step 3: Unpause token ---
+    const unpauseTx = await walletClient.writeContract({
+      address: tokenAddr,
+      abi: tokenAbi,
+      functionName: 'unpause',
+    });
+    await publicClient.waitForTransactionReceipt({ hash: unpauseTx });
+
+    // --- Step 4: Mint totalSupply to deployer ---
+    let mintTx: Hex | null = null;
+    if (mintAmount > BigInt(0)) {
+      mintTx = await walletClient.writeContract({
+        address: tokenAddr,
+        abi: tokenAbi,
+        functionName: 'mint',
+        args: [deployer, mintAmount],
+      });
+      await publicClient.waitForTransactionReceipt({ hash: mintTx });
+    }
 
     return NextResponse.json({
-      txHash,
-      blockNumber: Number(receipt.blockNumber),
-      token: event?._token,
-      identityRegistry: event?._ir,
+      txHash: deployTx,
+      registerTxHash: registerTx,
+      unpauseTxHash: unpauseTx,
+      mintTxHash: mintTx,
+      blockNumber: Number(deployReceipt.blockNumber),
+      token: tokenAddr,
+      identityRegistry: irAddr,
       identityRegistryStorage: event?._irs,
       trustedIssuersRegistry: event?._tir,
       claimTopicsRegistry: event?._ctr,
       modularCompliance: event?._mc,
+      mintedAmount: mintAmount.toString(),
       salt,
       factory: TREX_FACTORY,
       deployer,

@@ -82,15 +82,7 @@ export function UploadProspectus() {
     setLoading(true);
     setError(null);
     try {
-      const report = await checkCompliance({
-        tokenName: extractedData.tokenName,
-        tokenSymbol: extractedData.tokenSymbol,
-        faceValue: extractedData.faceValue,
-        couponRate: extractedData.couponRate,
-        maturityDate: extractedData.maturityDate,
-        issuer: extractedData.issuer,
-        totalSupply: extractedData.totalSupply,
-      });
+      const report = await checkCompliance(extractedData as unknown as Parameters<typeof checkCompliance>[0]);
       setComplianceReport(report);
       setStep("compliance");
     } catch (err) {
@@ -382,11 +374,12 @@ export function UploadProspectus() {
 
                 const tokenName = String(extractedData?.name || extractedData?.tokenName || "");
                 const tokenSymbol = String(extractedData?.symbol || extractedData?.tokenSymbol || "");
+                const totalSupply = extractedData?.totalSupply;
 
                 const res = await fetch("/api/deploy-token", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ name: tokenName, symbol: tokenSymbol }),
+                  body: JSON.stringify({ name: tokenName, symbol: tokenSymbol, totalSupply }),
                 });
 
                 stepTimers.forEach(clearTimeout);

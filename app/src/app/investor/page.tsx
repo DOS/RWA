@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { AuthButton } from "@/components/auth-button";
 import { TokenCard } from "@/components/token-card";
 import { AIChat } from "@/components/ai-chat";
@@ -7,31 +8,26 @@ import Link from "next/link";
 import { useI18n } from "@/lib/i18n-context";
 import { LangSwitcher } from "@/components/lang-switcher";
 
-const demoTokens = [
-  {
-    name: "SCB Corporate Bond 2026 Series A",
-    symbol: "SCB26A",
-    faceValue: "1,000 USD",
-    couponRate: "8.5%",
-    maturity: "Dec 2026",
-    holders: 142,
-    issuer: "Saigon Commercial Bank",
-    address: "0x27202027046E614E159329d9cdf8c35a197CC7b5",
-  },
-  {
-    name: "SGB Government Bond 2026",
-    symbol: "SGB26",
-    faceValue: "10,000 USD",
-    couponRate: "7.2%",
-    maturity: "Jun 2026",
-    holders: 89,
-    issuer: "State General Treasury",
-    address: "0x27202027046E614E159329d9cdf8c35a197CC7b5",
-  },
-];
+type OnChainToken = {
+  address: string;
+  name: string;
+  symbol: string;
+  totalSupply: string;
+  decimals: number;
+};
 
 export default function InvestorPage() {
   const { t } = useI18n();
+  const [tokens, setTokens] = useState<OnChainToken[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/list-tokens")
+      .then((r) => r.json())
+      .then((data) => setTokens(data.tokens || []))
+      .catch(() => setTokens([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -65,17 +61,34 @@ export default function InvestorPage() {
                 {t("marketplaceDesc")}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {demoTokens.map((token) => (
-                <TokenCard key={token.symbol} {...token} />
-              ))}
-            </div>
-
-            <div className="mt-6 rounded-xl border border-dashed border-gray-300 bg-white p-8 text-center">
-              <p className="text-sm text-gray-400">
-                {t("moreSecurities")}
-              </p>
-            </div>
+            {loading ? (
+              <div className="rounded-xl border border-gray-200 bg-white p-8 text-center">
+                <div className="animate-spin mx-auto rounded-full h-8 w-8 border-b-2 border-red-600" />
+                <p className="mt-3 text-sm text-gray-400">Loading tokens...</p>
+              </div>
+            ) : tokens.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {tokens.map((token) => (
+                  <TokenCard
+                    key={token.address}
+                    name={token.name}
+                    symbol={token.symbol}
+                    faceValue={`${Number(token.totalSupply).toLocaleString()} units`}
+                    couponRate="N/A"
+                    maturity="N/A"
+                    holders={0}
+                    issuer="Shinhan Securities Vietnam"
+                    address={token.address}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-xl border border-dashed border-gray-300 bg-white p-8 text-center">
+                <p className="text-sm text-gray-400">
+                  {t("moreSecurities")}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* AI Chat */}

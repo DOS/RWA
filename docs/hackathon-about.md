@@ -55,8 +55,8 @@ Full transparency - AI-generated compliance reports per token, investor registry
 | Smart contracts | **ERC-3643 (T-REX)** - Token, Identity Registry, ONCHAINID, Compliance Module, Claim Verifier, Trusted Issuers Registry, Token Factory. Foundry, Solidity 0.8.17 (T-REX) + ^0.8.28 (DOS contracts) |
 | AI inference | **Qwen3.5** via Alibaba Cloud Model Studio - 3 agents: Doc Processor (Qwen-VL), Compliance Engine (RAG), Investment Advisor |
 | User auth | **DOS.Me ID** - login via id.dos.me (Supabase Auth), no wallet required for end users |
-| Issuer Portal | Next.js 16 + wagmi + viem, connected to Safe multisig |
-| Investor Portal | Next.js 16 + DOS.Me login, embedded Qwen AI chat widget |
+| Issuer Portal | Next.js 16 + viem, backend wallet signs deployments on behalf of issuers (no crypto wallet needed) |
+| Investor Portal | Next.js 16 + DOS.Me SSO login, live marketplace auto-populates from on-chain TREXFactory events, embedded Qwen AI chat widget |
 | Localization | Vietnamese (default) + English, switchable |
 | Explorer | **DOScan** - enhanced token pages with securities metadata |
 | Identity | **ONCHAINID** (ERC-3643 standard) - 1 identity contract per investor, claims signed by Shinhan as Trusted Issuer |
@@ -108,7 +108,11 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 
 - **Full ERC-3643 deployment on an Avalanche L1** - the industry standard for tokenized securities, running on production infrastructure with live validators, explorer, bridge, and multisig custody. Not a testnet demo.
 
-- **AI-to-contract pipeline** - upload a PDF prospectus, Qwen extracts all parameters, compliance engine validates against VN/KR regulations, one click deploys a fully compliant ERC-3643 token. End-to-end in minutes, not weeks.
+- **AI-to-contract pipeline** - upload a PDF prospectus, Qwen extracts all parameters, compliance engine validates against VN/KR regulations, one click triggers 4 transactions (deploy + register + unpause + mint) that spin up a fully compliant ERC-3643 token with real supply on-chain. End-to-end in under 10 seconds.
+
+- **Live marketplace from on-chain state** - Investor Portal queries `TREXSuiteDeployed` events from the factory, automatically listing every token ever deployed with real name, symbol, total supply - no database, no caching layer, pure blockchain as source of truth.
+
+- **4 sample prospectuses** to demonstrate AI robustness - Corporate Bond (Shinhan SHVN26A), Government Bond (Kho Bạc VNGB26), REIT Fund (Shinhan Real Estate SHREIT26), and a non-compliant Cayman Islands crypto fund (GCYF26). AI correctly classifies each and blocks deployment of the non-compliant one.
 
 - **On-chain compliance that actually works** - every transfer checked against ONCHAINID claims at the smart contract level. Non-compliant transfers blocked automatically. No off-chain enforcement, no trust assumptions.
 
@@ -177,7 +181,8 @@ Vietnamese banking regulations require that financial infrastructure can be depl
 | **Token SCB26A** | [doscan.io/token/0x2720...](https://doscan.io/token/0x27202027046E614E159329d9cdf8c35a197CC7b5) |
 | **TREXFactory** | [doscan.io/address/0x7979...3643](https://doscan.io/address/0x7979539fb9eb7f1c92221f278a92812967303643) |
 | **DOS.Me Login** | [id.dos.me](https://id.dos.me) |
-| **GitHub** | [github.com/DOS/DOS-Chain](https://github.com/DOS/DOS-Chain) |
+| **GitHub (submission)** | [github.com/DOS/RWA](https://github.com/DOS/RWA) |
+| **GitHub (full monorepo)** | [github.com/DOS/DOS-Chain](https://github.com/DOS/DOS-Chain) |
 
 ---
 
@@ -425,31 +430,27 @@ Investor onboard
 
 ### Demo Flow for Judges
 
-**Scene 1: Issuance** (Issuer Portal)
-1. Shinhan uploads bond prospectus PDF
-2. Qwen AI extracts all parameters, shows structured preview
-3. Compliance Engine checks VN/KR regulations, generates report
-4. Shinhan approves → TokenFactory deploys ERC-3643 token on DOS Chain
-5. Token visible on DOScan with full metadata
+**Scene 1: Issuance** (Issuer Portal - 4-step wizard)
+1. Shinhan uploads bond prospectus PDF (4 built-in samples: Corporate Bond, Government Bond, REIT Fund, Non-compliant Cayman entity)
+2. **Step 1 - Upload**: Drag-and-drop or sample picker
+3. **Step 2 - Review**: Qwen AI extracts 15+ fields (name, symbol, face value, coupon, maturity, restrictions, max investors, lock-up). All fields editable inline before submit.
+4. **Step 3 - Compliance**: Qwen AI checks against VN Digital Technology Law 2025, Resolution 05/2025, Decree 153/2020. Non-compliant issuances (Cayman entity, no KYC, >20% yield) are blocked - deploy button disabled.
+5. **Step 4 - Deploy**: Backend wallet signs 4 transactions on DOS Chain mainnet:
+   - `TREXFactory.deployTREXSuite()` → creates Token + Identity Registry + Compliance Module + Claim Registry + Trusted Issuers Registry
+   - `IdentityRegistry.registerIdentity()` → registers issuer with existing ONCHAINID + VN country code
+   - `Token.unpause()` → enables transfers
+   - `Token.mint(issuer, totalSupply)` → mints exact supply from prospectus (e.g., 500 bonds for SHVN26A)
+6. Token live on DOScan with real supply, links to all component contracts
 
-**Scene 2: Investor Onboarding** (Investor Portal)
-1. Investor connects wallet, starts KYC
-2. Qwen AI assists with document verification
-3. ONCHAINID deployed, claims added (KYC/AML/Country)
-4. Investor registered in Identity Registry
+**Scene 2: Investor Marketplace** (Investor Portal)
+1. Investor logs in with DOS.Me ID (email/Google SSO - no crypto wallet needed)
+2. Marketplace auto-populates by querying `TREXSuiteDeployed` events from factory - every deployed token appears automatically with name, symbol, total supply, on-chain address
+3. Qwen AI chat: "explain SHVN26A bond", "compare yields", "is this safe for me?" - natural language in Vietnamese
 
-**Scene 3: Investment** (Investor Portal)
-1. Investor browses marketplace, asks Qwen "which bond suits me?"
-2. Qwen recommends based on risk profile and on-chain data
-3. Investor buys 10 units of SCB26A
-4. ERC-3643 compliance module checks all claims → transfer approved
-5. Tokens in wallet, visible on DOScan
-
-**Scene 4: Compliance** (Compliance Dashboard)
-1. Regulator views all tokenized securities on DOS Chain
-2. AI-generated compliance report per token
-3. Full transfer audit trail with compliance check results
-4. Export PDF report
+**Scene 3: Compliance View** (Compliance Dashboard)
+1. Token compliance status table - all issued tokens, investor counts, countries, last audit
+2. Transfer audit trail - every transfer checked on-chain against ONCHAINID claims
+3. ERC-3643 enforces: transfer to unregistered address reverts with "Transfer not possible"
 
 ---
 

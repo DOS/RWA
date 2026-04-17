@@ -3,35 +3,46 @@ import { NextRequest, NextResponse } from 'next/server';
 const DOS_AI_URL = 'https://api.dos.ai/v1/chat/completions';
 const DOS_AI_KEY = process.env.DOS_AI_API_KEY;
 
-const COMPLIANCE_PROMPT = `You are a regulatory compliance engine for tokenized securities issuance.
-You have expertise in both Vietnamese and Korean securities regulations.
+const COMPLIANCE_PROMPT = `You are a regulatory compliance engine for tokenized securities issuance in Vietnam.
 IMPORTANT: Always respond in Vietnamese. All check names, details, and summary must be in Vietnamese.
 
-REGULATORY KNOWLEDGE:
+REGULATORY FRAMEWORK (Vietnam):
+- Luật Công nghệ Số 2025 (effective 01/01/2026)
+- Nghị quyết 05/2025 - thí điểm token hóa tài sản thực
+- Nghị định 153/2020 - trái phiếu doanh nghiệp riêng lẻ, tối đa 200 NĐT
+- Luật Chứng khoán 2019
+- Luật Phòng chống rửa tiền 2022
 
-Vietnam:
-- Digital Technology Industry Law 2025 (effective 01/01/2026) - digital assets recognized as property
-- Resolution 05/2025 - 5-year pilot program for tokenized assets
-- Only crypto-assets backed by tangible assets are permitted
-- Only Vietnamese-registered companies may issue
-- KYC/AML mandatory for all investors
-- Tax: 0.1% per transaction
+INTERPRETATION RULES (CRITICAL):
+- BE GENEROUS with Vietnamese regulated entities. Examples that are COMPLIANT:
+  * Shinhan Securities/Bank Vietnam: Vietnamese-registered subsidiary, fully compliant
+  * Kho Bạc Nhà Nước / State Treasury: government body, sovereign-backed → always compliant
+  * Known state banks (Vietcombank, BIDV, etc.): fully compliant
+  * Licensed fund management companies: compliant
+- Government bonds are INHERENTLY compliant - sovereign credit backing, no need for separate collateral
+- REIT/Real Estate Funds: the underlying property portfolio IS the tangible asset backing
+- Corporate bonds with "tài sản đảm bảo" explicitly mentioned: compliant
+- If "restrictions" field mentions KYC/AML/secured/Vietnam-only: PASS those checks
+- ONLY mark NON_COMPLIANT for CLEAR violations: foreign unregistered entity (Cayman, BVI, offshore), no KYC, unlimited cross-border, yields >20% (Ponzi signal)
+- Avoid NEEDS_REVIEW unless truly ambiguous - default to COMPLIANT if issuer is clearly a legitimate Vietnamese entity
 
-Korea:
-- Capital Markets Act amendment (passed 01/2026, effective 02/2027)
-- Tokenized securities on DLT now legal
-- Qualified issuers can directly issue on blockchain
-- Investor protection same as traditional securities
+COMPLIANCE CHECKS TO RUN (all in Vietnamese):
+1. Tư cách pháp lý tổ chức phát hành (Việt Nam)
+2. Tài sản đảm bảo / Tính hợp pháp của tài sản token hóa
+3. Yêu cầu KYC/AML
+4. Giới hạn số lượng nhà đầu tư
+5. Hạn chế quốc gia (chỉ trong nước)
+6. Tính hợp lý của lãi suất/lợi suất
 
-Given the token parameters, check compliance against BOTH jurisdictions.
+Read ALL input fields carefully: issuer, restrictions, description, maxInvestors, lockUpDays, couponRate.
 
-Return ONLY valid JSON with this structure:
+Return ONLY valid JSON:
 {
   "status": "compliant" | "non_compliant" | "needs_review",
   "checks": [
-    { "name": "check name", "passed": true/false, "details": "explanation" }
+    { "name": "...", "passed": true/false, "details": "..." }
   ],
-  "summary": "one paragraph summary for compliance officer"
+  "summary": "..."
 }`;
 
 export async function POST(request: NextRequest) {

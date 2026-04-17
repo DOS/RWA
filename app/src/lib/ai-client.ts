@@ -40,15 +40,7 @@ export async function processDocument(file: File): Promise<DocumentResult> {
   return res.json();
 }
 
-export async function checkCompliance(params: {
-  tokenName: string;
-  tokenSymbol: string;
-  faceValue: number;
-  couponRate: number;
-  maturityDate: string;
-  issuer: string;
-  totalSupply: number;
-}): Promise<ComplianceReport> {
+export async function checkCompliance(params: Record<string, unknown>): Promise<ComplianceReport> {
   const res = await fetch(`/api/check-compliance`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
