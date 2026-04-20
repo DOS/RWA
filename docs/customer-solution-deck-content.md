@@ -13,7 +13,7 @@
 
 Next-generation financial infrastructure for Shinhan Securities Vietnam - ERC-3643 compliant tokenization powered by Qwen AI.
 
-doschain.com | DOS Labs
+doschain.com | MetaDOS
 
 ---
 
@@ -331,7 +331,7 @@ DOS Chain makes that concrete.
 
 ## Slide 17: Contact & Next Steps
 
-**DOS Labs**
+**MetaDOS**
 - DApp: rwa.doschain.com
 - Explorer: doscan.io
 - DOS.Me: id.dos.me

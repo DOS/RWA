@@ -13,7 +13,7 @@
 > **DOS Chain RWA**
 > *Nền tảng phát hành chứng khoán số đầu tiên tại Việt Nam*
 >
-> Team: DOS Labs | Demo: rwa.doschain.com
+> Team: MetaDOS | Demo: rwa.doschain.com
 
 ### Script
 
