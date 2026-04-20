@@ -182,24 +182,20 @@
   /* Slide 4 - pillars */
   .pillar-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
     margin-top: 10px;
   }
   .pillar-box {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    padding: 20px 22px;
+    padding: 18px 18px;
     border-radius: 12px;
     border-top: 4px solid #DC2626;
-    display: grid;
-    grid-template-columns: 52px 1fr;
-    column-gap: 16px;
-    align-items: start;
   }
-  .pillar-box .icon { font-size: 40px; line-height: 1; grid-row: span 2; align-self: center; }
-  .pillar-box .title { font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 6px; line-height: 1.2; }
-  .pillar-box p { font-size: 16px; color: #334155; line-height: 1.45; margin: 0; }
+  .pillar-box .icon { font-size: 36px; line-height: 1; margin-bottom: 10px; }
+  .pillar-box .title { font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 6px; line-height: 1.2; }
+  .pillar-box p { font-size: 15px; color: #334155; line-height: 1.45; margin: 0; }
   .pillar-box .metric { color: #16a34a; font-weight: 700; }
   .punchline { margin: 8px 0 18px; font-size: 18px; color: #334155; font-weight: 500; text-align: center; }
   .punchline .red { font-weight: 700; }
@@ -369,31 +365,30 @@
   </div>
 </section>
 
-<!-- SLIDE 4: WHAT WE BUILT - 3 pillars -->
+<!-- SLIDE 4: WHAT WE BUILT - 4 pillars covering STO lifecycle -->
 <section class="slide">
-  <h2>One platform - <span class="highlight">3 pillars</span> - both halves of SS6</h2>
-  <p class="punchline">Built on <span class="red">ERC-3643</span> · orchestrated by Qwen · deployable on-premise.</p>
+  <h2>Full STO lifecycle - <span class="highlight">4 pillars</span> in one platform</h2>
+  <p class="punchline">Real-world tokenization needs more than a token - <span class="red">issuance · identity · compliance · settlement</span>, all on one stack.</p>
   <div class="pillar-grid">
     <div class="pillar-box">
       <div class="icon">📄</div>
-      <div>
-        <div class="title">Securities, issued on-chain</div>
-        <p><span class="metric">ERC-3643</span> - the standard DTCC joined and the SEC endorsed. Every transfer checks on-chain identity before it clears.</p>
-      </div>
+      <div class="title">Issuance</div>
+      <p>AI reads the prospectus, extracts all fields, and deploys an <span class="metric">ERC-3643</span> security - the standard DTCC and the SEC endorsed.</p>
+    </div>
+    <div class="pillar-box">
+      <div class="icon">🪪</div>
+      <div class="title">Identity & KYC</div>
+      <p><span class="metric">ONCHAINID</span> per investor. Shinhan signs KYC/AML/country claims. Every transfer verifies them on-chain before it clears.</p>
     </div>
     <div class="pillar-box">
       <div class="icon">🤖</div>
-      <div>
-        <div class="title">AI handles compliance</div>
-        <p>Qwen reads the prospectus, checks against VN law. Deploy button unlocks only on pass. <span class="metric">Caught our trap PDF.</span></p>
-      </div>
+      <div class="title">Compliance</div>
+      <p>Qwen checks each issuance against VN law (Digital Technology Law, Decree 153). Violations are <span class="metric">blocked at contract level</span> - no off-chain trust.</p>
     </div>
     <div class="pillar-box">
       <div class="icon">💸</div>
-      <div>
-        <div class="title">Payments, not just tokens</div>
-        <p>Settlement in <span class="metric">1 second</span>. Coupons distribute automatically. Investors pay zero gas. Cross-chain ready.</p>
-      </div>
+      <div class="title">Settlement</div>
+      <p><span class="metric">1-second</span> finality vs T+2 legacy. Coupons distribute automatically to token holders. Cross-chain to Avalanche + Ethereum.</p>
     </div>
   </div>
   <div class="channels-bar">
