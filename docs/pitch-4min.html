@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DOS Chain RWA — Pitch 4 phút · Qwen AI Build Day (SS6)</title>
+<title>DOS Chain RWA — 4-minute pitch · SS6 Digital Assets & Tokenized Securities</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -30,11 +30,11 @@
     to { opacity: 1; transform: translateY(0); }
   }
   h1 {
-    font-size: 84px;
+    font-size: 88px;
     color: #DC2626;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     font-weight: 900;
   }
   h2 {
@@ -56,7 +56,8 @@
     font-weight: bold;
   }
   strong { color: #DC2626; font-weight: 700; }
-  .subtitle { font-size: 26px; color: #64748b; margin-top: 8px; font-style: italic; line-height: 1.35; max-width: 900px; }
+  .subtitle { font-size: 28px; color: #334155; margin-top: 16px; line-height: 1.35; max-width: 920px; font-weight: 400; }
+  .subtitle .kw { color: #DC2626; font-weight: 700; }
   .meta {
     font-size: 15px;
     color: #94a3b8;
@@ -94,14 +95,14 @@
     line-height: 1.3;
   }
   .flow {
-    font-size: 22px;
+    font-size: 20px;
     background: #fef2f2;
     padding: 16px 24px;
     border-radius: 10px;
     border-left: 5px solid #DC2626;
     margin: 16px 0;
-    text-align: center;
     color: #0f172a;
+    line-height: 1.45;
   }
   .highlight {
     background: #DC2626;
@@ -117,28 +118,15 @@
     margin-top: 10px;
   }
   .col-title {
-    font-size: 14px;
+    font-size: 13px;
     color: #DC2626;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.4px;
     font-weight: 700;
   }
   .col-title.slate { color: #64748b; }
   .col-title.green { color: #16a34a; }
-  .tag {
-    display: inline-block;
-    padding: 5px 12px;
-    margin: 4px 4px 4px 0;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 999px;
-    font-size: 15px;
-    color: #334155;
-    font-weight: 500;
-  }
-  .tag.red { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
-  .tag.green { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
   .nav {
     position: fixed;
     bottom: 14px;
@@ -181,13 +169,12 @@
   .muted { color: #64748b; }
   .big-center {
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     margin: 18px 0 8px;
-    line-height: 1.35;
+    line-height: 1.4;
     color: #0f172a;
     font-weight: 500;
   }
-  /* Slide 3 pillars */
   .pillar-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -197,13 +184,13 @@
   .pillar-box {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    padding: 18px;
+    padding: 20px;
     border-radius: 12px;
     border-top: 4px solid #DC2626;
   }
   .pillar-box .icon { font-size: 30px; margin-bottom: 6px; }
   .pillar-box .title { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.2; }
-  .pillar-box p { font-size: 14px; color: #64748b; line-height: 1.45; margin: 0; }
+  .pillar-box p { font-size: 14.5px; color: #475569; line-height: 1.5; margin: 0; }
   .pillar-box .metric { color: #16a34a; font-weight: 700; }
   .channels-bar {
     margin-top: 14px;
@@ -215,7 +202,6 @@
     color: #15803d;
   }
   .channels-bar strong { color: #15803d; }
-  /* Slide 4 Qwen roles */
   .qwen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
   .qwen-role {
     background: #f8fafc;
@@ -230,8 +216,7 @@
   .qwen-role .n { background: #DC2626; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; font-size: 14px; }
   .qwen-role.dim .n { background: #94a3b8; }
   .qwen-role .content h3 { font-size: 15px; color: #0f172a; margin-bottom: 3px; font-weight: 700; line-height: 1.25; }
-  .qwen-role .content p { font-size: 13px; color: #64748b; margin: 0; line-height: 1.4; }
-  /* Slide 6 demo */
+  .qwen-role .content p { font-size: 13.5px; color: #475569; margin: 0; line-height: 1.45; }
   .demo-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
   .step-box {
     background: #f8fafc;
@@ -254,7 +239,7 @@
     display: flex; align-items: center; justify-content: center;
   }
   .step-box .title { font-size: 15px; color: #0f172a; font-weight: 700; margin-bottom: 3px; display: inline-block; }
-  .step-box p { font-size: 13px; margin: 0; color: #64748b; line-height: 1.4; }
+  .step-box p { font-size: 13.5px; margin: 0; color: #475569; line-height: 1.45; }
   .step-box .time { font-size: 12px; color: #DC2626; font-family: "SF Mono", monospace; font-weight: 700; float: right; }
   .demo-url {
     text-align: center;
@@ -292,14 +277,10 @@
 <!-- SLIDE 1: COVER -->
 <section class="slide active">
   <h1>DOS Chain RWA</h1>
-  <p class="subtitle">Nền tảng phát hành chứng khoán số đầu tiên tại Việt Nam — AI đọc cáo bạch, tự kiểm tra luật, phát hành trong 10 giây.</p>
-  <div style="margin-top: 32px;">
-    <span class="tag">Phát hành chứng khoán số</span>
-    <span class="tag">AI kiểm tra tuân thủ</span>
-    <span class="tag">Đăng nhập bằng email</span>
-    <span class="tag">0 phí giao dịch</span>
-    <span class="tag green">On-premise 100%</span>
-  </div>
+  <p class="subtitle">
+    An issuer uploads a bond prospectus. Our AI reads it, checks it against Vietnamese law, and — if it passes — issues a fully regulated digital security on-chain.
+    <br><span class="kw">Ten seconds, no paperwork, no off-chain trust.</span>
+  </p>
   <div class="meta">
     Qwen AI Build Day × Shinhan Future's Lab · Track SS6 · DOS Labs · rwa.doschain.com
   </div>
@@ -307,147 +288,147 @@
 
 <!-- SLIDE 2: PROBLEM -->
 <section class="slide">
-  <h2>Thị trường chứng khoán số <span class="highlight">$26 tỷ</span> đang bùng nổ</h2>
+  <h2>Vietnam has the law. Shinhan has the playbook. <span class="highlight">Nobody has the infrastructure.</span></h2>
   <div class="stat-grid three">
-    <div><span class="big">$26 tỷ</span><span class="lbl">RWA toàn cầu, tăng 300%/năm</span></div>
-    <div><span class="big">$2 tỷ/ngày</span><span class="lbl">JPMorgan giao dịch qua Kinexys</span></div>
-    <div><span class="big">$2,5 tỷ</span><span class="lbl">BlackRock trong quỹ trái phiếu số</span></div>
+    <div><span class="big">$26B</span><span class="lbl">Real-world assets on-chain, growing 300% a year</span></div>
+    <div><span class="big">$2B/day</span><span class="lbl">JPMorgan's Kinexys platform processes this in tokenized transactions</span></div>
+    <div><span class="big">$2.5B</span><span class="lbl">BlackRock's tokenized Treasury fund (BUIDL), on Avalanche and 8 other chains</span></div>
   </div>
   <div class="flow">
-    <strong>Nghịch lý Shinhan:</strong> Hàn Quốc đã có <span class="green">STO Alliance · Lambda256 · KDAC</span> — Việt Nam 5 công ty con, 51 chi nhánh, từ 1993, <span class="amber">chưa có hạ tầng số nào</span>.
+    <strong>Here's the gap:</strong> Shinhan Korea runs the STO Alliance, Lambda256, and KDAC custody. Shinhan Vietnam — five companies, 51 branches, 33 years in country — runs none of it. Not one digital-asset pilot on the books.
   </div>
   <p class="big-center">
-    Việt Nam vừa mở cửa — <span class="green">Luật Công nghệ Số 2025</span>, <span class="green">Nghị quyết 05/2025</span>. Ai sẽ đi đầu?
+    Meanwhile, Vietnam just opened the door: <span class="green">Digital Technology Law 2025</span> and <span class="green">Resolution 05/2025</span> both went live in January. The Ministry of Finance is taking applications.
   </p>
 </section>
 
-<!-- SLIDE 3: WHAT WE BUILT -->
+<!-- SLIDE 3: SOLUTION -->
 <section class="slide">
-  <h2>Một nền tảng — <span class="red">3 trụ cột</span> — phủ cả SS6</h2>
+  <h2>One platform. Three pillars. <span class="red">Both halves of the SS6 brief.</span></h2>
   <div class="pillar-grid">
     <div class="pillar-box">
       <div class="icon">📄</div>
-      <div class="title">Phát hành chứng khoán số</div>
-      <p>Chuẩn quốc tế <span class="metric">ERC-3643</span> được DTCC và SEC Mỹ công nhận. Mỗi giao dịch tự động kiểm tra tuân thủ trước khi thực hiện — không tin tưởng off-chain.</p>
+      <div class="title">Issue securities on-chain</div>
+      <p>We use <span class="metric">ERC-3643</span> — the standard DTCC joined and the US SEC endorsed last year. Every transfer checks the investor's on-chain identity before it goes through. No off-chain lists, no trust gaps.</p>
     </div>
     <div class="pillar-box">
       <div class="icon">🤖</div>
-      <div class="title">AI tuân thủ tự động</div>
-      <p>Qwen đọc cáo bạch PDF, kiểm tra theo Luật Công nghệ Số 2025 + Nghị định 153/2020. <span class="metric">Chặn đúng</span> phát hành không hợp lệ (Cayman, không KYC, lãi 24%).</p>
+      <div class="title">AI runs compliance</div>
+      <p>Qwen reads the prospectus and checks it against Vietnamese law — the Digital Technology Act, Decree 153/2020, the Securities Law. If something's off (Cayman issuer, no KYC, 24% yield), the deploy button stays disabled. <span class="metric">It caught our trap PDF.</span></p>
     </div>
     <div class="pillar-box">
       <div class="icon">💸</div>
-      <div class="title">Thanh toán & Giao dịch số</div>
-      <p>Finality <span class="metric">1 giây</span> (nhanh hơn T+2 truyền thống). Thanh toán coupon tự động, gasless cho nhà đầu tư, kết nối xuyên chuỗi sang Avalanche & Ethereum.</p>
+      <div class="title">Payments, not just tokens</div>
+      <p>Settlement in <span class="metric">one second</span>, not T+2. Coupon payments distribute automatically. Verified investors pay zero gas. Cross-chain transfers to Avalanche and Ethereum keep the compliance state intact.</p>
     </div>
   </div>
   <div class="channels-bar">
-    <strong>Đã live:</strong> Cổng Phát Hành · Sàn Nhà Đầu Tư · Bảng Tuân Thủ · 4 bản cáo bạch mẫu · Token thật trên blockchain
+    <strong>What's live right now:</strong> Issuer portal · Investor marketplace · Compliance dashboard · Four sample prospectuses (three real, one trap) · Real tokens minted on mainnet.
   </div>
 </section>
 
 <!-- SLIDE 4: QWEN INTEGRATION -->
 <section class="slide">
-  <h2>Qwen AI là <span class="highlight">lõi tự động hóa</span> của nền tảng</h2>
+  <h2>Where Qwen actually <span class="highlight">earns its keep</span></h2>
   <div class="qwen-grid">
     <div class="qwen-role hi">
       <div class="n">1</div>
       <div class="content">
-        <h3>Xử lý tài liệu · Qwen đọc PDF</h3>
-        <p>Đọc bản cáo bạch trái phiếu, trích xuất 15+ thông số (tên, mã, mệnh giá, lãi suất, đáo hạn, hạn chế) trong vài giây. Nhà phát hành không cần điền form tay.</p>
+        <h3>It reads the prospectus</h3>
+        <p>PDFs go in, 15+ structured fields come out — name, symbol, face value, coupon, maturity, restrictions. The issuer reviews and edits; they never fill a form from scratch.</p>
       </div>
     </div>
     <div class="qwen-role hi">
       <div class="n">2</div>
       <div class="content">
-        <h3>Kiểm tra tuân thủ · Qwen thẩm định luật</h3>
-        <p>Thẩm định theo Luật Công nghệ Số, Nghị định 153/2020, Luật Chứng khoán 2019, Luật Phòng chống rửa tiền. Không hợp lệ = chặn, không deploy được.</p>
+        <h3>It checks the law</h3>
+        <p>Same model, different prompt: is the issuer registered in Vietnam? Is KYC enforced? Are the numbers sane? The compliance report either greenlights the deploy button or explains why it's blocking it.</p>
       </div>
     </div>
     <div class="qwen-role dim">
       <div class="n">3</div>
       <div class="content">
-        <h3>Tư vấn đầu tư · đa ngôn ngữ</h3>
-        <p>Chat với nhà đầu tư bằng Việt/Anh/Hàn. Trả lời "trái phiếu nào hợp với tôi?", "so sánh lợi suất", "rủi ro là gì?" dựa trên dữ liệu on-chain.</p>
+        <h3>It advises investors</h3>
+        <p>A chat panel in the investor portal, fluent in Vietnamese, English, and Korean. Answers "which bond fits my profile?" using on-chain data — not marketing copy.</p>
       </div>
     </div>
     <div class="qwen-role dim">
       <div class="n">4</div>
       <div class="content">
-        <h3>Báo cáo cho cơ quan quản lý</h3>
-        <p>Tự động tạo báo cáo tuân thủ mà cơ quan quản lý thực sự đọc được. Xuất PDF, có audit trail đầy đủ trên blockchain.</p>
+        <h3>It writes the regulator report</h3>
+        <p>Compliance officers get a document they can actually hand to SSC — issuer status, claim registry, transfer audit trail, all stitched together. Exports to PDF.</p>
       </div>
     </div>
   </div>
   <div class="channels-bar">
-    <strong>Chạy trên máy chủ ngân hàng.</strong> Qwen self-host qua vLLM trên GPU ngân hàng — cáo bạch + dữ liệu khách hàng không rời khỏi hệ thống nội bộ.
+    <strong>Deploys to the bank's own servers.</strong> We run Qwen through vLLM on Shinhan's GPUs if they want it. Prospectuses and investor data never leave the network perimeter.
   </div>
 </section>
 
-<!-- SLIDE 5: FLOW + ARCHITECTURE -->
+<!-- SLIDE 5: FLOW -->
 <section class="slide">
-  <h2>SS6 — phát hành trái phiếu số <span class="onprem-badge">ON-PREMISE</span></h2>
+  <h2>How an issuance actually runs <span class="onprem-badge">ON-PREMISE</span></h2>
   <div class="two-col">
     <div>
-      <div class="col-title">Nhà phát hành (Shinhan)</div>
+      <div class="col-title">Issuer side — Shinhan Securities</div>
       <ul>
-        <li>Upload bản cáo bạch PDF</li>
-        <li>AI trích xuất thông số → xem lại, sửa nếu cần</li>
-        <li>AI kiểm tra luật Việt Nam</li>
-        <li>1 click → phát hành lên blockchain</li>
+        <li>Drop a prospectus PDF into the issuer portal</li>
+        <li>AI extracts, you review and edit anything that's off</li>
+        <li>AI runs the compliance check — pass, and the deploy button unlocks</li>
+        <li>One click fires four on-chain transactions. Token is live.</li>
       </ul>
     </div>
     <div>
-      <div class="col-title">Nhà đầu tư</div>
+      <div class="col-title">Investor side</div>
       <ul>
-        <li>Đăng nhập bằng email (không cần ví crypto)</li>
-        <li>Duyệt sàn chứng khoán số</li>
-        <li>Chat AI tư vấn trước khi mua</li>
-        <li>Giao dịch gasless — trả 0 đồng phí</li>
+        <li>Sign in with a Google or email account — no crypto wallet required</li>
+        <li>Browse the marketplace; every listed token came from real blockchain events</li>
+        <li>Ask the AI advisor anything before buying</li>
+        <li>Transactions settle in about a second, and the investor pays no gas</li>
       </ul>
     </div>
   </div>
-  <div class="flow" style="text-align: left; font-size: 17px;">
-    <strong>Công nghệ:</strong> Next.js · DOS Chain (Avalanche L1) · <strong>Qwen 3.5-35B</strong> · ERC-3643 (T-REX) · DOS.Me SSO · ICTT bridge · DOScan explorer
+  <div class="flow" style="font-size: 17px;">
+    <strong>Stack:</strong> Next.js · DOS Chain (Avalanche L1) · Qwen 3.5-35B · ERC-3643 (T-REX) · DOS.Me SSO · ICTT bridge · DOScan explorer
   </div>
   <p class="big-center">
-    <span class="green">Cùng kiến trúc với BlackRock BUIDL ($2,5 tỷ) và Franklin BENJI ($732M)</span> trên Avalanche.
+    <span class="green">Same architecture BlackRock and Franklin Templeton already use on Avalanche.</span> We're not inventing anything. We're executing the proven design first in Vietnam.
   </p>
 </section>
 
 <!-- SLIDE 6: LIVE DEMO -->
 <section class="slide">
-  <h2>Demo trực tiếp — <span class="red">dưới 60 giây</span></h2>
+  <h2>Live demo — <span class="red">under 60 seconds</span></h2>
   <div class="demo-list">
     <div class="step-box">
       <span class="num-badge">1</span>
       <span class="time">5s</span>
-      <div class="title">Chọn bản cáo bạch mẫu</div>
-      <p>4 mẫu có sẵn: Trái phiếu DN Shinhan, Trái phiếu Kho Bạc NN, Quỹ BĐS, và <span class="red">quỹ crypto Cayman sai luật</span></p>
+      <div class="title">Pick a sample prospectus</div>
+      <p>Four on the shelf: Shinhan corporate bond, VN Treasury bond, Shinhan REIT fund, and a <span class="red">fake Cayman crypto fund</span> we planted to test the AI.</p>
     </div>
     <div class="step-box">
       <span class="num-badge">2</span>
       <span class="time">10s</span>
-      <div class="title">AI đọc & trích xuất</div>
-      <p>Qwen đọc PDF, trích xuất tên, mã, mệnh giá, lãi suất, đáo hạn, hạn chế. Hiện form cho phép chỉnh sửa.</p>
+      <div class="title">AI reads it</div>
+      <p>Qwen extracts every field from the PDF and hands you an editable form. Fix anything that looks wrong, then move on.</p>
     </div>
     <div class="step-box">
       <span class="num-badge">3</span>
       <span class="time">10s</span>
-      <div class="title">AI kiểm tra luật</div>
-      <p>Quỹ Cayman bị <span class="red">CHẶN</span>: "không đăng ký VN, không KYC, lãi 24% bất thường". Shinhan → <span class="green">PASS</span>.</p>
+      <div class="title">AI checks it against the law</div>
+      <p>The Cayman fund gets <span class="red">BLOCKED</span>: "not registered in Vietnam, no KYC requirement, 24% yield is a red flag." The Shinhan bond passes.</p>
     </div>
     <div class="step-box">
       <span class="num-badge">4</span>
       <span class="time">10s</span>
-      <div class="title">Phát hành lên blockchain</div>
-      <p>4 giao dịch tự động: tạo token → đăng ký danh tính → mở khóa → phát hành supply. Hiện link DOScan.</p>
+      <div class="title">Issue on-chain</div>
+      <p>Four transactions fire: create the token, register the issuer, unlock transfers, mint the supply. DOScan link appears with the contract address.</p>
     </div>
     <div class="step-box" style="grid-column: 1 / -1;">
       <span class="num-badge">5</span>
       <span class="time">5s</span>
-      <div class="title">Token xuất hiện ngay trên sàn Nhà Đầu Tư</div>
-      <p>Sàn tự động query từ blockchain (không database), hiện tên, mã, supply thật của token vừa phát hành.</p>
+      <div class="title">The new token shows up in the investor marketplace</div>
+      <p>No database write, no manual refresh. The investor portal watches blockchain events and picks up the new listing automatically.</p>
     </div>
   </div>
   <div class="demo-url">rwa.doschain.com</div>
@@ -455,33 +436,33 @@
 
 <!-- SLIDE 7: RESULTS + CTA -->
 <section class="slide">
-  <h2>Kết quả & <span class="highlight">đề xuất pilot</span></h2>
+  <h2>What we built, <span class="highlight">what we're proposing</span></h2>
   <div class="two-col">
     <div>
-      <div class="col-title">Đã chứng minh trong 1 tuần</div>
+      <div class="col-title">What's proven, in about a week</div>
       <ul>
-        <li><strong>Full ERC-3643 live</strong> trên DOS Chain (hợp đồng vanity <code>0x7979...3643</code>)</li>
-        <li>PDF → chứng khoán số <strong>dưới 10 giây</strong></li>
-        <li>AI chặn đúng quỹ crypto Cayman (3 vi phạm)</li>
-        <li>Sàn tự động populate từ blockchain — không cần database</li>
-        <li>Cùng chuẩn với <strong>BlackRock BUIDL · JPMorgan · DTCC · SEC Mỹ</strong></li>
+        <li>Full ERC-3643 suite live on DOS Chain mainnet — factory at <code>0x7979...3643</code></li>
+        <li>Upload a PDF to a minted token in <strong>under ten seconds</strong></li>
+        <li>AI caught all three violations in our trap PDF and blocked the deploy</li>
+        <li>Marketplace reads real blockchain events — no cached state, no demo data</li>
+        <li>Same standards and architecture as <strong>BlackRock, JPMorgan, DTCC, the SEC</strong></li>
       </ul>
     </div>
     <div>
-      <div class="col-title green">Đề xuất Shinhan pilot</div>
+      <div class="col-title green">What we're proposing to Shinhan</div>
       <ul>
-        <li><strong>6 tuần</strong> qua chương trình Shinhan InnoBoost 2026</li>
-        <li>On-premise trong data center Shinhan (Helm + Docker)</li>
-        <li>Pilot SHVN26A — 500 trái phiếu, 50 tỷ VND, 20 NĐT</li>
-        <li>Tích hợp KYC/AML hiện có qua webhook API</li>
-        <li><strong>Ngân sách pilot:</strong> $30–60K</li>
+        <li>A <strong>six-week pilot</strong> through Shinhan InnoBoost 2026</li>
+        <li>Full on-premise deploy inside Shinhan's data center (Helm + Docker)</li>
+        <li>One live bond: SHVN26A, 500 units, 50B VND, around 20 qualified investors</li>
+        <li>Webhook integration with Shinhan's existing KYC/AML system</li>
+        <li><strong>Pilot budget: $30–60K.</strong> Production decision at week six.</li>
       </ul>
     </div>
   </div>
   <div class="flow" style="text-align:center; background: #f0fdf4; border-left-color: #16a34a;">
     <strong style="color:#15803d;">Anh Le (JOY)</strong> — Founder, DOS Labs · <strong style="color:#15803d;">joy@dos.ai</strong> · rwa.doschain.com · dos.ai
   </div>
-  <p class="big-center"><strong style="color:#0f172a;">Cảm ơn các anh chị.</strong></p>
+  <p class="big-center"><strong style="color:#0f172a;">Thank you. Happy to take questions.</strong></p>
 </section>
 
 </div>
