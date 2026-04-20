@@ -239,25 +239,49 @@
   .qwen-v-card .role { font-size: 13px; color: #DC2626; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
   .qwen-v-card .model { font-size: 19px; color: #0f172a; font-weight: 800; margin: 6px 0 10px; }
   .qwen-v-card p { font-size: 16px; color: #475569; margin: 0; line-height: 1.45; }
-  /* Slide 7 - competitive comparison */
-  .vs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 10px; }
-  .vs-card {
+  /* Slide 7 - competitive matrix */
+  .vs-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+    font-size: 15px;
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    border-top: 4px solid #94a3b8;
-    padding: 16px 18px;
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
   }
-  .vs-card.own { border-top-color: #DC2626; border-width: 2px; background: #fef2f2; border-color: #DC2626; }
-  .vs-card .name { font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.2; }
-  .vs-card.own .name { color: #DC2626; }
-  .vs-card .scale { font-size: 13px; color: #64748b; margin-top: 2px; font-weight: 600; letter-spacing: 0.02em; }
-  .vs-card ul { margin-top: 12px; font-size: 14.5px; }
-  .vs-card ul li { padding-left: 22px; margin-bottom: 6px; color: #334155; line-height: 1.4; }
-  .vs-card ul li::before { content: "×"; color: #DC2626; font-weight: 800; }
-  .vs-card.own ul li::before { content: "✓"; color: #16a34a; }
+  .vs-table th, .vs-table td {
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    line-height: 1.3;
+  }
+  .vs-table tr:last-child th, .vs-table tr:last-child td { border-bottom: none; }
+  .vs-table th {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    font-weight: 700;
+    background: #f1f5f9;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .vs-table th.own {
+    background: #DC2626;
+    color: white;
+    font-size: 14px;
+  }
+  .vs-table th.own .sub { display: block; font-size: 11px; font-weight: 500; opacity: 0.85; letter-spacing: 0.02em; text-transform: none; margin-top: 1px; }
+  .vs-table th:not(.own) .sub { display: block; font-size: 11px; font-weight: 500; color: #94a3b8; letter-spacing: 0.02em; text-transform: none; margin-top: 1px; }
+  .vs-table td.own { background: #fef2f2; }
+  .vs-table td.feature { font-weight: 700; color: #0f172a; font-size: 15px; }
+  .vs-table .yes { color: #16a34a; font-weight: 700; }
+  .vs-table .no { color: #94a3b8; }
+  .vs-table .partial { color: #d97706; font-weight: 600; }
+  .vs-table .note { color: #64748b; font-size: 13px; display: block; font-weight: 400; margin-top: 1px; }
+  .vs-table td.own .note { color: #b91c1c; }
   /* Slide 7 - try cards */
   .try-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
   .try-card {
@@ -458,54 +482,80 @@
   </div>
 </section>
 
-<!-- SLIDE 7: COMPETITIVE POSITIONING -->
+<!-- SLIDE 7: COMPETITIVE MATRIX -->
 <section class="slide">
-  <h2>How we stack up · <span class="highlight">no one else hits all four</span></h2>
-  <p class="punchline">Most tokenization platforms are SaaS. Most are built for the US or EU. Most have no AI.</p>
-  <div class="vs-grid">
-    <div class="vs-card own">
-      <div class="name">DOS Chain RWA</div>
-      <div class="scale">Our platform</div>
-      <ul>
-        <li>Built for VN Law 2025</li>
-        <li>AI reads prospectus + checks law</li>
-        <li>On-premise, or dedicated L1 for Shinhan</li>
-        <li>Same chain as BlackRock BUIDL</li>
-      </ul>
-    </div>
-    <div class="vs-card">
-      <div class="name">Securitize</div>
-      <div class="scale">$4.6B tokenized · BlackRock partner</div>
-      <ul>
-        <li>US-focused, no VN framework</li>
-        <li>Manual compliance review</li>
-        <li>SaaS only - no on-premise</li>
-        <li>Custom standard, not ERC-3643</li>
-      </ul>
-    </div>
-    <div class="vs-card">
-      <div class="name">Tokeny</div>
-      <div class="scale">$32B issued · ERC-3643 creator</div>
-      <ul>
-        <li>EU-focused, no VN presence</li>
-        <li>No AI compliance layer</li>
-        <li>SaaS only - no on-premise</li>
-        <li>No sovereign chain option</li>
-      </ul>
-    </div>
-    <div class="vs-card">
-      <div class="name">Polymesh</div>
-      <div class="scale">Switzerland · used by KDAC</div>
-      <ul>
-        <li>Uses ERC-1400, not ERC-3643</li>
-        <li>No Avalanche / Ethereum interop</li>
-        <li>No AI compliance</li>
-        <li>Global framework, not VN law</li>
-      </ul>
-    </div>
-  </div>
+  <h2>How we stack up · <span class="highlight">the only one that hits all eight</span></h2>
+  <table class="vs-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="own">DOS Chain RWA<span class="sub">Our platform</span></th>
+        <th>Securitize<span class="sub">$4.6B tokenized · US</span></th>
+        <th>Tokeny<span class="sub">$32B issued · EU</span></th>
+        <th>Polymesh<span class="sub">Switzerland · KDAC</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="feature">Built for Vietnam Law 2025</td>
+        <td class="own yes">✓ <span class="note">Law 2025 + Resolution 05/2025</span></td>
+        <td class="no">US-focused</td>
+        <td class="no">EU-focused</td>
+        <td class="no">Global, not VN</td>
+      </tr>
+      <tr>
+        <td class="feature">ERC-3643 + ONCHAINID</td>
+        <td class="own yes">✓</td>
+        <td class="no">Custom DS token</td>
+        <td class="yes">✓ <span class="note">creator</span></td>
+        <td class="no">ERC-1400</td>
+      </tr>
+      <tr>
+        <td class="feature">AI document processing</td>
+        <td class="own yes">✓ <span class="note">Qwen reads prospectus</span></td>
+        <td class="no">Manual</td>
+        <td class="no">Manual</td>
+        <td class="no">Manual</td>
+      </tr>
+      <tr>
+        <td class="feature">AI regulatory check</td>
+        <td class="own yes">✓ <span class="note">blocks non-compliant issuance</span></td>
+        <td class="no">—</td>
+        <td class="no">—</td>
+        <td class="no">—</td>
+      </tr>
+      <tr>
+        <td class="feature">AI investment advisor</td>
+        <td class="own yes">✓ <span class="note">VN / EN / KR, on-chain data</span></td>
+        <td class="no">—</td>
+        <td class="no">—</td>
+        <td class="no">—</td>
+      </tr>
+      <tr>
+        <td class="feature">Sovereign chain + validator control</td>
+        <td class="own yes">✓ <span class="note">Avalanche L1, Shinhan can run node</span></td>
+        <td class="no">Shared public chain</td>
+        <td class="no">Shared public chain</td>
+        <td class="yes">✓ <span class="note">Polymesh</span></td>
+      </tr>
+      <tr>
+        <td class="feature">On-premise deployment</td>
+        <td class="own yes">✓ <span class="note">full stack in bank data center</span></td>
+        <td class="no">SaaS only</td>
+        <td class="no">SaaS only</td>
+        <td class="partial">Partial</td>
+      </tr>
+      <tr>
+        <td class="feature">Dedicated permissioned L1 option</td>
+        <td class="own yes">✓ <span class="note">private chain in hours</span></td>
+        <td class="no">—</td>
+        <td class="no">—</td>
+        <td class="no">—</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="channels-bar">
-    <strong>We're the only platform that is VN-native, AI-driven, on-premise-ready, and interoperable with the Avalanche ecosystem.</strong>
+    <strong>We're the only platform that is VN-native, AI-driven end-to-end, and deployable inside the bank's own data center.</strong>
   </div>
 </section>
 
