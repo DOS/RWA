@@ -243,6 +243,25 @@
   .qwen-v-card .role { font-size: 13px; color: #DC2626; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
   .qwen-v-card .model { font-size: 19px; color: #0f172a; font-weight: 800; margin: 6px 0 10px; }
   .qwen-v-card p { font-size: 16px; color: #475569; margin: 0; line-height: 1.45; }
+  /* Slide 7 - competitive comparison */
+  .vs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 10px; }
+  .vs-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid #94a3b8;
+    padding: 16px 18px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  .vs-card.own { border-top-color: #DC2626; border-width: 2px; background: #fef2f2; border-color: #DC2626; }
+  .vs-card .name { font-size: 20px; font-weight: 800; color: #0f172a; line-height: 1.2; }
+  .vs-card.own .name { color: #DC2626; }
+  .vs-card .scale { font-size: 13px; color: #64748b; margin-top: 2px; font-weight: 600; letter-spacing: 0.02em; }
+  .vs-card ul { margin-top: 12px; font-size: 14.5px; }
+  .vs-card ul li { padding-left: 22px; margin-bottom: 6px; color: #334155; line-height: 1.4; }
+  .vs-card ul li::before { content: "×"; color: #DC2626; font-weight: 800; }
+  .vs-card.own ul li::before { content: "✓"; color: #16a34a; }
   /* Slide 7 - try cards */
   .try-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
   .try-card {
@@ -261,7 +280,7 @@
 </head>
 <body>
 <div class="timer" id="timer">0:00</div>
-<div class="counter" id="counter">1 / 7</div>
+<div class="counter" id="counter">1 / 8</div>
 
 <div class="deck">
 
@@ -317,6 +336,7 @@
 <!-- SLIDE 3: VIETNAM WINDOW -->
 <section class="slide">
   <h2>Vietnam just opened the door - <span class="highlight">January 2026</span></h2>
+  <p class="arms-lede" style="font-style: italic; border-left: 4px solid #DC2626; padding: 6px 16px; margin-bottom: 18px;">"Vietnam is a strategic starting point for global digital innovation." <span style="color: #64748b; font-style: normal;">- Lee Sun-hoon, CEO Shinhan Vietnam</span></p>
   <div class="news-hero">
     <div class="news-stat full">
       <div class="big">$26B</div>
@@ -443,7 +463,58 @@
   </div>
 </section>
 
-<!-- SLIDE 7: TRY IT YOURSELF + CTA -->
+<!-- SLIDE 7: COMPETITIVE POSITIONING -->
+<section class="slide">
+  <h2>How we stack up · <span class="highlight">no one else hits all four</span></h2>
+  <p class="punchline">Most tokenization platforms are SaaS. Most are built for the US or EU. Most have no AI.</p>
+  <div class="vs-grid">
+    <div class="vs-card own">
+      <div class="name">DOS Chain RWA</div>
+      <div class="scale">Our platform</div>
+      <ul>
+        <li>Built for VN Law 2025</li>
+        <li>AI reads prospectus + checks law</li>
+        <li>On-premise, or dedicated L1 for Shinhan</li>
+        <li>Same chain as BlackRock BUIDL</li>
+      </ul>
+    </div>
+    <div class="vs-card">
+      <div class="name">Securitize</div>
+      <div class="scale">$4.6B tokenized · BlackRock partner</div>
+      <ul>
+        <li>US-focused, no VN framework</li>
+        <li>Manual compliance review</li>
+        <li>SaaS only - no on-premise</li>
+        <li>Custom standard, not ERC-3643</li>
+      </ul>
+    </div>
+    <div class="vs-card">
+      <div class="name">Tokeny</div>
+      <div class="scale">$32B issued · ERC-3643 creator</div>
+      <ul>
+        <li>EU-focused, no VN presence</li>
+        <li>No AI compliance layer</li>
+        <li>SaaS only - no on-premise</li>
+        <li>No sovereign chain option</li>
+      </ul>
+    </div>
+    <div class="vs-card">
+      <div class="name">Polymesh</div>
+      <div class="scale">Switzerland · used by KDAC</div>
+      <ul>
+        <li>Uses ERC-1400, not ERC-3643</li>
+        <li>No Avalanche / Ethereum interop</li>
+        <li>No AI compliance</li>
+        <li>Global framework, not VN law</li>
+      </ul>
+    </div>
+  </div>
+  <div class="channels-bar">
+    <strong>We're the only platform that is VN-native, AI-driven, on-premise-ready, and interoperable with the Avalanche ecosystem.</strong>
+  </div>
+</section>
+
+<!-- SLIDE 8: TRY IT YOURSELF + CTA -->
 <section class="slide">
   <h2>Try it yourself - <span class="highlight">live right now</span></h2>
   <div class="try-grid">
