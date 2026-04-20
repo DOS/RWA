@@ -189,13 +189,14 @@
   .pillar-box {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    padding: 18px 18px;
+    padding: 18px;
     border-radius: 12px;
     border-top: 4px solid #DC2626;
   }
-  .pillar-box .icon { font-size: 36px; line-height: 1; margin-bottom: 10px; }
-  .pillar-box .title { font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 6px; line-height: 1.2; }
-  .pillar-box p { font-size: 15px; color: #334155; line-height: 1.45; margin: 0; }
+  .pillar-box .head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .pillar-box .icon { font-size: 30px; line-height: 1; flex-shrink: 0; }
+  .pillar-box .title { font-size: 19px; font-weight: 800; color: #0f172a; line-height: 1.15; }
+  .pillar-box p { font-size: 15px; color: #334155; line-height: 1.5; margin: 0; }
   .pillar-box .metric { color: #16a34a; font-weight: 700; }
   .punchline { margin: 8px 0 18px; font-size: 18px; color: #334155; font-weight: 500; text-align: center; }
   .punchline .red { font-weight: 700; }
@@ -395,23 +396,19 @@
   <p class="punchline">Real-world tokenization needs more than a token - <span class="red">issuance · identity · compliance · settlement</span>, all on one stack.</p>
   <div class="pillar-grid">
     <div class="pillar-box">
-      <div class="icon">📄</div>
-      <div class="title">Issuance</div>
+      <div class="head"><div class="icon">📄</div><div class="title">Issuance</div></div>
       <p>AI reads the prospectus, extracts all fields, and deploys an <span class="metric">ERC-3643</span> security - the standard DTCC and the SEC endorsed.</p>
     </div>
     <div class="pillar-box">
-      <div class="icon">🪪</div>
-      <div class="title">Identity & KYC</div>
+      <div class="head"><div class="icon">🪪</div><div class="title">Identity & KYC</div></div>
       <p><span class="metric">ONCHAINID</span> per investor. Shinhan signs KYC/AML/country claims. Every transfer verifies them on-chain before it clears.</p>
     </div>
     <div class="pillar-box">
-      <div class="icon">🤖</div>
-      <div class="title">Compliance</div>
+      <div class="head"><div class="icon">🤖</div><div class="title">Compliance</div></div>
       <p>Qwen checks each issuance against VN law (Digital Technology Law, Decree 153). Violations are <span class="metric">blocked at contract level</span> - no off-chain trust.</p>
     </div>
     <div class="pillar-box">
-      <div class="icon">💸</div>
-      <div class="title">Settlement</div>
+      <div class="head"><div class="icon">💸</div><div class="title">Settlement</div></div>
       <p><span class="metric">1-second</span> finality replaces T+2. Coupons auto-distribute to every holder. Complete on-chain audit trail for regulators.</p>
     </div>
   </div>
