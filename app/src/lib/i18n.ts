@@ -147,6 +147,7 @@ export const translations = {
     ctaDesc: "Issue your first ERC-3643 security token on DOS Chain in minutes.",
     ctaButton: "Start Issuing",
     footerBuilt: "Built for Qwen AI Build Day x Shinhan Bank Hackathon 2026",
+    loadingMore: "Loading additional tokens from on-chain...",
   },
   vi: {
     title: "DOS Chain RWA",
@@ -288,6 +289,7 @@ export const translations = {
     ctaDesc: "Phát hành token chứng khoán ERC-3643 đầu tiên trên DOS Chain trong vài phút.",
     ctaButton: "Bắt Đầu Phát Hành",
     footerBuilt: "Xây dựng cho Qwen AI Build Day x Shinhan Bank Hackathon 2026",
+    loadingMore: "Đang tải thêm token từ blockchain...",
   },
 } as const;
 

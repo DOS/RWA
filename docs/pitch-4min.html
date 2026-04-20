@@ -2,14 +2,14 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>DOS Chain RWA - Pitch 4 phút</title>
+<title>DOS Chain RWA — Pitch 4 phút · Qwen AI Build Day (SS6)</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
     height: 100%;
     font-family: -apple-system, "Segoe UI", "Noto Sans", sans-serif;
-    background: #0f172a;
-    color: #f1f5f9;
+    background: #ffffff;
+    color: #0f172a;
     overflow: hidden;
   }
   .deck { position: relative; height: 100vh; width: 100vw; }
@@ -17,11 +17,12 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    padding: 60px 80px;
+    padding: 44px 64px 56px;
     display: none;
     flex-direction: column;
     justify-content: center;
     animation: fadeIn 0.3s ease;
+    overflow: hidden;
   }
   .slide.active { display: flex; }
   @keyframes fadeIn {
@@ -31,18 +32,22 @@
   h1 {
     font-size: 84px;
     color: #DC2626;
-    margin-bottom: 16px;
-    line-height: 1.1;
+    margin-bottom: 12px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 900;
   }
   h2 {
-    font-size: 56px;
-    color: #f1f5f9;
-    margin-bottom: 32px;
-    line-height: 1.2;
+    font-size: 40px;
+    color: #0f172a;
+    margin-bottom: 20px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    font-weight: 800;
   }
-  p { font-size: 28px; line-height: 1.5; margin-bottom: 16px; }
-  ul { font-size: 28px; line-height: 1.6; list-style: none; }
-  ul li { margin-bottom: 14px; padding-left: 36px; position: relative; }
+  p { font-size: 20px; line-height: 1.45; margin-bottom: 10px; color: #334155; }
+  ul { font-size: 19px; line-height: 1.5; list-style: none; }
+  ul li { margin-bottom: 8px; padding-left: 26px; position: relative; color: #334155; }
   ul li::before {
     content: "→";
     position: absolute;
@@ -50,317 +55,433 @@
     color: #DC2626;
     font-weight: bold;
   }
-  strong { color: #fbbf24; font-weight: 700; }
-  .subtitle { font-size: 36px; color: #94a3b8; margin-top: 16px; font-style: italic; }
+  strong { color: #DC2626; font-weight: 700; }
+  .subtitle { font-size: 26px; color: #64748b; margin-top: 8px; font-style: italic; line-height: 1.35; max-width: 900px; }
   .meta {
-    font-size: 20px;
-    color: #64748b;
+    font-size: 15px;
+    color: #94a3b8;
     margin-top: auto;
-    padding-top: 24px;
-    border-top: 1px solid #1e293b;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    letter-spacing: 0.03em;
   }
   .stat-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin: 24px 0;
+    gap: 14px;
+    margin: 14px 0;
   }
+  .stat-grid.three { grid-template-columns: repeat(3, 1fr); }
   .stat-grid > div {
-    background: #1e293b;
-    border: 1px solid #334155;
-    padding: 24px 32px;
-    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 16px 20px;
+    border-radius: 10px;
   }
   .stat-grid > div .big {
-    font-size: 52px;
-    color: #fbbf24;
-    font-weight: 700;
+    font-size: 38px;
+    color: #DC2626;
+    font-weight: 800;
     display: block;
-    line-height: 1.1;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
   }
   .stat-grid > div .lbl {
-    font-size: 22px;
-    color: #94a3b8;
+    font-size: 15px;
+    color: #64748b;
     display: block;
-    margin-top: 8px;
+    margin-top: 6px;
+    line-height: 1.3;
   }
   .flow {
-    font-size: 32px;
-    background: #1e293b;
-    padding: 28px 36px;
-    border-radius: 8px;
-    border-left: 6px solid #DC2626;
-    margin: 28px 0;
+    font-size: 22px;
+    background: #fef2f2;
+    padding: 16px 24px;
+    border-radius: 10px;
+    border-left: 5px solid #DC2626;
+    margin: 16px 0;
     text-align: center;
+    color: #0f172a;
   }
   .highlight {
-    background: linear-gradient(135deg, #DC2626, #b91c1c);
+    background: #DC2626;
     color: white;
-    padding: 4px 16px;
-    border-radius: 6px;
+    padding: 2px 12px;
+    border-radius: 5px;
     font-weight: 700;
   }
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 20px;
+    gap: 24px;
+    margin-top: 10px;
   }
   .col-title {
-    font-size: 24px;
-    color: #fbbf24;
-    margin-bottom: 16px;
+    font-size: 14px;
+    color: #DC2626;
+    margin-bottom: 8px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
+    font-weight: 700;
   }
+  .col-title.slate { color: #64748b; }
+  .col-title.green { color: #16a34a; }
   .tag {
     display: inline-block;
-    padding: 6px 16px;
-    margin: 6px 4px 6px 0;
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 6px;
-    font-size: 22px;
+    padding: 5px 12px;
+    margin: 4px 4px 4px 0;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    font-size: 15px;
+    color: #334155;
+    font-weight: 500;
   }
+  .tag.red { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+  .tag.green { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
   .nav {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 14px;
+    right: 14px;
     display: flex;
-    gap: 8px;
+    gap: 6px;
     z-index: 100;
   }
   .nav button {
-    background: #1e293b;
-    color: #f1f5f9;
-    border: 1px solid #334155;
-    padding: 8px 16px;
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+    padding: 6px 12px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 500;
   }
-  .nav button:hover { background: #334155; }
+  .nav button:hover { background: #e2e8f0; }
   .counter {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    color: #64748b;
-    font-size: 14px;
+    bottom: 16px;
+    left: 16px;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 500;
   }
   .timer {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 40px;
-    color: #22c55e;
+    top: 16px;
+    right: 16px;
+    font-size: 28px;
+    color: #16a34a;
     font-weight: 700;
     font-family: "SF Mono", monospace;
   }
-  .green { color: #22c55e; }
-  .red { color: #ef4444; }
+  .green { color: #16a34a; }
+  .red { color: #DC2626; }
+  .amber { color: #d97706; }
+  .muted { color: #64748b; }
   .big-center {
     text-align: center;
-    font-size: 42px;
-    margin: 40px 0 20px;
-    line-height: 1.3;
+    font-size: 24px;
+    margin: 18px 0 8px;
+    line-height: 1.35;
+    color: #0f172a;
+    font-weight: 500;
   }
+  /* Slide 3 pillars */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .pillar-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 18px;
+    border-radius: 12px;
+    border-top: 4px solid #DC2626;
+  }
+  .pillar-box .icon { font-size: 30px; margin-bottom: 6px; }
+  .pillar-box .title { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.2; }
+  .pillar-box p { font-size: 14px; color: #64748b; line-height: 1.45; margin: 0; }
+  .pillar-box .metric { color: #16a34a; font-weight: 700; }
+  .channels-bar {
+    margin-top: 14px;
+    padding: 12px 18px;
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #15803d;
+  }
+  .channels-bar strong { color: #15803d; }
+  /* Slide 4 Qwen roles */
+  .qwen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .qwen-role {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 14px 16px;
+    border-radius: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: start;
+  }
+  .qwen-role.hi { border-color: #DC2626; background: #fef2f2; border-width: 2px; padding: 13px 15px; }
+  .qwen-role .n { background: #DC2626; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; font-size: 14px; }
+  .qwen-role.dim .n { background: #94a3b8; }
+  .qwen-role .content h3 { font-size: 15px; color: #0f172a; margin-bottom: 3px; font-weight: 700; line-height: 1.25; }
+  .qwen-role .content p { font-size: 13px; color: #64748b; margin: 0; line-height: 1.4; }
+  /* Slide 6 demo */
+  .demo-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
   .step-box {
-    background: #1e293b;
-    border: 1px solid #334155;
-    padding: 24px;
-    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 12px 16px 12px 40px;
+    border-radius: 10px;
+    position: relative;
+    border-left: 4px solid #DC2626;
   }
-  .step-box .week {
-    font-size: 36px;
-    color: #fbbf24;
+  .step-box .num-badge {
+    position: absolute;
+    top: 14px;
+    left: 12px;
+    background: #DC2626;
+    color: white;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 12px;
     font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
   }
-  .step-box .title {
-    font-size: 22px;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 4px 0 12px;
+  .step-box .title { font-size: 15px; color: #0f172a; font-weight: 700; margin-bottom: 3px; display: inline-block; }
+  .step-box p { font-size: 13px; margin: 0; color: #64748b; line-height: 1.4; }
+  .step-box .time { font-size: 12px; color: #DC2626; font-family: "SF Mono", monospace; font-weight: 700; float: right; }
+  .demo-url {
+    text-align: center;
+    margin-top: 12px;
+    padding: 10px;
+    background: #0f172a;
+    color: white;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "SF Mono", monospace;
+    letter-spacing: 0.02em;
   }
-  .step-box p { font-size: 22px; }
+  .onprem-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: 0.03em;
+  }
 </style>
 </head>
 <body>
 <div class="timer" id="timer">0:00</div>
-<div class="counter" id="counter">1 / 6</div>
+<div class="counter" id="counter">1 / 7</div>
 
 <div class="deck">
 
-<!-- SLIDE 1: HOOK -->
+<!-- SLIDE 1: COVER -->
 <section class="slide active">
   <h1>DOS Chain RWA</h1>
-  <p class="subtitle">Nền tảng phát hành chứng khoán số đầu tiên tại Việt Nam</p>
-  <div style="margin-top: 48px;">
-    <span class="tag">AI tuân thủ tự động</span>
+  <p class="subtitle">Nền tảng phát hành chứng khoán số đầu tiên tại Việt Nam — AI đọc cáo bạch, tự kiểm tra luật, phát hành trong 10 giây.</p>
+  <div style="margin-top: 32px;">
+    <span class="tag">Phát hành chứng khoán số</span>
+    <span class="tag">AI kiểm tra tuân thủ</span>
     <span class="tag">Đăng nhập bằng email</span>
     <span class="tag">0 phí giao dịch</span>
-    <span class="tag">On-premise 100%</span>
+    <span class="tag green">On-premise 100%</span>
   </div>
   <div class="meta">
-    Qwen AI Build Day x Shinhan Future's Lab | Track SS6 | DOS Labs | rwa.doschain.com
+    Qwen AI Build Day × Shinhan Future's Lab · Track SS6 · DOS Labs · rwa.doschain.com
   </div>
 </section>
 
-<!-- SLIDE 2: OPPORTUNITY -->
+<!-- SLIDE 2: PROBLEM -->
 <section class="slide">
-  <h2>Thị trường <span class="highlight">$26 tỷ</span> đang bùng nổ</h2>
-  <div class="stat-grid">
-    <div><span class="big">$26 tỷ</span><span class="lbl">Thị trường chứng khoán số toàn cầu (+300%/năm)</span></div>
+  <h2>Thị trường chứng khoán số <span class="highlight">$26 tỷ</span> đang bùng nổ</h2>
+  <div class="stat-grid three">
+    <div><span class="big">$26 tỷ</span><span class="lbl">RWA toàn cầu, tăng 300%/năm</span></div>
+    <div><span class="big">$2 tỷ/ngày</span><span class="lbl">JPMorgan giao dịch qua Kinexys</span></div>
     <div><span class="big">$2,5 tỷ</span><span class="lbl">BlackRock trong quỹ trái phiếu số</span></div>
-    <div><span class="big">$2 tỷ/ngày</span><span class="lbl">JPMorgan giao dịch số qua Kinexys</span></div>
-    <div><span class="big">$250 tỷ</span><span class="lbl">Thị trường chứng khoán số Hàn Quốc 2030</span></div>
   </div>
-  <div class="two-col" style="margin-top: 28px;">
-    <div>
-      <div class="col-title">Shinhan Hàn Quốc</div>
-      <ul>
-        <li>Liên minh STO (từ 2023)</li>
-        <li>Nền tảng công nghệ Lambda256</li>
-        <li>Đơn vị lưu ký số KDAC</li>
-      </ul>
+  <div class="flow">
+    <strong>Nghịch lý Shinhan:</strong> Hàn Quốc đã có <span class="green">STO Alliance · Lambda256 · KDAC</span> — Việt Nam 5 công ty con, 51 chi nhánh, từ 1993, <span class="amber">chưa có hạ tầng số nào</span>.
+  </div>
+  <p class="big-center">
+    Việt Nam vừa mở cửa — <span class="green">Luật Công nghệ Số 2025</span>, <span class="green">Nghị quyết 05/2025</span>. Ai sẽ đi đầu?
+  </p>
+</section>
+
+<!-- SLIDE 3: WHAT WE BUILT -->
+<section class="slide">
+  <h2>Một nền tảng — <span class="red">3 trụ cột</span> — phủ cả SS6</h2>
+  <div class="pillar-grid">
+    <div class="pillar-box">
+      <div class="icon">📄</div>
+      <div class="title">Phát hành chứng khoán số</div>
+      <p>Chuẩn quốc tế <span class="metric">ERC-3643</span> được DTCC và SEC Mỹ công nhận. Mỗi giao dịch tự động kiểm tra tuân thủ trước khi thực hiện — không tin tưởng off-chain.</p>
     </div>
-    <div>
-      <div class="col-title red">Shinhan Việt Nam</div>
-      <ul>
-        <li>5 công ty con, 51 chi nhánh, từ 1993</li>
-        <li><strong>Chưa có hạ tầng số nào</strong></li>
-        <li>Việt Nam vừa mở cửa: Luật 2025</li>
-      </ul>
+    <div class="pillar-box">
+      <div class="icon">🤖</div>
+      <div class="title">AI tuân thủ tự động</div>
+      <p>Qwen đọc cáo bạch PDF, kiểm tra theo Luật Công nghệ Số 2025 + Nghị định 153/2020. <span class="metric">Chặn đúng</span> phát hành không hợp lệ (Cayman, không KYC, lãi 24%).</p>
     </div>
+    <div class="pillar-box">
+      <div class="icon">💸</div>
+      <div class="title">Thanh toán & Giao dịch số</div>
+      <p>Finality <span class="metric">1 giây</span> (nhanh hơn T+2 truyền thống). Thanh toán coupon tự động, gasless cho nhà đầu tư, kết nối xuyên chuỗi sang Avalanche & Ethereum.</p>
+    </div>
+  </div>
+  <div class="channels-bar">
+    <strong>Đã live:</strong> Cổng Phát Hành · Sàn Nhà Đầu Tư · Bảng Tuân Thủ · 4 bản cáo bạch mẫu · Token thật trên blockchain
   </div>
 </section>
 
-<!-- SLIDE 3: SOLUTION -->
+<!-- SLIDE 4: QWEN INTEGRATION -->
 <section class="slide">
-  <h2>Quy trình 4 bước đơn giản</h2>
-  <div class="flow">
-    Upload PDF → <strong>AI đọc</strong> → <strong>AI kiểm tra luật</strong> → Phát hành
+  <h2>Qwen AI là <span class="highlight">lõi tự động hóa</span> của nền tảng</h2>
+  <div class="qwen-grid">
+    <div class="qwen-role hi">
+      <div class="n">1</div>
+      <div class="content">
+        <h3>Xử lý tài liệu · Qwen đọc PDF</h3>
+        <p>Đọc bản cáo bạch trái phiếu, trích xuất 15+ thông số (tên, mã, mệnh giá, lãi suất, đáo hạn, hạn chế) trong vài giây. Nhà phát hành không cần điền form tay.</p>
+      </div>
+    </div>
+    <div class="qwen-role hi">
+      <div class="n">2</div>
+      <div class="content">
+        <h3>Kiểm tra tuân thủ · Qwen thẩm định luật</h3>
+        <p>Thẩm định theo Luật Công nghệ Số, Nghị định 153/2020, Luật Chứng khoán 2019, Luật Phòng chống rửa tiền. Không hợp lệ = chặn, không deploy được.</p>
+      </div>
+    </div>
+    <div class="qwen-role dim">
+      <div class="n">3</div>
+      <div class="content">
+        <h3>Tư vấn đầu tư · đa ngôn ngữ</h3>
+        <p>Chat với nhà đầu tư bằng Việt/Anh/Hàn. Trả lời "trái phiếu nào hợp với tôi?", "so sánh lợi suất", "rủi ro là gì?" dựa trên dữ liệu on-chain.</p>
+      </div>
+    </div>
+    <div class="qwen-role dim">
+      <div class="n">4</div>
+      <div class="content">
+        <h3>Báo cáo cho cơ quan quản lý</h3>
+        <p>Tự động tạo báo cáo tuân thủ mà cơ quan quản lý thực sự đọc được. Xuất PDF, có audit trail đầy đủ trên blockchain.</p>
+      </div>
+    </div>
   </div>
-  <div class="two-col" style="margin-top: 16px;">
+  <div class="channels-bar">
+    <strong>Chạy trên máy chủ ngân hàng.</strong> Qwen self-host qua vLLM trên GPU ngân hàng — cáo bạch + dữ liệu khách hàng không rời khỏi hệ thống nội bộ.
+  </div>
+</section>
+
+<!-- SLIDE 5: FLOW + ARCHITECTURE -->
+<section class="slide">
+  <h2>SS6 — phát hành trái phiếu số <span class="onprem-badge">ON-PREMISE</span></h2>
+  <div class="two-col">
     <div>
       <div class="col-title">Nhà phát hành (Shinhan)</div>
       <ul>
         <li>Upload bản cáo bạch PDF</li>
-        <li>AI tự đọc và trích xuất thông số</li>
-        <li>AI tự kiểm tra luật Việt Nam</li>
-        <li>1 click - phát hành xong trong 10s</li>
+        <li>AI trích xuất thông số → xem lại, sửa nếu cần</li>
+        <li>AI kiểm tra luật Việt Nam</li>
+        <li>1 click → phát hành lên blockchain</li>
       </ul>
     </div>
     <div>
       <div class="col-title">Nhà đầu tư</div>
       <ul>
-        <li>Đăng nhập bằng email Google</li>
-        <li><strong>Không cần ví crypto</strong></li>
-        <li><strong>Không phí giao dịch</strong></li>
-        <li>Mua bán như app chứng khoán thường</li>
+        <li>Đăng nhập bằng email (không cần ví crypto)</li>
+        <li>Duyệt sàn chứng khoán số</li>
+        <li>Chat AI tư vấn trước khi mua</li>
+        <li>Giao dịch gasless — trả 0 đồng phí</li>
       </ul>
     </div>
   </div>
-  <p class="big-center">Phủ cả 2 nửa đề bài SS6: <span class="green">✓ Phát hành</span> + <span class="green">✓ Thanh toán</span></p>
-</section>
-
-<!-- SLIDE 4: DEMO -->
-<section class="slide">
-  <h2>Đang chạy thật tại <span style="color:#fbbf24;">rwa.doschain.com</span></h2>
-  <div class="col-title">4 bản cáo bạch mẫu để giám khảo tự trải nghiệm:</div>
-  <ul style="margin-bottom: 28px;">
-    <li class="green">Trái phiếu doanh nghiệp Shinhan - <strong>AI pass</strong></li>
-    <li class="green">Trái phiếu Kho Bạc Nhà Nước - <strong>AI pass</strong></li>
-    <li class="green">Quỹ đầu tư bất động sản Shinhan - <strong>AI pass</strong></li>
-    <li class="red">Quỹ crypto Cayman (lãi 24%, không KYC) - <strong>AI chặn!</strong></li>
-  </ul>
-  <div class="col-title">AI tự động phát hiện vi phạm:</div>
-  <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr);">
-    <div>
-      <span class="big" style="font-size: 36px;">✗ Đơn vị phát hành</span>
-      <span class="lbl">Không đăng ký tại Việt Nam</span>
-    </div>
-    <div>
-      <span class="big" style="font-size: 36px;">✗ KYC/AML</span>
-      <span class="lbl">Không có xác minh danh tính</span>
-    </div>
-    <div>
-      <span class="big" style="font-size: 36px;">✗ Lãi suất</span>
-      <span class="lbl">24% bất thường, dấu hiệu lừa đảo</span>
-    </div>
-  </div>
-  <p class="big-center"><strong>Từ PDF đến chứng khoán số: dưới 10 giây</strong></p>
-</section>
-
-<!-- SLIDE 5: VALIDATION -->
-<section class="slide">
-  <h2>Không phát minh mới - <span class="highlight">dùng cái ngân hàng lớn đã chứng minh</span></h2>
-  <div class="two-col">
-    <div>
-      <div class="col-title">Chuẩn chứng khoán số</div>
-      <ul>
-        <li><strong>DTCC</strong> tham gia 03/2025</li>
-        <li style="font-size: 22px; color: #94a3b8; padding-left: 36px;">(Hệ thống thanh toán lớn nhất thế giới)</li>
-        <li><strong>Ủy ban Chứng khoán Mỹ</strong> công nhận 07/2025</li>
-        <li>32 tỷ đô chứng khoán đã phát hành</li>
-      </ul>
-    </div>
-    <div>
-      <div class="col-title">Mô hình blockchain chủ quyền</div>
-      <ul>
-        <li><strong>JPMorgan Kinexys</strong> - 2 tỷ đô/ngày</li>
-        <li><strong>Goldman Sachs, HSBC, Citi</strong></li>
-        <li><strong>Shinhan Hàn Quốc</strong> cũng dùng</li>
-      </ul>
-    </div>
-  </div>
-  <div class="col-title" style="margin-top: 32px;">Cùng hệ sinh thái với DOS Chain (Avalanche):</div>
-  <div class="stat-grid" style="grid-template-columns: repeat(2, 1fr);">
-    <div><span class="big">$2,5 tỷ</span><span class="lbl">BlackRock BUIDL trên Avalanche</span></div>
-    <div><span class="big">$732 triệu</span><span class="lbl">Franklin Templeton BENJI trên Avalanche</span></div>
+  <div class="flow" style="text-align: left; font-size: 17px;">
+    <strong>Công nghệ:</strong> Next.js · DOS Chain (Avalanche L1) · <strong>Qwen 3.5-35B</strong> · ERC-3643 (T-REX) · DOS.Me SSO · ICTT bridge · DOScan explorer
   </div>
   <p class="big-center">
-    <strong>Shinhan Việt Nam không cần pioneer. Chỉ cần đi đầu tại Việt Nam.</strong>
+    <span class="green">Cùng kiến trúc với BlackRock BUIDL ($2,5 tỷ) và Franklin BENJI ($732M)</span> trên Avalanche.
   </p>
 </section>
 
-<!-- SLIDE 6: CTA -->
+<!-- SLIDE 6: LIVE DEMO -->
 <section class="slide">
-  <h2>Sẵn sàng pilot <span class="highlight">Q2 2026</span></h2>
-  <div class="col-title">Kế hoạch 6 tuần qua Shinhan InnoBoost</div>
-  <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr); margin: 28px 0;">
+  <h2>Demo trực tiếp — <span class="red">dưới 60 giây</span></h2>
+  <div class="demo-list">
     <div class="step-box">
-      <div class="week">Tuần 1-2</div>
-      <div class="title">Triển khai</div>
-      <p>Cài đặt trong data center Shinhan. Kết nối hệ thống KYC/AML hiện có.</p>
+      <span class="num-badge">1</span>
+      <span class="time">5s</span>
+      <div class="title">Chọn bản cáo bạch mẫu</div>
+      <p>4 mẫu có sẵn: Trái phiếu DN Shinhan, Trái phiếu Kho Bạc NN, Quỹ BĐS, và <span class="red">quỹ crypto Cayman sai luật</span></p>
     </div>
     <div class="step-box">
-      <div class="week">Tuần 3-4</div>
-      <div class="title">Pilot</div>
-      <p>Phát hành 1 trái phiếu - 500 đơn vị, 50 tỷ VND, 20 nhà đầu tư.</p>
+      <span class="num-badge">2</span>
+      <span class="time">10s</span>
+      <div class="title">AI đọc & trích xuất</div>
+      <p>Qwen đọc PDF, trích xuất tên, mã, mệnh giá, lãi suất, đáo hạn, hạn chế. Hiện form cho phép chỉnh sửa.</p>
     </div>
     <div class="step-box">
-      <div class="week">Tuần 5-6</div>
-      <div class="title">Đánh giá</div>
-      <p>Đo kết quả, báo cáo cho cơ quan quản lý, quyết định rollout.</p>
+      <span class="num-badge">3</span>
+      <span class="time">10s</span>
+      <div class="title">AI kiểm tra luật</div>
+      <p>Quỹ Cayman bị <span class="red">CHẶN</span>: "không đăng ký VN, không KYC, lãi 24% bất thường". Shinhan → <span class="green">PASS</span>.</p>
+    </div>
+    <div class="step-box">
+      <span class="num-badge">4</span>
+      <span class="time">10s</span>
+      <div class="title">Phát hành lên blockchain</div>
+      <p>4 giao dịch tự động: tạo token → đăng ký danh tính → mở khóa → phát hành supply. Hiện link DOScan.</p>
+    </div>
+    <div class="step-box" style="grid-column: 1 / -1;">
+      <span class="num-badge">5</span>
+      <span class="time">5s</span>
+      <div class="title">Token xuất hiện ngay trên sàn Nhà Đầu Tư</div>
+      <p>Sàn tự động query từ blockchain (không database), hiện tên, mã, supply thật của token vừa phát hành.</p>
     </div>
   </div>
+  <div class="demo-url">rwa.doschain.com</div>
+</section>
+
+<!-- SLIDE 7: RESULTS + CTA -->
+<section class="slide">
+  <h2>Kết quả & <span class="highlight">đề xuất pilot</span></h2>
   <div class="two-col">
     <div>
-      <div class="col-title">Cam kết</div>
+      <div class="col-title">Đã chứng minh trong 1 tuần</div>
       <ul>
-        <li class="green">On-premise 100% (không lên cloud)</li>
-        <li class="green">Đáp ứng quy định NHNN về bảo mật dữ liệu</li>
-        <li class="green">Ngân sách: $30-60K cho pilot</li>
+        <li><strong>Full ERC-3643 live</strong> trên DOS Chain (hợp đồng vanity <code>0x7979...3643</code>)</li>
+        <li>PDF → chứng khoán số <strong>dưới 10 giây</strong></li>
+        <li>AI chặn đúng quỹ crypto Cayman (3 vi phạm)</li>
+        <li>Sàn tự động populate từ blockchain — không cần database</li>
+        <li>Cùng chuẩn với <strong>BlackRock BUIDL · JPMorgan · DTCC · SEC Mỹ</strong></li>
       </ul>
     </div>
     <div>
-      <div class="col-title">Liên hệ</div>
-      <p><strong>Demo:</strong> rwa.doschain.com</p>
-      <p><strong>Email:</strong> joy@dos.ai</p>
-      <p style="margin-top: 28px; font-size: 32px;"><strong>Cảm ơn các anh chị.</strong></p>
+      <div class="col-title green">Đề xuất Shinhan pilot</div>
+      <ul>
+        <li><strong>6 tuần</strong> qua chương trình Shinhan InnoBoost 2026</li>
+        <li>On-premise trong data center Shinhan (Helm + Docker)</li>
+        <li>Pilot SHVN26A — 500 trái phiếu, 50 tỷ VND, 20 NĐT</li>
+        <li>Tích hợp KYC/AML hiện có qua webhook API</li>
+        <li><strong>Ngân sách pilot:</strong> $30–60K</li>
+      </ul>
     </div>
   </div>
+  <div class="flow" style="text-align:center; background: #f0fdf4; border-left-color: #16a34a;">
+    <strong style="color:#15803d;">Anh Le (JOY)</strong> — Founder, DOS Labs · <strong style="color:#15803d;">joy@dos.ai</strong> · rwa.doschain.com · dos.ai
+  </div>
+  <p class="big-center"><strong style="color:#0f172a;">Cảm ơn các anh chị.</strong></p>
 </section>
 
 </div>
@@ -400,9 +521,9 @@ function updateTimer() {
   const s = seconds % 60;
   const el = document.getElementById('timer');
   el.textContent = `${m}:${s.toString().padStart(2, '0')}`;
-  if (seconds >= 240) el.style.color = '#ef4444';
-  else if (seconds >= 210) el.style.color = '#fbbf24';
-  else el.style.color = '#22c55e';
+  if (seconds >= 240) el.style.color = '#DC2626';
+  else if (seconds >= 210) el.style.color = '#d97706';
+  else el.style.color = '#16a34a';
 }
 function toggleTimer() {
   const btn = document.getElementById('timerBtn');
