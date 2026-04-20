@@ -279,8 +279,10 @@
   .vs-table td.own { background: #fef2f2; }
   .vs-table td.feature { font-weight: 700; color: #0f172a; font-size: 18px; }
   .vs-table .yes { color: #16a34a; font-weight: 700; }
-  .vs-table .no { color: #94a3b8; font-size: 17px; }
+  .vs-table .no { color: #64748b; font-size: 17px; }
+  .vs-table .no::before { content: "✗ "; color: #DC2626; font-weight: 800; }
   .vs-table .partial { color: #d97706; font-weight: 600; }
+  .vs-table .partial::before { content: "◐ "; color: #d97706; }
   .vs-table .note { color: #64748b; font-size: 16px; font-weight: 400; margin-left: 6px; }
   .vs-table td.own .note { color: #334155; }
   /* Slide 7 - try cards */
@@ -513,10 +515,10 @@
       <tr>
         <td class="feature">AI engine (docs + compliance + advisor)</td>
         <td class="own yes">✓ <span class="note">Qwen reads PDFs, checks law, advises investors</span></td>
-        <td class="no">—</td>
-        <td class="no">—</td>
-        <td class="no">—</td>
-        <td class="no">—</td>
+        <td class="no">No AI</td>
+        <td class="no">No AI</td>
+        <td class="no">No AI</td>
+        <td class="no">No AI</td>
       </tr>
       <tr>
         <td class="feature">Investor UX: SSO, gasless, instant</td>
@@ -545,8 +547,8 @@
       <tr>
         <td class="feature">Dedicated permissioned L1 option</td>
         <td class="own yes">✓ <span class="note">private chain in hours</span></td>
-        <td class="no">—</td>
-        <td class="no">—</td>
+        <td class="no">Not offered</td>
+        <td class="no">Not offered</td>
         <td class="no">Shared chain only</td>
         <td class="yes">✓ <span class="note">Evergreen subnet</span></td>
       </tr>
