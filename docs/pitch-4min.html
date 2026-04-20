@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DOS Chain RWA — 4-minute pitch · Qwen AI Build Day (SS6)</title>
+<title>DOS Chain RWA - Pitch 4 min · Qwen AI Build Day (SS6)</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -25,6 +25,13 @@
     overflow: hidden;
   }
   .slide.active { display: flex; }
+  .slide:not(.cover) { align-items: center; }
+  .slide:not(.cover) > * { max-width: 1320px; width: 100%; }
+  .slide.cover { align-items: center; text-align: center; }
+  .slide.cover > * { max-width: 1100px; width: 100%; }
+  .slide.cover .subtitle { margin-left: auto; margin-right: auto; }
+  .slide.cover .cover-logo { width: 160px; height: 160px; margin-bottom: 12px; }
+  .slide.cover .cover-meta { font-size: 16px; color: #475569; font-weight: 600; margin-top: 36px; padding-top: 16px; border-top: 1px solid #e2e8f0; letter-spacing: 0.03em; max-width: 720px; margin-left: auto; margin-right: auto; }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -57,52 +64,6 @@
   }
   strong { color: #DC2626; font-weight: 700; }
   .subtitle { font-size: 26px; color: #64748b; margin-top: 8px; font-style: italic; line-height: 1.35; max-width: 900px; }
-  .meta {
-    font-size: 15px;
-    color: #94a3b8;
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid #e2e8f0;
-    letter-spacing: 0.03em;
-  }
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin: 14px 0;
-  }
-  .stat-grid.three { grid-template-columns: repeat(3, 1fr); }
-  .stat-grid > div {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 16px 20px;
-    border-radius: 10px;
-  }
-  .stat-grid > div .big {
-    font-size: 38px;
-    color: #DC2626;
-    font-weight: 800;
-    display: block;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-  }
-  .stat-grid > div .lbl {
-    font-size: 15px;
-    color: #64748b;
-    display: block;
-    margin-top: 6px;
-    line-height: 1.3;
-  }
-  .flow {
-    font-size: 22px;
-    background: #fef2f2;
-    padding: 16px 24px;
-    border-radius: 10px;
-    border-left: 5px solid #DC2626;
-    margin: 16px 0;
-    text-align: center;
-    color: #0f172a;
-  }
   .highlight {
     background: #DC2626;
     color: white;
@@ -110,22 +71,6 @@
     border-radius: 5px;
     font-weight: 700;
   }
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 10px;
-  }
-  .col-title {
-    font-size: 14px;
-    color: #DC2626;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-weight: 700;
-  }
-  .col-title.slate { color: #64748b; }
-  .col-title.green { color: #16a34a; }
   .tag {
     display: inline-block;
     padding: 5px 12px;
@@ -179,15 +124,62 @@
   .red { color: #DC2626; }
   .amber { color: #d97706; }
   .muted { color: #64748b; }
-  .big-center {
-    text-align: center;
-    font-size: 24px;
-    margin: 18px 0 8px;
-    line-height: 1.35;
-    color: #0f172a;
-    font-weight: 500;
+  /* Slide 2 - race */
+  .arms-lede { font-size: 20px; color: #334155; margin: 4px 0 18px; max-width: 1100px; line-height: 1.45; }
+  .arms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 4px; }
+  .arms-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid #DC2626;
+    padding: 14px 16px;
+    border-radius: 12px;
   }
-  /* Slide 3 pillars */
+  .arms-card .cat { font-size: 12px; color: #DC2626; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+  .arms-card .name { font-size: 22px; color: #0f172a; font-weight: 800; margin: 6px 0 4px; line-height: 1.2; }
+  .arms-card .when { font-size: 13px; color: #94a3b8; font-weight: 600; margin-bottom: 10px; }
+  .arms-card .d { font-size: 15px; color: #475569; line-height: 1.45; margin: 0; }
+  .arms-punch { margin-top: 18px; padding: 14px 20px; background: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 6px; font-size: 17px; color: #15803d; line-height: 1.45; }
+  .arms-punch strong { color: #15803d; }
+  /* Slide 3 - news hero */
+  .news-hero {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-top: 6px;
+  }
+  .news-hero .news-stat.full {
+    border-radius: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .news-right { display: flex; flex-direction: column; gap: 12px; }
+  .news-right .news-stat { flex: 0 0 auto; }
+  .news-right .news-attacks { flex: 1 1 auto; }
+  .news-stat {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-top: 4px solid #DC2626;
+    padding: 20px 24px;
+    border-radius: 12px;
+  }
+  .news-stat .big { font-size: 56px; color: #DC2626; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+  .news-stat .lbl { font-size: 14px; color: #b91c1c; margin-top: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .news-stat .desc { font-size: 15px; color: #334155; margin-top: 12px; line-height: 1.45; }
+  .news-stat .source { font-size: 12px; color: #94a3b8; margin-top: 8px; font-style: italic; }
+  .news-attacks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-content: end; }
+  .news-attacks .atk {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid #DC2626;
+    padding: 14px 16px;
+    border-radius: 10px;
+  }
+  .news-attacks .atk .t { font-size: 17px; color: #0f172a; font-weight: 800; margin-bottom: 6px; line-height: 1.25; }
+  .news-attacks .atk .d { font-size: 15px; color: #334155; line-height: 1.4; }
+  /* Slide 4 - pillars */
   .pillar-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -197,90 +189,74 @@
   .pillar-box {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    padding: 18px;
+    padding: 20px 22px;
     border-radius: 12px;
     border-top: 4px solid #DC2626;
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    column-gap: 16px;
+    align-items: start;
   }
-  .pillar-box .icon { font-size: 30px; margin-bottom: 6px; }
-  .pillar-box .title { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.2; }
-  .pillar-box p { font-size: 14px; color: #64748b; line-height: 1.45; margin: 0; }
+  .pillar-box .icon { font-size: 40px; line-height: 1; grid-row: span 2; align-self: center; }
+  .pillar-box .title { font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 6px; line-height: 1.2; }
+  .pillar-box p { font-size: 16px; color: #334155; line-height: 1.45; margin: 0; }
   .pillar-box .metric { color: #16a34a; font-weight: 700; }
+  .punchline { margin: 8px 0 18px; font-size: 18px; color: #334155; font-weight: 500; text-align: center; }
+  .punchline .red { font-weight: 700; }
   .channels-bar {
-    margin-top: 14px;
-    padding: 12px 18px;
+    margin-top: 16px;
+    padding: 16px 22px;
     background: #f0fdf4;
     border-left: 4px solid #16a34a;
     border-radius: 6px;
-    font-size: 15px;
+    font-size: 18px;
     color: #15803d;
+    line-height: 1.45;
   }
   .channels-bar strong { color: #15803d; }
-  /* Slide 4 Qwen roles */
-  .qwen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
-  .qwen-role {
+  /* Slide 5 - battlegrounds / adoption */
+  .bg-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 8px; }
+  .bg-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid #DC2626;
+    padding: 18px 16px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  .bg-card .head { display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; align-items: center; margin-bottom: 10px; }
+  .bg-card .icon { font-size: 30px; line-height: 1; }
+  .bg-card .big { font-size: 32px; color: #DC2626; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+  .bg-card .lbl { font-size: 12px; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.02em; font-weight: 700; line-height: 1.3; grid-column: 2; white-space: nowrap; }
+  .bg-card .threat { font-size: 16px; color: #334155; margin-top: 14px; line-height: 1.4; font-weight: 500; }
+  .bg-card .sol { font-size: 15px; margin-top: auto; padding-top: 12px; border-top: 1px dashed #e2e8f0; color: #16a34a; font-weight: 700; line-height: 1.4; }
+  /* Slide 6 - Qwen v-grid */
+  .qwen-v-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 10px; }
+  .qwen-v-card {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     padding: 14px 16px;
     border-radius: 10px;
-    display: flex;
-    gap: 12px;
-    align-items: start;
+    border-top: 4px solid #DC2626;
   }
-  .qwen-role.hi { border-color: #DC2626; background: #fef2f2; border-width: 2px; padding: 13px 15px; }
-  .qwen-role .n { background: #DC2626; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; font-size: 14px; }
-  .qwen-role.dim .n { background: #94a3b8; }
-  .qwen-role .content h3 { font-size: 15px; color: #0f172a; margin-bottom: 3px; font-weight: 700; line-height: 1.25; }
-  .qwen-role .content p { font-size: 13px; color: #64748b; margin: 0; line-height: 1.4; }
-  /* Slide 6 demo */
-  .demo-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-  .step-box {
+  .qwen-v-card .role { font-size: 13px; color: #DC2626; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+  .qwen-v-card .model { font-size: 19px; color: #0f172a; font-weight: 800; margin: 6px 0 10px; }
+  .qwen-v-card p { font-size: 16px; color: #475569; margin: 0; line-height: 1.45; }
+  /* Slide 7 - try cards */
+  .try-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
+  .try-card {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
-    padding: 12px 16px 12px 40px;
-    border-radius: 10px;
-    position: relative;
-    border-left: 4px solid #DC2626;
+    border-top: 4px solid #DC2626;
+    padding: 16px 18px;
+    border-radius: 12px;
   }
-  .step-box .num-badge {
-    position: absolute;
-    top: 14px;
-    left: 12px;
-    background: #DC2626;
-    color: white;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    font-size: 12px;
-    font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .step-box .title { font-size: 15px; color: #0f172a; font-weight: 700; margin-bottom: 3px; display: inline-block; }
-  .step-box p { font-size: 13px; margin: 0; color: #64748b; line-height: 1.4; }
-  .step-box .time { font-size: 12px; color: #DC2626; font-family: "SF Mono", monospace; font-weight: 700; float: right; }
-  .demo-url {
-    text-align: center;
-    margin-top: 12px;
-    padding: 10px;
-    background: #0f172a;
-    color: white;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: "SF Mono", monospace;
-    letter-spacing: 0.02em;
-  }
-  .onprem-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #15803d;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 700;
-    margin-left: 8px;
-    vertical-align: middle;
-    letter-spacing: 0.03em;
-  }
+  .try-card .feature { font-size: 18px; color: #0f172a; font-weight: 800; margin-bottom: 6px; line-height: 1.25; }
+  .try-card p { font-size: 16px; color: #334155; margin: 0 0 10px; line-height: 1.4; }
+  .try-card .url { font-family: "SF Mono", monospace; font-size: 16px; color: #DC2626; font-weight: 700; }
+  .contact-bar { margin-top: 14px; padding: 12px 18px; background: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 6px; font-size: 15px; color: #15803d; text-align: center; }
+  .contact-bar strong { color: #15803d; }
 </style>
 </head>
 <body>
@@ -290,54 +266,114 @@
 <div class="deck">
 
 <!-- SLIDE 1: COVER -->
-<section class="slide active">
+<section class="slide cover active">
+  <img class="cover-logo" src="assets/dos-icon.svg" alt="DOS Chain RWA">
   <h1>DOS Chain RWA</h1>
   <p class="subtitle">Upload a bond prospectus. Ten seconds later, a regulated digital security is live on-chain.</p>
   <div style="margin-top: 32px;">
     <span class="tag">ERC-3643 on Avalanche L1</span>
-    <span class="tag">Qwen reads the prospectus</span>
+    <span class="tag">AI reads the prospectus</span>
     <span class="tag">4 sample PDFs, one trap</span>
-    <span class="tag green">On-premise 100%</span>
+    <span class="tag green">100% on-premise</span>
   </div>
-  <div class="meta">
+  <div class="cover-meta">
     Qwen AI Build Day × Shinhan Future's Lab · Track SS6 · DOS Labs · rwa.doschain.com
   </div>
 </section>
 
-<!-- SLIDE 2: PROBLEM -->
+<!-- SLIDE 2: INSTITUTIONS ARE MOVING - weekly -->
 <section class="slide">
-  <h2>The global tokenization market is <span class="highlight">$26B</span> and growing 300% a year</h2>
-  <div class="stat-grid three">
-    <div><span class="big">$26B</span><span class="lbl">Real-world assets on-chain, +300% YoY</span></div>
-    <div><span class="big">$2B/day</span><span class="lbl">JPMorgan Kinexys tokenized transactions</span></div>
-    <div><span class="big">$2.5B</span><span class="lbl">BlackRock BUIDL on Avalanche + 8 chains</span></div>
+  <h2>Every major bank is already <span class="highlight">moving</span> - Shinhan VN is not</h2>
+  <p class="arms-lede">Tokenization isn't a thesis anymore. The biggest names on Wall Street are live, at scale, now.</p>
+  <div class="arms-grid">
+    <div class="arms-card">
+      <div class="cat">Asset manager</div>
+      <div class="name">BlackRock BUIDL</div>
+      <div class="when">$2.5B AUM</div>
+      <p class="d">Tokenized Treasury fund - live on Avalanche + 8 other chains.</p>
+    </div>
+    <div class="arms-card">
+      <div class="cat">Commercial bank</div>
+      <div class="name">JPMorgan Kinexys</div>
+      <div class="when">$2B / day</div>
+      <p class="d">Tokenized deposits + intraday repo on a sovereign L1. $1.5T processed.</p>
+    </div>
+    <div class="arms-card">
+      <div class="cat">Asset manager</div>
+      <div class="name">Franklin BENJI</div>
+      <div class="when">$732M AUM</div>
+      <p class="d">Tokenized money market fund - also on Avalanche + 7 chains.</p>
+    </div>
+    <div class="arms-card">
+      <div class="cat">Custodian</div>
+      <div class="name">DTCC + SEC</div>
+      <div class="when">2025</div>
+      <p class="d">DTCC joined ERC-3643 Association (Mar). SEC endorsed (Jul). Regulatory validation.</p>
+    </div>
   </div>
-  <div class="flow">
-    <strong>The Shinhan gap:</strong> Korea runs STO Alliance, Lambda256, and KDAC. Vietnam — 5 companies, 51 branches, 33 years — runs <span class="amber">zero digital-asset pilots</span>.
-  </div>
-  <p class="big-center">
-    Vietnam just opened the door — <span class="green">Digital Technology Law 2025</span> and <span class="green">Resolution 05/2025</span> went live in January. MoF is taking applications.
-  </p>
+  <div class="arms-punch"><strong>The gap:</strong> Shinhan Korea runs STO Alliance, Lambda256, KDAC. Shinhan Vietnam - 5 companies, 51 branches, 33 years - runs zero digital-asset pilots.</div>
 </section>
 
-<!-- SLIDE 3: WHAT WE BUILT -->
+<!-- SLIDE 3: VIETNAM WINDOW -->
 <section class="slide">
-  <h2>One platform — <span class="red">3 pillars</span> — both halves of SS6</h2>
+  <h2>Vietnam just opened the door - <span class="highlight">January 2026</span></h2>
+  <div class="news-hero">
+    <div class="news-stat full">
+      <div class="big">$26B</div>
+      <div class="lbl">global real-world assets on-chain</div>
+      <div class="desc">Growing 300% year over year. Standard Chartered forecasts $2 trillion by 2028. Korea alone: $250B by 2030 (BCG).</div>
+      <div class="source">Sources: rwa.xyz · Standard Chartered · BCG Korea report</div>
+    </div>
+    <div class="news-right">
+      <div class="news-stat">
+        <div class="big">Law 2025</div>
+        <div class="lbl">digital assets recognized as property</div>
+        <div class="desc">Digital Technology Industry Law - in force since 01/01/2026. Resolution 05/2025 runs a 5-year tokenization pilot. MoF is accepting license applications.</div>
+        <div class="source">Source: National Assembly, Jan 2026</div>
+      </div>
+      <div class="news-attacks">
+        <div class="atk">
+          <div class="t">Asset-backed only</div>
+          <div class="d">Only tangible-asset-backed tokens allowed. Bonds and real estate fit.</div>
+        </div>
+        <div class="atk">
+          <div class="t">VN issuers only</div>
+          <div class="d">Shinhan Securities VN is registered locally. Legally eligible to issue.</div>
+        </div>
+        <div class="atk">
+          <div class="t">KYC / AML mandatory</div>
+          <div class="d">Our on-chain identity enforces it at the contract level.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: WHAT WE BUILT - 3 pillars -->
+<section class="slide">
+  <h2>One platform - <span class="highlight">3 pillars</span> - both halves of SS6</h2>
+  <p class="punchline">Built on <span class="red">ERC-3643</span> · orchestrated by Qwen · deployable on-premise.</p>
   <div class="pillar-grid">
     <div class="pillar-box">
       <div class="icon">📄</div>
-      <div class="title">Securities, issued on-chain</div>
-      <p>We use <span class="metric">ERC-3643</span> — the standard DTCC joined and the SEC endorsed. Every transfer checks on-chain identity before it clears. No off-chain lists, no trust gaps.</p>
+      <div>
+        <div class="title">Securities, issued on-chain</div>
+        <p><span class="metric">ERC-3643</span> - the standard DTCC joined and the SEC endorsed. Every transfer checks on-chain identity before it clears.</p>
+      </div>
     </div>
     <div class="pillar-box">
       <div class="icon">🤖</div>
-      <div class="title">AI does the compliance</div>
-      <p>Qwen reads the prospectus and checks it against VN law. If something's off (Cayman issuer, no KYC, 24% yield), the deploy button stays locked. <span class="metric">Caught our trap PDF.</span></p>
+      <div>
+        <div class="title">AI handles compliance</div>
+        <p>Qwen reads the prospectus, checks against VN law. Deploy button unlocks only on pass. <span class="metric">Caught our trap PDF.</span></p>
+      </div>
     </div>
     <div class="pillar-box">
       <div class="icon">💸</div>
-      <div class="title">Payments, not just tokens</div>
-      <p>Settlement in <span class="metric">1 second</span>, not T+2. Coupons distribute automatically. Verified investors pay zero gas. Cross-chain to Avalanche and Ethereum, compliance preserved.</p>
+      <div>
+        <div class="title">Payments, not just tokens</div>
+        <p>Settlement in <span class="metric">1 second</span>. Coupons distribute automatically. Investors pay zero gas. Cross-chain ready.</p>
+      </div>
     </div>
   </div>
   <div class="channels-bar">
@@ -345,142 +381,106 @@
   </div>
 </section>
 
-<!-- SLIDE 4: QWEN INTEGRATION -->
+<!-- SLIDE 5: 5 USE CASES - one platform -->
 <section class="slide">
-  <h2>Where Qwen <span class="highlight">earns its keep</span></h2>
-  <div class="qwen-grid">
-    <div class="qwen-role hi">
-      <div class="n">1</div>
-      <div class="content">
-        <h3>Reads the prospectus · Qwen3.5-35B</h3>
-        <p>PDF goes in, 15+ structured fields come out. Issuer reviews and edits — they never fill a form from scratch.</p>
-      </div>
+  <h2>5 SS6 use cases - <span class="highlight">one platform</span></h2>
+  <div class="bg-grid">
+    <div class="bg-card">
+      <div class="head"><div class="icon">🏦</div><div><div class="big">&lt; 10s</div><div class="lbl">PDF to minted token</div></div></div>
+      <div class="threat">Corporate bond issuance - today a 3-month paper process</div>
+      <div class="sol">AI extraction + one-click<br>deploy on DOS Chain</div>
     </div>
-    <div class="qwen-role hi">
-      <div class="n">2</div>
-      <div class="content">
-        <h3>Checks the law · Qwen3.5-35B</h3>
-        <p>Same model, different prompt. Is the issuer VN-registered? Is KYC enforced? Do the numbers make sense? Pass → deploy unlocks.</p>
-      </div>
+    <div class="bg-card">
+      <div class="head"><div class="icon">🏛️</div><div><div class="big">100%</div><div class="lbl">sovereign-backed</div></div></div>
+      <div class="threat">Government bonds - need transparent distribution at scale</div>
+      <div class="sol">Same template, any issuer<br>VN Treasury sample included</div>
     </div>
-    <div class="qwen-role dim">
-      <div class="n">3</div>
-      <div class="content">
-        <h3>Advises investors · multilingual</h3>
-        <p>Chat panel in VN, EN, KR. Answers "which bond fits my profile?" using live on-chain data — not marketing copy.</p>
-      </div>
+    <div class="bg-card">
+      <div class="head"><div class="icon">🏢</div><div><div class="big">10yr</div><div class="lbl">real estate REIT</div></div></div>
+      <div class="threat">Fund certificates - illiquid, high minimum, paper-based</div>
+      <div class="sol">Tokenized fractional units<br>Shinhan REIT sample included</div>
     </div>
-    <div class="qwen-role dim">
-      <div class="n">4</div>
-      <div class="content">
-        <h3>Writes the regulator report</h3>
-        <p>Compliance officers get a document they can hand to SSC — issuer status, claim registry, transfer audit trail, all in one PDF.</p>
-      </div>
+    <div class="bg-card">
+      <div class="head"><div class="icon">💳</div><div><div class="big">auto</div><div class="lbl">coupon distribution</div></div></div>
+      <div class="threat">Manual coupon reconciliation every 6 months per bond</div>
+      <div class="sol">Scheduled smart contract<br>pays every holder, no ops</div>
+    </div>
+    <div class="bg-card">
+      <div class="head"><div class="icon">🌉</div><div><div class="big">3 chains</div><div class="lbl">cross-border settlement</div></div></div>
+      <div class="threat">Cross-border trades blocked by off-chain compliance state</div>
+      <div class="sol">ICTT bridge preserves<br>ONCHAINID claims across chains</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: QWEN ROLE -->
+<section class="slide">
+  <h2>Qwen3.5-35B is the <span class="highlight">compliance core</span> of the platform</h2>
+  <div class="qwen-v-grid">
+    <div class="qwen-v-card">
+      <div class="role">Document extraction</div>
+      <div class="model">Qwen3.5-35B</div>
+      <p>PDF in, 15+ structured fields out. Issuer reviews and edits - never fills a form from scratch.</p>
+    </div>
+    <div class="qwen-v-card">
+      <div class="role">Regulatory check</div>
+      <div class="model">Qwen3.5-35B</div>
+      <p>Same model, different prompt. Is the issuer VN-registered? Is KYC enforced? Pass unlocks deploy.</p>
+    </div>
+    <div class="qwen-v-card">
+      <div class="role">Investor advisor</div>
+      <div class="model">Qwen3.5-35B · VI/EN/KR</div>
+      <p>Chat panel in the investor portal. Uses live on-chain data - no marketing copy, no hallucinated yields.</p>
+    </div>
+    <div class="qwen-v-card">
+      <div class="role">Regulator report</div>
+      <div class="model">Qwen3.5-35B</div>
+      <p>Stitches issuer status, claim registry, and transfer audit into one PDF ready for SSC.</p>
     </div>
   </div>
   <div class="channels-bar">
-    <strong>Deploys to the bank's own hardware.</strong> We run Qwen through vLLM on Shinhan's GPUs if wanted — prospectuses and investor data never leave the network.
+    <strong>Open weights · runs on Shinhan's own GPUs.</strong> Qwen is Apache 2.0. Prospectuses and investor data never leave the bank's network.
   </div>
 </section>
 
-<!-- SLIDE 5: FLOW + ARCHITECTURE -->
+<!-- SLIDE 7: TRY IT YOURSELF + CTA -->
 <section class="slide">
-  <h2>SS6 — how an issuance actually runs <span class="onprem-badge">ON-PREMISE</span></h2>
-  <div class="two-col">
-    <div>
-      <div class="col-title">Issuer side · Shinhan</div>
-      <ul>
-        <li>Drop prospectus PDF in the issuer portal</li>
-        <li>AI extracts, issuer reviews and edits</li>
-        <li>AI checks the law — pass unlocks the deploy button</li>
-        <li>One click fires 4 transactions, token is live</li>
-      </ul>
+  <h2>Try it yourself - <span class="highlight">live right now</span></h2>
+  <div class="try-grid">
+    <div class="try-card">
+      <div class="feature">Issuer portal · upload a prospectus</div>
+      <p>Drop a PDF. AI extracts, reviews law, one click deploys to mainnet.</p>
+      <div class="url">rwa.doschain.com/issuer</div>
     </div>
-    <div>
-      <div class="col-title">Investor side</div>
-      <ul>
-        <li>Sign in with Google or email — no crypto wallet</li>
-        <li>Marketplace auto-populates from on-chain events</li>
-        <li>Ask the AI advisor before buying</li>
-        <li>Transactions settle in ~1 second, gas is free</li>
-      </ul>
+    <div class="try-card">
+      <div class="feature">4 sample prospectuses · one trap</div>
+      <p>Shinhan bond · VN Treasury · Shinhan REIT · Cayman crypto fund (AI blocks this one).</p>
+      <div class="url">rwa.doschain.com/issuer</div>
     </div>
-  </div>
-  <div class="flow" style="text-align: left; font-size: 17px;">
-    <strong>Stack:</strong> Next.js · DOS Chain (Avalanche L1) · <strong>Qwen3.5-35B</strong> · ERC-3643 (T-REX) · DOS.Me SSO · ICTT bridge · DOScan explorer
-  </div>
-  <p class="big-center">
-    <span class="green">Same architecture BlackRock and Franklin Templeton run on Avalanche.</span> We're not inventing — we're executing it first in Vietnam.
-  </p>
-</section>
-
-<!-- SLIDE 6: LIVE DEMO -->
-<section class="slide">
-  <h2>Live demo — <span class="red">under 60 seconds</span></h2>
-  <div class="demo-list">
-    <div class="step-box">
-      <span class="num-badge">1</span>
-      <span class="time">5s</span>
-      <div class="title">Pick a prospectus</div>
-      <p>4 on the shelf: Shinhan corporate bond, VN Treasury bond, Shinhan REIT, and a <span class="red">fake Cayman crypto fund</span> we planted.</p>
+    <div class="try-card">
+      <div class="feature">Investor marketplace · on-chain listing</div>
+      <p>Sign in with Google, browse tokens minted from blockchain events. No cached state.</p>
+      <div class="url">rwa.doschain.com/investor</div>
     </div>
-    <div class="step-box">
-      <span class="num-badge">2</span>
-      <span class="time">10s</span>
-      <div class="title">AI reads it</div>
-      <p>Qwen extracts every field. Editable form — fix anything wrong, move on.</p>
+    <div class="try-card">
+      <div class="feature">AI advisor · VN / EN / KR</div>
+      <p>Ask "which bond fits my profile?" Qwen answers from live on-chain data.</p>
+      <div class="url">rwa.doschain.com/investor</div>
     </div>
-    <div class="step-box">
-      <span class="num-badge">3</span>
-      <span class="time">10s</span>
-      <div class="title">AI checks the law</div>
-      <p>Cayman fund <span class="red">BLOCKED</span>: "not registered in VN, no KYC, 24% yield is a red flag." Shinhan → <span class="green">PASSES</span>.</p>
+    <div class="try-card">
+      <div class="feature">Compliance dashboard</div>
+      <p>Token status, transfer audit trail, regulator-ready PDF export.</p>
+      <div class="url">rwa.doschain.com/compliance</div>
     </div>
-    <div class="step-box">
-      <span class="num-badge">4</span>
-      <span class="time">10s</span>
-      <div class="title">Issue on-chain</div>
-      <p>4 transactions: create token, register issuer, unlock transfers, mint supply. DOScan link with contract address.</p>
-    </div>
-    <div class="step-box" style="grid-column: 1 / -1;">
-      <span class="num-badge">5</span>
-      <span class="time">5s</span>
-      <div class="title">New token shows up in the investor marketplace</div>
-      <p>No database write, no refresh. The portal watches blockchain events and picks up the new listing automatically.</p>
+    <div class="try-card">
+      <div class="feature">Verify on DOScan</div>
+      <p>Every contract is public. TREXFactory: <code>0x7979...3643</code>. No testnet tricks.</p>
+      <div class="url">doscan.io</div>
     </div>
   </div>
-  <div class="demo-url">rwa.doschain.com</div>
-</section>
-
-<!-- SLIDE 7: RESULTS + CTA -->
-<section class="slide">
-  <h2>What we built · <span class="highlight">what we're proposing</span></h2>
-  <div class="two-col">
-    <div>
-      <div class="col-title">Proven in about a week</div>
-      <ul>
-        <li>Full ERC-3643 suite live on DOS Chain mainnet — factory at <code>0x7979...3643</code></li>
-        <li>PDF to minted token in <strong>under 10 seconds</strong></li>
-        <li>AI caught all 3 violations in the trap PDF, blocked the deploy</li>
-        <li>Marketplace reads real blockchain events — no cached state</li>
-        <li>Same standards as <strong>BlackRock · JPMorgan · DTCC · US SEC</strong></li>
-      </ul>
-    </div>
-    <div>
-      <div class="col-title green">Shinhan pilot proposal</div>
-      <ul>
-        <li><strong>6-week pilot</strong> through Shinhan InnoBoost 2026</li>
-        <li>Full on-premise deploy (Helm + Docker) in Shinhan's data center</li>
-        <li>One live bond: SHVN26A, 500 units, 50B VND, ~20 qualified investors</li>
-        <li>Webhook integration with Shinhan's existing KYC/AML</li>
-        <li><strong>Budget: $30–60K.</strong> Production decision at week six.</li>
-      </ul>
-    </div>
+  <div class="contact-bar">
+    <strong>Anh Le (JOY)</strong> - Founder, DOS Labs · <strong>joy@dos.ai</strong> · rwa.doschain.com · dos.ai
   </div>
-  <div class="flow" style="text-align:center; background: #f0fdf4; border-left-color: #16a34a;">
-    <strong style="color:#15803d;">Anh Le (JOY)</strong> — Founder, DOS Labs · <strong style="color:#15803d;">joy@dos.ai</strong> · rwa.doschain.com · dos.ai
-  </div>
-  <p class="big-center"><strong style="color:#0f172a;">Thank you. Happy to take questions.</strong></p>
 </section>
 
 </div>
