@@ -300,6 +300,22 @@
   .try-card .url { font-family: "SF Mono", monospace; font-size: 16px; color: #DC2626; font-weight: 700; }
   .contact-bar { margin-top: 14px; padding: 12px 18px; background: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 6px; font-size: 15px; color: #15803d; text-align: center; }
   .contact-bar strong { color: #15803d; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { height: auto; overflow: visible; background: #ffffff; }
+    .deck { position: static; height: auto; width: 1280px; }
+    .slide {
+      position: relative !important;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      animation: none !important;
+    }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+    .nav, .counter, .timer { display: none !important; }
+  }
 </style>
 </head>
 <body>
